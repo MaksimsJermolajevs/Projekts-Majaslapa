@@ -34,12 +34,12 @@
                     <img class="ukimg" src="{% static 'majaslapa/image/ENG.png' %}" alt="en">
                     <a class="EN" href="/en{{ request.get_full_path |slice:'3:'}}">EN</a>
                 </li>
-                <b class ='stick'>|</b>
+                {% comment %} <b class ='stick'>|</b> {% endcomment %}
                 {% if request.user.is_authenticated %}
                 <li class="right"><a href="{% url 'logout' %}">{% trans 'Izlogoties' %}</a></li>
                 {% else %}
                 <li class="right"><a href="{% url 'login' %}">{% trans 'Pieslēgties' %}</a></li>
-                <b class ='stick'>|</b>
+                {% comment %} <b class ='stick'>|</b> {% endcomment %}
                 <li class="right"><a href="{% url 'register' %}">{% trans 'Reģistrēties' %}</a></li>
                 {% endif %}
             </ul>
@@ -52,7 +52,7 @@
                 <a class="Logo" href="{% url 'sakums' %}">BALTICTECH.com</a>
             </div>
             <div class="boxContainer">
-                            <input type="text" placeholder="Meklēt..." class="search" />
+                <input type="text" placeholder="Meklēt..." class="search" />
             </div>
             <ul class="right_menu">
                 <li class="cart"><a href="#">{% trans 'Grozs' %}</a></li>
@@ -65,5 +65,4 @@
 
 </body>
 {% block js %}{% endblock %}
-<script src='majaslapa/js/base.js'></script>
 </html>

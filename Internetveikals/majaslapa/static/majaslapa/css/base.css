@@ -26,27 +26,33 @@ li,a{
 
 .left_top{
      list-style: none;
+     display: flex;
 }
 
 .right_top{
     list-style: none;
+    display: flex;
 }
 
 .left_top li{
     display: inline-block;
     padding: 0px 22px;
+    display: flex;
 }
 
 .right_top li{
     display:inline-block;
+    display: flex;
 }
 
 .left_top li a{
     transition: all 0.3s ease 0s;
+    display: flex;
 }
 
 .right_top li a{
     transition: all 0.3s ease 0s;
+    display: flex;
 }
 
 .right_top li a:hover{
@@ -70,6 +76,8 @@ li,a{
     width: 1px;
     position: absolute;
     color: rgb(255, 255, 255);
+    margin-left: 93px;
+    display: flex;
 }
 
 .ukimg{
@@ -104,11 +112,11 @@ li,a{
 }
 .right_menu{
     list-style: none;
+    display: flex;
 }
 
 .right_menu li{
     justify-content: center;
-    display: inline-block;
 }
 
 .cart{
@@ -142,6 +150,7 @@ li,a{
     padding: 0 20px;
     font-size: 30px;
     font-weight: 300;
+    display: flex;
 }
 
 .right_menu a{
@@ -152,37 +161,17 @@ transition: all 0.3s ease 0s;
     color: chartreuse;
 }
 
-#search input[type="text"] {
-    display:inline;
-    margin-left: 300px;
-    background: no-repeat 10px 6px rgb(255, 255, 255);
-    border: none;
-    font:  16px Arial,Helvetica,Sans-serif;
-    width: 600px;
-    padding: 12px 20px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    transition: all 0.7s ease 0s;
-    }
-
-#search input[type="text"]:focus {
-    width: 700px;
-    }
 
 .search{
     border: none;
     height: 32px;
     width: 600px;
-    padding: 0px 5px;
+    padding: 0px 15px;
     border-radius: 50px;
     font-size: 18px;
     font-family: 'nunito';
     color: #424242;
-    font-weight: 500px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 320px;
+
 }
 
 .search:focus{
@@ -191,11 +180,13 @@ transition: all 0.3s ease 0s;
 
 
 
-@media (max-width: 1255px){
-    .search{
-        margin: 0;
+@media (max-width: 900px){
+    .right_menu{
+        display: none;
     }
-    .site_top_menu{
-        height: 0px;
-     }
+}
+
+.boxContainer{
+    margin: 0 auto;
+    display: flex;
 }

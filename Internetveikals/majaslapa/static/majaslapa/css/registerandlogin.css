@@ -160,4 +160,13 @@ button:hover{
     border-left-color: #c70014;
     list-style-type: none;
 }
+
+.login .showPasswordToggle{
+    position:absolute;
+    margin-left: -25px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+
 /* LOGIN AND REGISTER*/
