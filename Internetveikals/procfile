@@ -1,1 +1,1 @@
-web: gunicorn Internetveikals.wsgi
+web: gunicorn Internetveikals.wsgi --log-file -

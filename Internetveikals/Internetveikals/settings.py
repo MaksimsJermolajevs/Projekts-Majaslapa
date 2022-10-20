@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w1z&-=gbzj-n4gr31hmk@6!nj8^s^1(@pk=yq&%^p(-dhg)0a3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1','baltictech.herokuapp.com']
 
 
 # Application definition
@@ -77,7 +77,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'Whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Internetveikals.urls'
@@ -184,7 +184,7 @@ LANGUAGES = (
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'lv'
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
 
-JAZZMIN_SETTINGS = {\
+JAZZMIN_SETTINGS = {
     "site_title": "Admins",
     "site_header": "Admins lapa",
     "site_brand": "Admin",

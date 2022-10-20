@@ -21,6 +21,8 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.i18n import i18n_patterns
 from majaslapa import views
+from django.conf.urls import url
+from django.views.static import serve
 
 
 urlpatterns = [
@@ -43,9 +45,10 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='majaslapa/password_reser_confirm.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='majaslapa/password_reser_done.html'), name='password_reset'),
 
-    path('i18n/',include('django.conf.urls.i18n'))
+    path('i18n/',include('django.conf.urls.i18n')),
 
-
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
 
 ] + i18n_patterns(
