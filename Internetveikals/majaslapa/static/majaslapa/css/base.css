@@ -173,13 +173,7 @@ transition: all 0.3s ease 0s;
     color: #424242;
 
 }
-
-.search:focus{
-    outline: none;
-}
-
-
-
+ aw
 @media (max-width: 900px){
     .right_menu{
         display: none;
@@ -187,6 +181,7 @@ transition: all 0.3s ease 0s;
 }
 
 .boxContainer{
+    /* left: 15px; */
     margin: 0 auto;
     display: flex;
 }
