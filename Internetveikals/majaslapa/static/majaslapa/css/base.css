@@ -72,12 +72,14 @@ li,a{
     margin-right: 12px;
 }
 
-.stick{
+.stick1{
     width: 1px;
-    position: absolute;
     color: rgb(255, 255, 255);
-    margin-left: 93px;
-    display: flex;
+}
+
+.stick2{
+    width: 1px;
+    color: rgb(255, 255, 255);
 }
 
 .ukimg{
@@ -108,6 +110,7 @@ li,a{
     height: 70px;
     display: flex;
     align-items: center;
+
 
 }
 .right_menu{
@@ -150,7 +153,7 @@ li,a{
     padding: 0 20px;
     font-size: 30px;
     font-weight: 300;
-    display: flex;
+    position: relative;
 }
 
 .right_menu a{
@@ -171,17 +174,70 @@ transition: all 0.3s ease 0s;
     font-size: 18px;
     font-family: 'nunito';
     color: #424242;
+    position: absolute;
+    right: 60px;
+    bottom: -15px;
 
 }
 
-@media (max-width: 900px){
+.phone{
+    display: none;
+    margin-right: 12px;
+}
+
+@media (max-width: 1553px){
     .right_menu{
         display: none;
+        top: 20px;
     }
+    .phone{
+        display:flex;
+    }
+    .right1{
+        margin-top:9px
+    }
+    .right{
+        margin-top:9px
+    }
+    .stick2{
+        margin-top:7px
+    }
+
+
 }
 
 .boxContainer{
     /* left: 15px; */
     margin: 0 auto;
     display: flex;
+    position: absolute;
+    padding: 0 auto 0 ;
+    position: relative;
+    left: 300px;
+}
+
+.cart-phone{
+    position: absolute relative;
+    top: 5px;
+
+}
+
+.phone-carticon{
+    display: block;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    margin-top: -5px;
+}
+
+.phone-acc{
+    position: absolute relative;
+    color: rgb(255, 255, 255);
+    top: 8px;
+}
+
+.phone-acc i{
+    font-size: 25px;
+    margin-left: 5px;
+    right:5px;
+    margin-top: -3px;
 }

@@ -1,9 +1,5 @@
-from audioop import reverse
-from distutils.log import error
+from django.views.generic.base import View
 from email import message
-from gettext import translation
-from http.client import HTTPResponse
-from urllib.parse import urlparse
 from django.shortcuts import render, redirect
 from .forms import  CreateUserForm
 from django.contrib.auth import get_user_model
@@ -16,6 +12,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
+from .models import *
 
 # from majaslapa.register_login.utils import send_email_for_verify
 
@@ -58,8 +55,11 @@ def activateEmail(request, user, to_email):
     else:
         messages.error(request, f'Notika problēma, sūtot e-pastu uz {to_email}, pārbaudiet, vai ierakstījāt pareizi.')
 # Create your views here.
-def sakums(request):
-    return render(request, 'majaslapa/home.html')
+
+class sakums(View):
+    def get(self, request):
+        kategorija = Category.objects.all()
+        return render(request, 'majaslapa/home.html', {'category_list': kategorija})
 
 def account(request):
     return render(request, 'majaslapa/account.html')

@@ -21,13 +21,12 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.i18n import i18n_patterns
 from majaslapa import views
-from django.conf.urls import url
-from django.views.static import serve
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', sakums, name='sakums'),
+    path('', views.sakums.as_view(),name='sakums'),
     path('account/', account, name='account'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
@@ -47,12 +46,9 @@ urlpatterns = [
 
     path('i18n/',include('django.conf.urls.i18n')),
 
-    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
-
 
 ] + i18n_patterns(
-    path('', sakums, name='sakums'),
+    path('', views.sakums.as_view(), name='sakums'),
     path('account/', account, name='account'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
@@ -61,7 +57,6 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('logout/', logoutUser, name='logout'),
     path('accounts/', include('allauth.urls')),
-
 )
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'

@@ -1,14 +1,15 @@
-from modeltranslation.translator import register, TranslationOptions
-from .models import *
-
-# @register(ProductSpecificationValue)
-# class CategoryTranslationOption(TranslationOptions):
-#     fields = ("value")
+from modeltranslation.translator import register, TranslationOptions, translator
+from .models import Product, ProductType, Category
 
 @register(Product)
-class CategoryTranslationOption(TranslationOptions):
-    fields = ('category', 'title', 'desciption')
+class ProductTranslationOption(TranslationOptions):
+    fields = ('title', 'desciption')
 
-# @register(ProductSpecification)
-# class CategoryTranslationOption(TranslationOptions):
-#     fields = ('name')
+
+@register(Category)
+class CategoryTranslationOption(TranslationOptions):
+    fields = ('name',)
+
+@register(ProductType)
+class TypeTranslationOption(TranslationOptions):
+    fields = ('name',)

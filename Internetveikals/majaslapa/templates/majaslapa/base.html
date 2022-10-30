@@ -17,7 +17,7 @@
         <div class="site_top_menu">
             <ul class="left_top">
                 <li class="left"><a class="about" href="{% url 'about' %}">{% trans 'Par mums' %}</a></li>
-                <b class ='stick'>|</b>
+                <b class ='stick1'>|</b>
                 <li class="left"><a class="contact" href="{% url 'contact' %}">{% trans 'kontakti' %}</a></li>
             </ul>
 
@@ -26,6 +26,11 @@
             {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
 
             <ul class="right_top">
+                <ul class='phone right1'>
+                    <li class="cart-phone"><a href="#">{% trans 'Grozs' %}</a></li>
+                    <ion-icon name="cart-outline" class='phone-carticon'></ion-icon>
+                    <li class="phone-acc"><a href="{% url 'account' %}">{% trans 'Profils' %}</a><i class="bi bi-person-circle"></i></li>
+                </ul>
                 <li class="right1">
                     <img class='lvimg' src="{% static 'majaslapa/image/LV.png' %}" alt="lv">
                     <a class='LV' href="/lv{{ request.get_full_path |slice:'3:'}}">LV</a>
@@ -34,12 +39,12 @@
                     <img class="ukimg" src="{% static 'majaslapa/image/ENG.png' %}" alt="en">
                     <a class="EN" href="/en{{ request.get_full_path |slice:'3:'}}">EN</a>
                 </li>
-                {% comment %} <b class ='stick'>|</b> {% endcomment %}
+                <a class ='stick2'>|</a>
                 {% if request.user.is_authenticated %}
                 <li class="right"><a href="{% url 'logout' %}">{% trans 'Izlogoties' %}</a></li>
                 {% else %}
                 <li class="right"><a href="{% url 'login' %}">{% trans 'Pieslēgties' %}</a></li>
-                {% comment %} <b class ='stick'>|</b> {% endcomment %}
+                <a class ='stick2'>|</a>
                 <li class="right"><a href="{% url 'register' %}">{% trans 'Reģistrēties' %}</a></li>
                 {% endif %}
             </ul>

@@ -1,14 +1,12 @@
-from distutils.command.upload import upload
-from email.policy import default
-from itertools import product
-from tkinter import Image
-from unicodedata import category
+
 from django.conf import settings
 from django.urls import reverse
 from tabnanny import verbose
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
+from django.contrib.auth.models import User
+import uuid
 
 
 # from django.contrib.auth.models import User
@@ -17,7 +15,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 class Category(MPTTModel):
     name = models.CharField(
-    verbose_name = ('Nepieciešams un unikāls'),
+    verbose_name = ('Nosaukums'),
     help_text=('Request and unique'),
     max_length = 255,
     unique= True
@@ -166,3 +164,19 @@ class ProductImage(models.Model):
     class Meta:
         verbose_name = 'Produkta attēls'
         verbose_name_plural = 'Produkta attēli'
+
+class Cart(models.Model):
+    id =models.UUIDField(default=uuid.uuid4, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+class CartItem(models.Model):
+    prduct = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cartitems')
+    quantity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.product.title

@@ -13,8 +13,6 @@ from django.utils.translation import gettext_lazy as _
 from msilib.schema import Media
 from pathlib import Path
 import os
-import django_heroku
-import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w1z&-=gbzj-n4gr31hmk@6!nj8^s^1(@pk=yq&%^p(-dhg)0a3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','baltictech.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +36,7 @@ ALLOWED_HOSTS = ['127.0.0.1','baltictech.herokuapp.com']
 INSTALLED_APPS = [
     'jazzmin',
     'django_cleanup.apps.CleanupConfig',
+    'modeltranslation',
     'django.contrib.admin',
     'mptt',
     'django.contrib.auth',
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'reset_migrations',
     'django.contrib.sites',
-    'modeltranslation',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -78,6 +76,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'Internetveikals.urls'
@@ -141,15 +140,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'lv-LV'
+LANGUAGE_CODE = 'lv'
+USE_I18N = True
+USE_L10N = True
 
 TIME_ZONE = 'GMT'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -163,7 +167,6 @@ STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-STATICFILES_STORAGE = 'Whitenoise.storage.CompressedMainfestStaticFilesStorage'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -181,6 +184,17 @@ LANGUAGES = (
     ('en', gettext('English'))
 )
 
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'lv',}, # Latvian
+        {'code': 'en',}, # English
+    ),
+    'default': {
+        'fallbacks': ['lv'],
+        'hide_untranslated': False,
+    }
+}
+
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'lv'
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
 
@@ -193,5 +207,4 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "img-circle",
 }
 
-django_heroku.settings(locals())
 

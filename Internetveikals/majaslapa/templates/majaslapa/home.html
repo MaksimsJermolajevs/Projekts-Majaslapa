@@ -3,3 +3,11 @@
 {% block title %}
 Sākums
 {% endblock %}
+
+{% block body %}
+
+{% for kategorija in category_list %}
+    {{ kategorija.name }}
+{% endfor %}
+
+{% endblock %}
