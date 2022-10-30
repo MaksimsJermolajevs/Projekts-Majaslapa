@@ -1,0 +1,6 @@
+{% load static %}
+{% autoescape off %}
+    Sveiks {{ User.username }},
+    Lūdzu, noklikšķiniet uz tālāk esošās saites, lai apstiprinātu reģistrāciju:
+    http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

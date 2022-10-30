@@ -1,0 +1,243 @@
+body{
+    background-color: #efefef;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+li,a{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.site_top_menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6FB64D;
+    padding: 20px 15px;
+    height: 0px;
+ }
+
+.left_top{
+     list-style: none;
+     display: flex;
+}
+
+.right_top{
+    list-style: none;
+    display: flex;
+}
+
+.left_top li{
+    display: inline-block;
+    padding: 0px 22px;
+    display: flex;
+}
+
+.right_top li{
+    display:inline-block;
+    display: flex;
+}
+
+.left_top li a{
+    transition: all 0.3s ease 0s;
+    display: flex;
+}
+
+.right_top li a{
+    transition: all 0.3s ease 0s;
+    display: flex;
+}
+
+.right_top li a:hover{
+    color: chartreuse;
+}
+
+.left_top li a:hover{
+    color: chartreuse;
+}
+
+.right{
+    padding: 0px 10px;
+    display: block;
+}
+
+.right1{
+    margin-right: 12px;
+}
+
+.stick1{
+    width: 1px;
+    color: rgb(255, 255, 255);
+}
+
+.stick2{
+    width: 1px;
+    color: rgb(255, 255, 255);
+}
+
+.ukimg{
+    position: absolute;
+    top: 12px;
+    width: 28px;
+}
+
+.lvimg{
+    position: absolute;
+    top: 14px;
+    width: 26px;
+}
+
+.EN{
+    padding-left: 30px;
+    display: block;
+}
+
+.LV{
+    padding-left: 30px;
+    display: block;
+}
+/*site top*/
+
+.site_undertop{
+    background-color: rgba(99, 180, 61, 0.7);
+    height: 70px;
+    display: flex;
+    align-items: center;
+
+
+}
+.right_menu{
+    list-style: none;
+    display: flex;
+}
+
+.right_menu li{
+    justify-content: center;
+}
+
+.cart{
+    position: absolute;
+    top: 67px;
+    right: 250px;
+}
+
+.carticon{
+    position: absolute;
+    top: 60px;
+    right: 220px;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+}
+
+.acc{
+    position: absolute;
+    top: 62px;
+    right: 84px;
+    color: rgb(255, 255, 255);
+}
+
+.acc i{
+    font-size: 25px;
+    margin-left: 5px;
+}
+
+.Logo{
+    padding-left: 5px;
+    padding: 0 20px;
+    font-size: 30px;
+    font-weight: 300;
+    position: relative;
+}
+
+.right_menu a{
+transition: all 0.3s ease 0s;
+}
+
+.right_menu a:hover{
+    color: chartreuse;
+}
+
+
+.search{
+    border: none;
+    height: 32px;
+    width: 600px;
+    padding: 0px 15px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-family: 'nunito';
+    color: #424242;
+    position: absolute;
+    right: 60px;
+    bottom: -15px;
+
+}
+
+.phone{
+    display: none;
+    margin-right: 12px;
+}
+
+@media (max-width: 1553px){
+    .right_menu{
+        display: none;
+        top: 20px;
+    }
+    .phone{
+        display:flex;
+    }
+    .right1{
+        margin-top:9px
+    }
+    .right{
+        margin-top:9px
+    }
+    .stick2{
+        margin-top:7px
+    }
+
+
+}
+
+.boxContainer{
+    /* left: 15px; */
+    margin: 0 auto;
+    display: flex;
+    position: absolute;
+    padding: 0 auto 0 ;
+    position: relative;
+    left: 300px;
+}
+
+.cart-phone{
+    position: absolute relative;
+    top: 5px;
+
+}
+
+.phone-carticon{
+    display: block;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    margin-top: -5px;
+}
+
+.phone-acc{
+    position: absolute relative;
+    color: rgb(255, 255, 255);
+    top: 8px;
+}
+
+.phone-acc i{
+    font-size: 25px;
+    margin-left: 5px;
+    right:5px;
+    margin-top: -3px;
+}

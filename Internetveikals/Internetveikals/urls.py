@@ -15,22 +15,51 @@ Including another URLconf
 """
 from majaslapa.views import *
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth import views as auth_views
+from django.conf.urls.i18n import i18n_patterns
+from majaslapa import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', sakums),
-    path('account/', account),
-    path('about/', about),
-    path('contact/', contact),
-    path('login/', login),
-    path('register/', register),
-    path('search/', search),
+    path('', views.sakums.as_view(),name='sakums'),
+    path('account/', account, name='account'),
+    path('about/', about, name='about'),
+    path('contact/', contact, name='contact'),
+    path('login/', loginpage, name='login'),
+    path('register/', register, name='register'),
+    path('search/', search, name='search'),
+    path('logout/', logoutUser, name='logout'),
+    path('accounts/', include('allauth.urls')),
+    path('activate/<uidb64>/<token>', views.activate, name='activate'),
 
-]
 
+
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name='majaslapa/password_reset.html'), name='reset_password'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='majaslapa/password_reset_sent.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='majaslapa/password_reser_confirm.html'), name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='majaslapa/password_reser_done.html'), name='password_reset'),
+
+    path('i18n/',include('django.conf.urls.i18n')),
+
+
+] + i18n_patterns(
+    path('', views.sakums.as_view(), name='sakums'),
+    path('account/', account, name='account'),
+    path('about/', about, name='about'),
+    path('contact/', contact, name='contact'),
+    path('login/', loginpage, name='login'),
+    path('register/', register, name='register'),
+    path('search/', search, name='search'),
+    path('logout/', logoutUser, name='logout'),
+    path('accounts/', include('allauth.urls')),
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

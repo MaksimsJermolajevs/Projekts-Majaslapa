@@ -1,0 +1,45 @@
+{% extends 'majaslapa/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans 'Reģistrēties' %}
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/majaslapa/css/registerandlogin.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="LoginMain">
+        <h1>{% trans 'Reģistrēties' %}</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div id="messages">{{ error }}</div>
+
+            {% for f in form %}
+            {% comment %} <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p> {% endcomment %}
+            {{f}}
+            {% endfor %}
+
+        <input type="submit" name="submit" class="register_button" value="{% trans 'Reģistrēties' %}" />
+        <a class="Or"><img  src="{% static 'majaslapa/image/OR.png' %}" width="330px" height="70px" panding-top: '100px' display: 'block'></a>
+
+        <a href='{% url 'login' %}'class='register_button'>{% trans 'Pieslēgties' %}</a>
+
+        </div>
+
+    </div>
+
+    {% endblock %}
+
+    {% block js %}
+    <script>
+      var form_fields = document.getElementsByTagName('input')
+      form_fields[2].placeholder = '{% trans "Lietotājvārds" %}'
+      form_fields[3].placeholder = '{% trans "E-pasts" %}'
+      form_fields[4].placeholder = "{% trans 'Parole' %}"
+      form_fields[5].placeholder = "{% trans 'Atkārtot paroli' %}"
+    </script>
+    {% endblock %}

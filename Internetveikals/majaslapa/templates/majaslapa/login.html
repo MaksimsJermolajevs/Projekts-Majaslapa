@@ -1,0 +1,56 @@
+{% extends 'majaslapa/base.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+{% trans 'Pieslēgties' %}
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/majaslapa/css/registerandlogin.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <form id="msform" method="POST">
+    {% csrf_token %}
+
+        <div class="LoginMain">
+            <h1>{% trans 'Pieslēgties' %}</h1>
+            {% for message in messages %}
+            <p id="messages">{{message}}</p>
+            {% endfor %}
+                <input type="text" name='username' placeholder="{% trans 'Lietotājvārds' %}" class='input'>
+                <div class='login'>
+                    <input type="password" name='password' placeholder="{% trans 'Parole' %}" class='input' id='passwordField'>
+                    <ion-icon name="eye-off-outline" class='showPasswordToggle'></ion-icon>
+                </div>
+                {% comment %} <input type='text' name='password' class='input' required>
+                <label for=''>password</label>
+                <ion-icon name="eye-off-outline"></ion-icon> {% endcomment %}
+
+            <div class='reg_log'>
+                <input type="submit" name="submit" class='register_button' value="{% trans 'Pieslēgties' %}" />
+                <a class="Or"><img  src="{% static 'majaslapa/image/OR.png' %}" width="330px" height="70px" margin-bottom="100px"></a>
+                <a href='{% url 'register' %}' class='register_button'>{% trans 'Reģistrēties' %}</a>
+            </div>
+
+            <div class="member">
+                <div class="recover">
+                    <a href="{% url 'reset_password' %}">{% trans 'Aizmirsi paroli?' %}</a>
+                </div>
+
+                <li class='google'>
+                    <a href="{% provider_login_url 'google' %}">Sign in google</a>
+                    <a href="{% provider_login_url "facebook"%}">Sign in Facebook</a>
+                </li>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static '/majaslapa/js/login.js' %}"></script>
+{% endblock %}

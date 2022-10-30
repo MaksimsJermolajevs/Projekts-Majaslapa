@@ -1,8 +1,8 @@
-from unicodedata import category
 from django.contrib import admin
 from django import forms
 from mptt.admin import MPTTModelAdmin
-from.models import Category, ProductType, ProductSpecification, Product, ProductSpecificationValue, ProductImage
+from.models import *
+from modeltranslation.admin import TranslationAdmin
 
 # Register your models here.
 # admin.site.register(Category)
@@ -12,13 +12,17 @@ from.models import Category, ProductType, ProductSpecification, Product, Product
 # admin.site.register(ProductSpecificationValue)
 # admin.site.register(ProductImage)
 
-admin.site.register(Category, MPTTModelAdmin)
+
+
+@admin.register(Category)
+class CategoryAdmin(TranslationAdmin):
+    pass
 
 class ProductSpecificationInline(admin.TabularInline):
     model = ProductSpecification
 
 @admin.register(ProductType)
-class ProductTypeAdmin(admin.ModelAdmin):
+class ProductTypeAdmin(TranslationAdmin):
     inlines = [
         ProductSpecificationInline,
     ]
@@ -30,7 +34,7 @@ class ProductSpecificationValueInline(admin.TabularInline):
     model = ProductSpecificationValue
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(TranslationAdmin):
     inlines = [
         ProductSpecificationValueInline, ProductImageInline
     ]

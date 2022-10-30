@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from django.utils.translation import gettext_lazy as _
 from msilib.schema import Media
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,13 +28,15 @@ SECRET_KEY = 'django-insecure-w1z&-=gbzj-n4gr31hmk@6!nj8^s^1(@pk=yq&%^p(-dhg)0a3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django_cleanup.apps.CleanupConfig',
+    'modeltranslation',
     'django.contrib.admin',
     'mptt',
     'django.contrib.auth',
@@ -42,8 +45,26 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reset_migrations',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
     'majaslapa'
 ]
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+LOGIN_REDIRECT_URL='/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +74,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'Internetveikals.urls'
@@ -116,24 +140,71 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'lv-LV'
+LANGUAGE_CODE = 'lv'
+USE_I18N = True
+USE_L10N = True
 
 TIME_ZONE = 'GMT'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 Media_URL = '/media/'
-Media_ROOT = os.path.join(BASE_DIR,'media')
+Media_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'balticctech@gmail.com'
+EMAIL_HOST_PASSWORD = 'tiviaukhubxumqfn'
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('lv', gettext('Latvian')),
+    ('en', gettext('English'))
+)
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'lv',}, # Latvian
+        {'code': 'en',}, # English
+    ),
+    'default': {
+        'fallbacks': ['lv'],
+        'hide_untranslated': False,
+    }
+}
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'lv'
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Admins",
+    "site_header": "Admins lapa",
+    "site_brand": "Admin",
+    "login_logo": None,
+    "login_logo_dark": None,
+    "site_logo_classes": "img-circle",
+}
+
+
