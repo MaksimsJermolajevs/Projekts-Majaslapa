@@ -1,54 +1,5 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="https:fonts.googleapis.com/css2?family=Work+Sans:wght@100&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style2.css">
-    <title>shop</title>
-</head>
-<body>
-    <div class="site_top_menu">
-        <ul class="left_top">
-            <li class="left"><a class="about" href="{% url 'about' %}">Par mums</a></li>
-            <b class ='stick'>|</b>
-            <li class="left"><a class="contact" href="{% url 'contact' %}">kontakti</a></li>
-        </ul>
-
-        <ul class="right_top">
-            <li class="right1">
-                <img class='lvimg' src="{% static 'majaslapa/image/LV.png' %}" alt="lv">
-                <a class='LV' href="/lv{{ request.get_full_path |slice:'3:'}}">LV</a>
-            </li>
-            <li class="right1">
-                <img class="ukimg" src="{% static 'majaslapa/image/ENG.png' %}" alt="en">
-                <a class="EN" href="/en{{ request.get_full_path |slice:'3:'}}">EN</a>
-            </li>
-            <b class ='stick'>|</b>
-            <li class="right"><a href="{% url 'logout' %}">Izlogoties</a></li>
-            <li class="right"><a href="{% url 'login' %}">Pieslēgties</a></li>
-            <b class ='stick'>|</b>
-            <li class="right"><a href="{% url 'register' %}">Reģistrēties</a></li>
-        </ul>
 
 
-    </div>
-
-    <div class="site_undertop">
-        <div class="Logo">
-            <a class="Logo" href="{% url 'sakums' %}">BALTICTECH.com</a>
-        </div>
-        <div class="boxContainer">
-            <input type="text" placeholder="Meklēt..." class="search" />
-        </div>
-        <ul class="right_menu">
-            <li class="cart"><a href="#">Grozs</a></li>
-            <ion-icon name="cart-outline" class='carticon'></ion-icon>
-            <li class="acc"><a href="{% url 'account' %}">Profils</a><i class="bi bi-person-circle"></i></li>
-        </ul>
-    </div>
     <section id="category" class="kategory">
         <font size="+7" >Shop by Category</font>
     <div class="cat-container">
@@ -78,7 +29,7 @@
         </div>
     </div>
     </section>
-=======
+
 {% extends 'majaslapa/base.html' %}
 
 {% block title %}
@@ -89,7 +40,36 @@ Sākums
 
 {% for kategorija in category_list %}
     {{ kategorija.name }}
+    <section id="category" class="kategory">
+        <font size="+7" >Shop by Category</font>
+    <div class="cat-container">
+        <div class="cat">
+            <img class="foto" src="/png.jpeg" alt="dators">
+            <div class="text">
+                <h1>Computers</h1>
+            </div>
+        </div>
+        <div class="cat">
+            <img class="foto" src="/png.png" alt="dators">
+            <div class="text">
+                <h1>Computers</h1>
+            </div>
+        </div>
+        <div class="cat">
+            <img class="foto" src="/png.png" alt="dators">
+            <div class="text">
+                <h1>Computers</h1>
+            </div>
+        </div>
+        <div class="cat">
+            <img class="foto" src="/png.png" alt="dators">
+            <div class="text">
+                <h1>Computers</h1>
+            </div>
+        </div>
+    </div>
+    </section>
 {% endfor %}
 
 {% endblock %}
->>>>>>> 7b86c3bb641c63640dbb6338e493e18ff4f50c59
+
