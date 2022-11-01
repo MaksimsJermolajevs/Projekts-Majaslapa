@@ -1,5 +1,24 @@
+
 {% extends 'majaslapa/base.html' %}
+{% load static %}
 
 {% block title %}
-BALTICHTECH.com
+
+{{ kategorija.name }}
+
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+    {% for Prece in product_list %}
+    {{ Prece.title }}
+    {% endfor %}
+
+
 {% endblock %}

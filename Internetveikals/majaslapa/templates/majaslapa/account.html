@@ -1,5 +1,28 @@
 {% extends 'majaslapa/base.html' %}
+{% load static %}
+{% comment %} {% load crispy_fors_tags %} {% endcomment %}
 
 {% block title %}
 Profils
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static '/majaslapa/css/account.css' %}">
+{% endblock %}
+
+
+{% block body %}
+<div class='border'>
+    {% block content %}
+    <h3 class='user'>Hello, {{ user.username}} !</h3>
+    <input type="button" value='Change Picture'>
+    <input type="button" value='Change name'>
+    <a href="{% url 'password' %}"><input type="button" value='Change password'></a>
+    <input type="button" value='My orders'>
+
+    <img src="{% static '/majaslapa/image/profile.png'%}" alt="Profile" >
+    <h4>{{ user.username}}</h4>
+    <h4>{{ user.email}}</h4>
+    {% endblock content %}
+</div>
 {% endblock %}

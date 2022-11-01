@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "npsulav.phoneview"
+        "npsulav.phoneview",
+        "formulahendry.auto-close-tag"
     ]
 }

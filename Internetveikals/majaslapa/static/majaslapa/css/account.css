@@ -1,0 +1,65 @@
+.border{
+display: block;
+margin-left: auto;
+margin-right: auto;
+box-sizing: border-box;
+margin-top: 100px;
+width: 960px;
+height: 615px;
+background: #FFFFFF;
+border: 1px solid #C1C1C1;
+box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+justify-content: center;
+align-items: center;
+
+}
+
+.border .user{
+margin: 90px;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+line-height: 54px;
+display: flex;
+align-items: center;
+color: #000000;
+}
+
+.border input{
+    padding: 10px;
+    margin-left: 100px;
+    margin-top: 30px;
+    width: 320px;
+    height: 60px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 24px;
+    line-height: 36px;
+    display: flex;
+    color: #000000;
+    cursor: pointer;
+}
+.border img{
+position: absolute;
+width: 480px;
+margin-left: 450px;
+margin-top: -450px;
+
+}
+
+.border h4{
+    display: block;
+    margin-left: 650px;
+    margin-top: -100px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}

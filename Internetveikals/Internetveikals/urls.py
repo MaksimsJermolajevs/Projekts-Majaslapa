@@ -30,15 +30,14 @@ urlpatterns = [
     path('account/', account, name='account'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
-    path('login/', loginpage, name='login'),
+    path('account/login/', loginpage, name='login'),
     path('register/', register, name='register'),
-    path('search/', search, name='search'),
+    path('category/<slug:post_slug>', category, name='category'),
     path('logout/', logoutUser, name='logout'),
-    path('accounts/', include('allauth.urls')),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
 
 
-
+    path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='majaslapa/password_reset.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='majaslapa/password_reset_sent.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='majaslapa/password_reser_confirm.html'), name='password_reset_confirm'),
@@ -52,9 +51,9 @@ urlpatterns = [
     path('account/', account, name='account'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
-    path('login/', loginpage, name='login'),
+    path('account/login/', loginpage, name='login'),
     path('register/', register, name='register'),
-    path('search/', search, name='search'),
+    path('category/<str:slug_url>', category, name='category'),
     path('logout/', logoutUser, name='logout'),
     path('accounts/', include('allauth.urls')),
 )

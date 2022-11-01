@@ -1,75 +1,33 @@
 
-
-    <section id="category" class="kategory">
-        <font size="+7" >Shop by Category</font>
-    <div class="cat-container">
-        <div class="cat">
-            <img class="foto" src="/png.jpeg" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-        <div class="cat">
-            <img class="foto" src="/png.png" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-        <div class="cat">
-            <img class="foto" src="/png.png" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-        <div class="cat">
-            <img class="foto" src="/png.png" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-    </div>
-    </section>
-
 {% extends 'majaslapa/base.html' %}
+{% load static %}
 
 {% block title %}
 Sākums
 {% endblock %}
 
-{% block body %}
-
-{% for kategorija in category_list %}
-    {{ kategorija.name }}
-    <section id="category" class="kategory">
-        <font size="+7" >Shop by Category</font>
-    <div class="cat-container">
-        <div class="cat">
-            <img class="foto" src="/png.jpeg" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-        <div class="cat">
-            <img class="foto" src="/png.png" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-        <div class="cat">
-            <img class="foto" src="/png.png" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-        <div class="cat">
-            <img class="foto" src="/png.png" alt="dators">
-            <div class="text">
-                <h1>Computers</h1>
-            </div>
-        </div>
-    </div>
-    </section>
-{% endfor %}
-
+{% block css %}
+    <link rel="stylesheet" href="{% static '/majaslapa/css/home.css' %}">
 {% endblock %}
 
+
+{% block body %}
+
+
+<section id="category" class="kategory">
+    <font size="+7" >Shop by Category</font>
+    <div class="cat-container">
+            {% for kategorija in category_list %}
+            <div class="cat" href>
+            <a href='{% url "category" kategorija.slug %}'>
+            <img class="foto" src="{{kategorija.image.url}}" alt="dators">
+            <hr>
+            <div class="text">
+                <h1>{{ kategorija.name }}</h1>
+            </div>
+        </div>
+    </a>
+        {% endfor %}
+    </section>
+
+{% endblock %}
