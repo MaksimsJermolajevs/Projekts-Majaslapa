@@ -1,0 +1,103 @@
+.cart_page{
+    margin: 80px 250px;
+    
+    
+}
+.table1{
+    width: 100%;
+    border-collapse:collapse;
+    
+    
+}
+th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background-color: rgba(99, 180, 61, 0.7);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    height: 55px;
+    
+}
+td{
+    padding: 15px 10px;
+    background-color: #fff;
+    
+
+}
+.eks{
+    color: black;
+    font-weight: normal;
+    padding: 10px 15px;
+}
+td p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+td img{
+    width: 111px;
+    height: 111px;
+}
+
+.table2{
+    width: 50%;
+    border-collapse:collapse;
+    padding: 50px auto;
+    
+}
+.checkout{
+    justify-content: flex-end;
+    display: flex;
+    margin-top: 10px;
+}
+.table2 td:last-child{
+    text-align:right;
+    padding-right:  65px;
+}
+.table2 td:first-child{
+    padding-left: 30px;
+}
+.cartbutton{
+    font-size:1rem;
+    margin-top: 1.8rem;
+    padding: 10px 0;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    width: 100%;
+    color: #fff;
+    cursor:pointer;
+    background: rgba(99, 180, 61, 0.7);
+}
+.eks:hover{
+    color: red;
+    transition: all 0.3s ease 0s;
+}
+.hvv{
+    border-bottom: 2px solid #D9D9D9;
+    width: 32.2%;
+    position: absolute;
+    margin: 50px 61px;
+    
+}
+.hvv2{
+    border-bottom: 2px solid #D9D9D9;
+    width: 32.2%;
+    position: absolute;
+    margin: 110px 61px;
+
+}
+.hvv3{
+    border-bottom: 2px solid #D9D9D9;
+    width: 74%;
+    position: absolute;
+    margin: 200px 0px;
+}
+
+
