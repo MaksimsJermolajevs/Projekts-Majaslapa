@@ -56,6 +56,7 @@ urlpatterns = [
     path('category/<str:slug_url>', category, name='category'),
     path('logout/', logoutUser, name='logout'),
     path('accounts/', include('allauth.urls')),
+    path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
 )
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'

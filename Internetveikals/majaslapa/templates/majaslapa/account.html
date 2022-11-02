@@ -21,8 +21,10 @@ Profils
     <input type="button" value='My orders'>
 
     <img src="{% static '/majaslapa/image/profile.png'%}" alt="Profile" >
-    <h4>{{ user.username}}</h4>
-    <h4>{{ user.email}}</h4>
+    <div class='info'>
+        <h4>{{ user.username}}</h4>
+        <h4>{{ user.email}}</h4>
+    </div>
     {% endblock content %}
 </div>
 {% endblock %}

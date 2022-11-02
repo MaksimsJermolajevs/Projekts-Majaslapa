@@ -16,7 +16,8 @@ align-items: center;
 }
 
 .border .user{
-margin: 90px;
+margin: 80px;
+margin-left: 120px;
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
@@ -40,7 +41,13 @@ color: #000000;
     display: flex;
     color: #000000;
     cursor: pointer;
+    background-color: #FFFFFF;
 }
+
+.border input:hover{
+    background-color: #bbbbbb3f;
+}
+
 .border img{
 position: absolute;
 width: 480px;
@@ -49,17 +56,22 @@ margin-top: -450px;
 
 }
 
-.border h4{
+.border .info{
     display: block;
-    margin-left: 650px;
-    margin-top: -100px;
+    margin-left: 460px;
+    margin-top: -160px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
     line-height: 48px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    display: block;
     color: #000000;
+    text-align: center;
+}
+
+.border a{
+    display: block;
+    width: 0;
+
 }
