@@ -2,7 +2,7 @@ from unicodedata import category
 from django.views.generic.base import View
 from email import message
 from django.shortcuts import render, redirect
-from .forms import  CreateUserForm
+from .forms import *
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
@@ -18,6 +18,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
+from cart.cart import Cart
+from django.http import HttpResponseRedirect
 
 
 
@@ -29,16 +32,31 @@ class sakums(View):
 
 @login_required(login_url='login/')
 def account(request):
-    return render(request, 'majaslapa/account.html')
+    if request.method == 'POST':
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if  p_form.is_valid():
+            p_form.save()
+            return redirect('account') # Redirect back to profile page
+
+    else:
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'p_form': p_form
+    }
+
+    return render(request, 'majaslapa/account.html', context)
 
 
 def about(request):
     return render(request, 'majaslapa/about.html')
 
 
-
 def loginpage(request):
     if request.method == 'POST':
+        list(messages.get_messages(request))
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -62,8 +80,12 @@ def register(request):
             user = form.save(commit=False)
             user.is_active = False
             user.save()
+            list(messages.get_messages(request))
+            messages.success(request, "Registration sucessful")
             activateEmail(request, user, form.cleaned_data.get('email'))
             return redirect('login')
+        else:
+            messages.info(request, form.errors)
 
 
     context = {'form': form}
@@ -80,6 +102,9 @@ def category(request, slug_url):
     Preces = Product.objects.all().filter(category = kategorija)
     return render(request, 'majaslapa/search.html',{'product_list': Preces, "kategorija":kategorija})
 
+def product_info(request, slug_url):
+    Preces = Product.objects.get(slug=slug_url)
+    return render(request, 'majaslapa/product_info.html',{'Preces': Preces})
 
 def contact(request):
     return render(request, 'majaslapa/contact.html')
@@ -130,3 +155,53 @@ def activateEmail(request, user, to_email):
 # Create your views here.
 
 
+#Groza funkcija:
+#Groza lapa
+@login_required(login_url='/account/login/')
+def cart(request):
+    return render(request, 'majaslapa/cart.html')
+
+#Groza pievienošana
+@login_required(login_url='/account/login/')
+def cart_add(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.add(product=product)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+#Groza niņemšana
+@login_required(login_url='/account/login/')
+def item_clear(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.remove(product)
+    return redirect("cart")
+
+#Groza daudzuma palielināšana
+@login_required(login_url='/account/login/')
+def item_increment(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+
+    cart.add(product=product)
+    return redirect("cart")
+
+#Groza daudzuma pamazināšana
+@login_required(login_url='/account/login/')
+def item_decrement(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(id=id)
+    cart.decrement(product=product)
+    return redirect("cart")
+
+#Groza Izstītīt visu frozu
+@login_required(login_url='/account/login/')
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect("cart")
+
+
+@login_required(login_url='/account/login/')
+def cart_detail(request):
+    return render(request, 'cart/cart_detail.html')

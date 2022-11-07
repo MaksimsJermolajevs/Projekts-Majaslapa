@@ -1,9 +1,10 @@
 
 {% extends 'majaslapa/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-Sākums
+{% trans 'Sākums' %}
 {% endblock %}
 
 {% block css %}
@@ -15,7 +16,7 @@ Sākums
 
 
 <section id="category" class="kategory">
-    <font size="+7" >Shop by Category</font>
+    <font size="+7" >{% trans 'Iepirkties pēc kategorijas' %}</font>
     <div class="cat-container">
             {% for kategorija in category_list %}
             <div class="cat" href>

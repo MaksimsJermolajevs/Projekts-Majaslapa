@@ -7,10 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.models import User
 import uuid
-
-
-# from django.contrib.auth.models import User
-# User._meta.get_field('email')._unique = True
+from PIL import Image
 
 
 class Category(MPTTModel):
@@ -111,6 +108,12 @@ class Product(models.Model):
         help_text = 'Mainīt produkta redzamību',
         default=True
     )
+    image =models.ImageField(
+        verbose_name= 'Attēls',
+        help_text='Augšupielādējiet produkta attēlu',
+        upload_to='images-product/',
+        default='images/default.png'
+    )
     created_at = models.DateTimeField(('Izveidots plkst'), auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(('Atjaunināts plkst'), auto_now_add=True, editable=False)
 
@@ -118,6 +121,9 @@ class Product(models.Model):
         ordering = ('-created_at',)
         verbose_name = 'Prece'
         verbose_name_plural = ('Preces')
+
+    def get_absolute_url(self):
+        return reverse("product", kwargs={'product_slug':self.slug})
 
     def __str__(self):
         return self.title
@@ -165,18 +171,11 @@ class ProductImage(models.Model):
         verbose_name = 'Produkta attēls'
         verbose_name_plural = 'Produkta attēli'
 
-class Cart(models.Model):
-    id =models.UUIDField(default=uuid.uuid4, primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    completed = models.BooleanField(default=False)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE) # Delete profile when user is deleted
+    image = models.ImageField(default='default.png', upload_to='profile_pics')
 
     def __str__(self):
-        return str(self.id)
-
-class CartItem(models.Model):
-    prduct = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='cartitems')
-    quantity = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.product.title
+        return f'{self.user.username} Profile' #show how we want it to be displayed

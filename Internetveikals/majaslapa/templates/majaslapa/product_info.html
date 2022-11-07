@@ -1,0 +1,24 @@
+
+{% extends 'majaslapa/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+
+{{ kategorija.name }}
+
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/majaslapa/css/search.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+
+    <h1 class='a'>{{ Preces.title }}<h1>
+
+    <a href="{% url 'cart_add' Preces.id %}">Add To Cart</a>
+
+{% endblock %}

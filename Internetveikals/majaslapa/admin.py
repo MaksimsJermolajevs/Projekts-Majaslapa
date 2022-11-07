@@ -10,7 +10,7 @@ from modeltranslation.admin import TranslationAdmin
 # admin.site.register(ProductSpecification)
 # admin.site.register(Product)
 # admin.site.register(ProductSpecificationValue)
-# admin.site.register(ProductImage)
+admin.site.register(Profile)
 
 
 

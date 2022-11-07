@@ -1,111 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://use.fontawesome.com/42a043e373.js"></script>
-</head>
-<body>
-    <header class="header">
-        <div class="site_top_menu">
-            <ul class="left_top">
-                <li class="left"><a class="about" href="#">About</a></li>
-                <li class="left"><a class="contact" href="#">Contact</a></li>
-            </ul>
-            
-            <ul class="right_top">
-                <li class="right1">
-                    <img src="images/lvicon.png" alt="lv">
-                    <a href="#">LV</a>
-                </li>
-                <li class="right1">
-                    <img class="ukimg" src="images/UkIcon.png" alt="en">
-                    <a class="EN" href="#">EN</a>
-                </li>
-                <li class="right"><a href="./login.html">Login</a></li>
-                <li class="right"><a href="./register.html">Register</a></li>
-            </ul>
+{% extends 'majaslapa/base.html' %}
+{% load static %}
+{% load i18n %}
 
 
-        </div>
+{% block title %}
+{% trans 'Grozs' %}
+{% endblock %}
 
-        <div class="site_undertop">
-            <div class="Logo">
-                <a class="Logo" href="#">BALTICHTECH.com</a>
-            </div>
-            <div class="wrapper">
-                <div class="search_box">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <input type="text" class="input" placeholder="Search">
-                    
-                </div>
-            </div>
-            <ul class="right_menu">
-                <li class="cart"><a href="#">In cart(2)</a></li>
-                <li class="cartimg"><img src="images/CartIcon.png" alt="cart"></li>
-                <li class="acc"><a href="#">Account</a></li>
-                <li class="accimg"><img  src="images/AccountIcon 1.png" alt="Account"></li>
-            
-            </ul>
-        </div>
-    </header>
-    <div class="cart_page">
-       <table class="table1">
-            <tr>
-                <th></th>
-                <th></th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-                <td><a class="eks" href="#">x</a></td>
-                <td><img src="/images/dator1.png" alt="Dators1"></td>
-                <td><p>Portatīvais dators HP 250 G7 15.6"</p></td>
-                <td><p>599  €</p></td>
-                <td><input type="number" value="2"></td>
-                <td><p>1198 €</p></td>
-            </tr>
-            <div class="hvv3"></div>
-            <tr>
-                <td><a class="eks" href="#">x</a></td>
-                <td><img src="/images/dator2.png" alt="Dators2"></td>
-                <td><p>Portatīvais dators HP 350 G6 17"</p></td>
-                <td><p>749  €</p></td>
-                <td><input type="number" value="1"></td>
-                <td><p>749 €</p></td>
-            </tr>
-       </table>
-        <div class="checkout">
-            <table class="table2">
-                   <tr>
-                       <td><p>Subtotal</p></td>
-                     <td><p>1947 €</p></td>
-                   </tr>
-                   <div class="hvv"></div>
-                  <tr>
-                      <td><p>Shipping</p></td>
-                      <td><p>53 €</p></td>
-                   </tr>
-                   <div class="hvv2"></div>
-                  <tr>
-                      <td><p>Total</p></td>
-                      <td><p>2000 €</p></td>
-                 </tr> 
-                 <tr>
-                     <td colspan="2"><button class="cartbutton">Check Out</button></td>
-                   </tr>
-            </table>
-        </div>
+{% block css %}
+    <link rel="stylesheet" href="{% static '/majaslapa/css/cart.css' %}">
+{% endblock %}
+
+
+{% block body %}
+{% load cart_tag %}
+
+<div class="cart_page">
+    <table class="table1">
+        <tr>
+            <th></th>
+            <th></th>
+            <th>{% trans 'Produkts' %}</th>
+            <th>{% trans 'Cena' %}</th>
+            <th>{% trans 'Daudzums' %}</th>
+            <th>{% trans 'Kopā' %}</th>
+        </tr>
+        {% for key,value in request.session.cart.items %}
+        <tr>
+            <td><a class="eks" href="{% url 'item_clear' key %}">✖</a></td>
+            <td><img src="{{value.image}}" alt="Dators1"></td>
+            <td><p>{{value.name}}</p></td>
+            <td><p>{{value.price}}€</p></td>
+            <td>
+                <a href="{% url 'item_decrement' value.product_id %}">-</a>
+                <input type="number" value="{{value.quantity}}" min="1" disabled="disabled">
+                <a href="{% url 'item_increment' value.product_id %}">+</a>
+            </td>
+            <td><p>{{ value.price|multiply:value.quantity }}€</p></td>
+        </tr>
+        {% endfor %}
+            <div class="checkout">
+        {% if cart_total_amount > 0 %}
+        <table class="table2">
+                <tr>
+                    <td><p>Total</p></td>
+                    <td><p>{{cart_total_amount}} €</p></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="cartbutton">Check Out</button></td>
+                </tr>
+        </table>
+        {% endif %}
     </div>
-    </section>
-</body>
-</html>
+</div>
+</section>
+{% load cart_tag %}
+
+{% comment %} {% for key,value in request.session.cart.items %}
+
+   {{value.name}}
+   {{value.price}}
+   {{value.quantity}}
+   {{value.image}}
+   Total
+   {{ value.price|multiply:value.quantity }}
+
+{% endfor %} {% endcomment %}
+{% endblock %}

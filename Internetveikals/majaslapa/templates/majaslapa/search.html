@@ -1,6 +1,7 @@
 
 {% extends 'majaslapa/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
 
@@ -9,7 +10,7 @@
 {% endblock %}
 
 {% block css %}
-
+<link rel="stylesheet" href="{% static '/majaslapa/css/search.css' %}">
 {% endblock %}
 
 
@@ -17,7 +18,7 @@
 
 
     {% for Prece in product_list %}
-    {{ Prece.title }}
+    <a href='{% url "product" Prece.slug %}' class='a'>{{ Prece.title }}<a>
     {% endfor %}
 
 

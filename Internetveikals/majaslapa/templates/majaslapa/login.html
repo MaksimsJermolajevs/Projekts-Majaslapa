@@ -20,7 +20,7 @@
         <div class="LoginMain">
             <h1>{% trans 'Pieslēgties' %}</h1>
             {% for message in messages %}
-            <p id="messages">{{message}}</p>
+                <p id="messages">{{message}}</p>
             {% endfor %}
                 <input type="text" name='username' placeholder="{% trans 'Lietotājvārds' %}" class='input'>
                 <div class='login'>
@@ -42,10 +42,10 @@
                     <a href="{% url 'reset_password' %}">{% trans 'Aizmirsi paroli?' %}</a>
                 </div>
 
-                <li class='google'>
+                <a class='google'>
                     <a href="{% provider_login_url 'google' %}">Sign in google</a>
                     <a href="{% provider_login_url "facebook"%}">Sign in Facebook</a>
-                </li>
+                </a>
             </div>
         </div>
 

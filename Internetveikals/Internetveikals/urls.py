@@ -35,7 +35,18 @@ urlpatterns = [
     path('category/<slug:post_slug>', category, name='category'),
     path('logout/', logoutUser, name='logout'),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
+    path('shopingcart/', cart, name='cart'),
+    path('product/<str:slug_url>', product_info, name='product'),
 
+
+    path('cart/add/<int:id>/', views.cart_add, name='cart_add'),
+    path('cart/item_clear/<int:id>/', views.item_clear, name='item_clear'),
+    path('cart/item_increment/<int:id>/',
+         views.item_increment, name='item_increment'),
+    path('cart/item_decrement/<int:id>/',
+         views.item_decrement, name='item_decrement'),
+    path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
+    path('cart/cart-detail/',views.cart_detail,name='cart_detail'),
 
     path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='majaslapa/password_reset.html'), name='reset_password'),
@@ -48,6 +59,7 @@ urlpatterns = [
 
 ] + i18n_patterns(
     path('', views.sakums.as_view(), name='sakums'),
+    path('shopingcart/', cart, name='cart'),
     path('account/', account, name='account'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
@@ -57,8 +69,7 @@ urlpatterns = [
     path('logout/', logoutUser, name='logout'),
     path('accounts/', include('allauth.urls')),
     path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
-)
-
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 if settings.DEBUG:

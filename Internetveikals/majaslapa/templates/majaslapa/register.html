@@ -15,8 +15,11 @@
     <div class="LoginMain">
         <h1>{% trans 'Reģistrēties' %}</h1>
         <form method="POST" action="">
-            {% csrf_token %}
-            <div id="messages">{{ error }}</div>
+        {% csrf_token %}
+
+            {% for field in form %}
+                {{ field.errors.as_ul }}
+            {% endfor %}
 
             {% for f in form %}
             {% comment %} <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p> {% endcomment %}
