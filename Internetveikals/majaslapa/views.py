@@ -92,7 +92,7 @@ def register(request):
     return render(request, 'majaslapa/register.html', context)
 
 class PasswordsChangeView(PasswordChangeView):
-    form_class = PasswordChangeForm
+    form_class = FormChangePassword
     success_url = reverse_lazy('account')
 
 

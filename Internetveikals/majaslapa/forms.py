@@ -1,7 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
 from .models import Profile
+
 
 User = get_user_model()
 
@@ -50,3 +52,19 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image']
+
+# class FormChangePassword(PasswordChangeForm):
+
+#     def init(self, args, **kwargs):
+#         super(FormChangePassword, self).init(args, **kwargs)
+#         for field in ('old_password', 'new_password1', 'new_password2'):
+#             self.fields[field].widget.attrs = {'class': 'form-control', 'placeholder': 'Hello'}
+
+class FormChangePassword(PasswordChangeForm):
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'type':'password'}))
+    new_password1 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control', 'type':'password'}))
+    new_password2 = forms.CharField(max_length=100, widget=forms.PasswordInput(attrs={'class':'form-control', 'type':'password'}))
+
+    class meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')
