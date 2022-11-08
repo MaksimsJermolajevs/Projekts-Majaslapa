@@ -32,7 +32,7 @@ color: #000000;
     padding: 10px;
     margin-left: 100px;
     margin-top: 30px;
-    width: 320px;
+    width: 355px;
     height: 60px;
     font-family: 'Poppins';
     font-style: normal;
@@ -45,14 +45,14 @@ color: #000000;
 }
 
 .border input:hover{
-    background-color: #bbbbbb3f;
+    background-color: #22212128;
 }
 
 .border img{
 position: absolute;
 width: 480px;
 margin-left: 580px;
-margin-top: -370px;
+margin-top: -420px;
 border-radius: 50%;
 width: 250px;
 height: 250px;
@@ -61,8 +61,8 @@ height: 250px;
 
 .border .info{
     display: block;
-    margin-left: 460px;
-    margin-top: -100px;
+    margin-left: 490px;
+    margin-top: -120px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -108,23 +108,25 @@ display: none;
     display: none;
 }
 button{
-    padding: 8px 0 0 3px;
-    width: 92px;
+    position: absolute;
+    width: 100px;
     height: 60px;
     font-family: 'Poppins';
-    font-style: normal;
     font-size: 24px;
     line-height: 36px;
-    display: flex;
     color: #000000;
     cursor: pointer;
     background-color: #FFFFFF;
-    position: relative;
-    bottom: 12px;
-    left: 102px;
+    margin-left: 242px;
+    margin-top: -12px;
 
 }
 
 .border .del{
-    background-color: #ff1010ad;
+    background-color: #ff1010;
+    color: #FFFFFF;
+}
+
+.border .del:hover{
+    background-color: #ff0000d2;
 }

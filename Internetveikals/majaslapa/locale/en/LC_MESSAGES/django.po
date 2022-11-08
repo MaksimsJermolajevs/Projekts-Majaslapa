@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-07 22:03+0200\n"
+"POT-Creation-Date: 2022-11-08 17:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,17 +109,7 @@ msgstr "Password"
 
 #: .\templates\majaslapa\change-password.html:18
 msgid "Vecā parole"
-msgstr "Old Password"
-
-#: .\templates\majaslapa\change-password.html:20
-#, fuzzy
-msgid "Jaunā parole"
-msgstr "Change password"
-
-#: .\templates\majaslapa\change-password.html:22
-#, fuzzy
-msgid "Apstiprināt jauno paroli"
-msgstr "repeat password"
+msgstr "Old password"
 
 #: .\templates\majaslapa\change-password.html:28
 msgid "Parole nedrīkst būt pārāk līdzīga pārējai personīgajai informācijai."

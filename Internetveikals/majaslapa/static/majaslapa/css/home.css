@@ -13,13 +13,13 @@
 
 
 #category .cat {
-    width: 20em;
-    height: 20em;
-    padding: 40px 0;
+    width: 17em;
+    height: 17em;
+    padding: 20px 0;
     border: 1px solid #fff;
     cursor: pointer;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-    margin: 15px 40px;
+    margin: 15px 0 0 40px;
     transition: 0.2s ease;
     position: relative;
     background-color: #fff;
@@ -35,13 +35,34 @@
 }
 
 #category .cat h1 {
-    margin-top: 20px;
+    margin-top: 15px;
     color: black;
 }
 
 #category .cat hr {
-    margin-top: 50px;
+    margin-top:40px;
     color: rgba(255, 255, 255, 0.13);
-    width: 280px;
+    width: 245px;
     margin-left: 20px;
 }
+
+
+.pagination {
+    margin: 40px 0 0 48%;
+    padding: -20px;
+    display: flex;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

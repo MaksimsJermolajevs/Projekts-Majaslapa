@@ -21,13 +21,23 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage
+from django.views.generic.list import ListView
 
 
 
-class sakums(View):
+class sakums(ListView):
     def get(self, request):
         kategorija = Category.objects.all().filter(is_active=True)
-        return render(request, 'majaslapa/home.html', {'category_list': kategorija})
+
+        p = Paginator(kategorija, 10)
+        page_num = request.GET.get('page', 1)
+        try:
+            page = p.page(page_num)
+        except EmptyPage:
+            page = p.page(1)
+
+        return render(request, 'majaslapa/home.html', {'category_list': page})
 
 
 @login_required(login_url='login/')
@@ -100,7 +110,7 @@ class PasswordsChangeView(PasswordChangeView):
 def category(request, slug_url):
     kategorija = Category.objects.get(slug=slug_url)
     Preces = Product.objects.all().filter(category = kategorija)
-    return render(request, 'majaslapa/search.html',{'product_list': Preces, "kategorija":kategorija})
+    return render(request, 'majaslapa/Product.html',{'product_list': Preces, "kategorija":kategorija})
 
 def product_info(request, slug_url):
     Preces = Product.objects.get(slug=slug_url)
