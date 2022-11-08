@@ -23,12 +23,17 @@ from cart.cart import Cart
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage
 from django.views.generic.list import ListView
+from django.db.models import Q
 
 
 
 class sakums(ListView):
     def get(self, request):
-        kategorija = Category.objects.all().filter(is_active=True)
+        search_query = request.GET.get('search', '')
+        if search_query:
+            kategorija = Category.objects.filter(Q(name_lv__icontains=search_query) | Q(name_en__icontains=search_query))
+        else:
+            kategorija = Category.objects.all().filter(is_active=True)
 
         p = Paginator(kategorija, 10)
         page_num = request.GET.get('page', 1)
@@ -110,6 +115,7 @@ class PasswordsChangeView(PasswordChangeView):
 def category(request, slug_url):
     kategorija = Category.objects.get(slug=slug_url)
     Preces = Product.objects.all().filter(category = kategorija)
+
     return render(request, 'majaslapa/Product.html',{'product_list': Preces, "kategorija":kategorija})
 
 def product_info(request, slug_url):

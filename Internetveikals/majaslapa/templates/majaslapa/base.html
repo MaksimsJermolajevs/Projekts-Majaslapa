@@ -85,9 +85,9 @@
 			<div class="Logo">
 				<a class="Logo" href="{% url 'sakums' %}">BALTICTECH.com</a>
 			</div>
-			<div class="boxContainer">
-				<input type="text" placeholder="{% trans 'Meklēt...' %}" class="search" />
-			</div>
+			<form class="boxContainer" action='{% url "sakums" %}'>
+				<input type="text" placeholder="{% trans 'Meklēt...' %}" class="search" name='search' />
+			</form>
 			<ul class="right_menu">
 				<li class="cart"><a href="{% url 'cart' %}">{% trans 'Grozs' %}</a></li>
 				<ion-icon name="cart-outline" class="carticon"></ion-icon>
