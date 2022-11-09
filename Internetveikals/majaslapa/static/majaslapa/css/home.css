@@ -9,6 +9,7 @@
     padding-top: 30px;
     padding-left: 160px;
     flex-wrap: wrap;
+    padding-right: 50px;
 }
 
 
@@ -46,12 +47,18 @@
     margin-left: 20px;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+}
 
 .pagination {
-    margin: 40px 0 0 48%;
-    padding: -20px;
-    display: flex;
-}
+    list-style: none;
+    margin: 0;
+    padding: 50px;
+    bottom: 0;
+
+  }
 
 .pagination a {
     color: black;

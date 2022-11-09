@@ -31,7 +31,7 @@ class sakums(ListView):
     def get(self, request):
         search_query = request.GET.get('search', '')
         if search_query:
-            kategorija = Category.objects.filter(Q(name_lv__icontains=search_query) | Q(name_en__icontains=search_query))
+            kategorija = Category.objects.filter(Q(name__icontains=search_query))
         else:
             kategorija = Category.objects.all().filter(is_active=True)
 

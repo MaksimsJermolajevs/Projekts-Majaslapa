@@ -30,29 +30,26 @@
     </a>
         {% endfor %}
     </section>
+
+
+{% comment %} Plaginācija {% endcomment %}
+<nav aria-label="pagination">
     <div class="pagination">
         {% if category_list.has_previous %}
-        <a href="{% url 'sakums' %}?page={{category_list.previous_page_number}}">&laquo;</a>
+            <a href="{% url 'sakums' %}?page={{category_list.previous_page_number}}">&laquo;</a>
         {% endif %}
 
         {% for num_page in category_list.paginator.page_range %}
-        {% if category_list.number == num_page %}
-        {% comment %} <a href="#">1</a> {% endcomment %}
-            <a class="active" href="{% url 'sakums' %}?page={{ num_page }}">{{num_page}}</a>
-        {% else %}
-            <a  href="{% url 'sakums' %}?page={{ num_page }}">{{num_page}}</a>
-        {% endif %}
+            {% if category_list.number == num_page %}
+                <a class="active" href="{% url 'sakums' %}?page={{ num_page }}">{{num_page}}</a>
+            {% else %}
+                <a  href="{% url 'sakums' %}?page={{ num_page }}">{{num_page}}</a>
+            {% endif %}
         {% endfor %}
-
-
-
-        {% comment %} <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a> {% endcomment %}
 
         {% if category_list.has_next %}
             <a href="{% url 'sakums' %}?page={{category_list.next_page_number}}">&raquo;</a>
         {% endif %}
-      </div>
+    </div>
+</nav>
 {% endblock %}

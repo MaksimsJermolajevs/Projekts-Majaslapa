@@ -168,16 +168,14 @@ transition: all 0.3s ease 0s;
 .search{
     border: none;
     height: 32px;
-    width: 600px;
+    width: 550px;
     padding: 0px 15px;
     border-radius: 50px;
     font-size: 18px;
     font-family: 'nunito';
     color: #424242;
-    position: absolute;
-    right: 60px;
-    bottom: -15px;
-
+    /* margin-left: 350px;
+    align-items: center; */
 }
 
 .phone{
@@ -207,13 +205,9 @@ transition: all 0.3s ease 0s;
 }
 
 .boxContainer{
-    /* left: 15px; */
-    margin: 0 auto;
-    display: flex;
-    position: absolute;
-    padding: 0 auto 0 ;
-    position: relative;
-    left: 300px;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .cart-phone{

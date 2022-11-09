@@ -43,11 +43,11 @@
         {% if cart_total_amount > 0 %}
         <table class="table2">
                 <tr>
-                    <td><p>Total</p></td>
+                    <td><p>{% trans 'Kopā' %}</p></td>
                     <td><p>{{cart_total_amount}} €</p></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button class="cartbutton">Check Out</button></td>
+                    <td colspan="2"><button class="cartbutton">{% trans 'Pirkt' %}</button></td>
                 </tr>
         </table>
         {% endif %}
