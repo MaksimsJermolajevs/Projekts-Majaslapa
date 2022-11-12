@@ -1,25 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="base.css" />
 
-{% extends 'majaslapa/base.html' %}
-{% load static %}
-{% load i18n %}
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://use.fontawesome.com/42a043e373.js"></script>
+		<script
+			src="https://kit.fontawesome.com/77c18eb9f0.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<header class="header">
+			<div class="site_top_menu">
+				<ul class="left_top">
+					<li class="left"><a class="about" href="#">About</a></li>
+					<li class="left"><a class="contact" href="#">Contact</a></li>
+				</ul>
 
-{% block title %}
+				<ul class="right_top">
+					<li class="right1">
+						<img src="images/lvicon.png" alt="lv" />
+						<a href="#">LV</a>
+					</li>
+					<li class="right1">
+						<img class="ukimg" src="images/UkIcon.png" alt="en" />
+						<a class="EN" href="#">EN</a>
+					</li>
+					<li class="right"><a href="./login.html">Login</a></li>
+					<li class="right"><a href="./register.html">Register</a></li>
+				</ul>
+			</div>
 
-{{ kategorija.name }}
+			<div class="site_undertop">
+				<div class="Logo">
+					<a class="Logo" href="#">BALTICHTECH.com</a>
+				</div>
+				<div class="wrapper">
+					<form class="boxContainer" action='{% url "sakums" %}'>
+						<input type="text" placeholder="" class="search" name="search" />
+					</form>
+				</div>
+				<ul class="right_menu">
+					<li class="cart"><a href="#">In cart(2)</a></li>
+					<li class="cartimg"><img src="images/CartIcon.png" alt="cart" /></li>
+					<li class="acc"><a href="#">Account</a></li>
+					<li class="accimg">
+						<img src="images/AccountIcon 1.png" alt="Account" />
+					</li>
+				</ul>
+			</div>
+		</header>
+		<div class="site_center">
+			<div class="sidebar" >
+				<div class="filter_title_main">
+					<a>Filters</a>
+				</div>
+				<div class="filter_title">
+                    <button class="acardion">
+					<a>Price</a>
+					<svg width="15" height="10" viewBox="0 0 42 25">
+						<path
+							d="M3 3L21 21L39 3"
+							stroke="black"
+							stroke-width="7"
+							fill="none"
+							stroke-linejoin="round"
+						/>
+					</svg>
+                </button>
+					<div class="sidebar_content">
+						<div class="input1">
+							<input type="number" value="" />
+							<a>to</a>
+							<input type="number" value="" />
+						</div>
+					</div>
+				</div>
 
-{% endblock %}
+				<div class="filter_title">
+                    <button class="acardion">
+					<a>Manufacturer</a>
+					<svg width="15" height="10" viewBox="0 0 42 25">
+						<path
+							d="M3 3L21 21L39 3"
+							stroke="black"
+							stroke-width="7"
+							fill="none"
+							stroke-linejoin="round"
+						/>
+					</svg></button>
+					<div class="sidebar_content">
+						<ul class="list-items">
+							<li class="item">
+								<input type="checkbox" name='Acer' id="Acer"/>
+								<label for="Acer">Acer</label>
+							</li>
+							<li class="item">
+                                <input type="checkbox" name='Apple' id="Apple"/>
+								<label for="Apple">Apple</label>
+							</li>
+							<li class="item">
+								<input type="checkbox" name='Asus' id="Asus"/>
+								<label for="Asus">Asus</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+            </div>
+            <div class="products-container">
+                <div class="row1">
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>599 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>1200 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>599 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>599 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row1">
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>599 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>599 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>599 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod1">
+                        <div class="product-img">
+                            <img src="/images/image 1.png" alt="pc">
+                        </div>
+                        <div class="product-opt">
+                            <h1>599 €</h1>
+                            <p>Portatīvais dators HP 250 G7 15.6" </p>
+                            <ul>
+                                <li>Intel Core i3-8130U CPU</li>
+                                <li>Intel UHD Graphics 620 GPU</li>
+                                <li>8 GB RAM</li>
+                            </ul>
+                            <div class="product-status">
+                                <img src="/images/CheckIcon 1.png" alt="done">
+                                <p>Item is avalable</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+				<script src="script.js"></script>
+		</div>
+	</body>
+</html>
 
-{% block css %}
-<link rel="stylesheet" href="{% static '/majaslapa/css/Product.css' %}">
-{% endblock %}
-
-
-{% block body %}
-
-
-    {% for Prece in product_list %}
-    <a href='{% url "product" Prece.slug %}' class='a'>{{ Prece.title }}<a>
-    {% endfor %}
-
-
-{% endblock %}
