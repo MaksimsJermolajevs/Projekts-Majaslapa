@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 19:02+0200\n"
+"POT-Creation-Date: 2022-11-09 19:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,6 @@ msgid "Saglabāt"
 msgstr "Save"
 
 #: .\templates\majaslapa\account.html:26
-#: .\templates\majaslapa\change-password.html:24
 msgid "Mainīt paroli"
 msgstr "Change password"
 
@@ -112,35 +111,42 @@ msgid "Paroles maiņa"
 msgstr "Password"
 
 #: .\templates\majaslapa\change-password.html:18
-msgid "Vecā parole"
-msgstr "Old password"
+#, fuzzy
+#| msgid "Vecā parole"
+msgid "Pašreizējā parole:"
+msgstr "Current password:"
 
 #: .\templates\majaslapa\change-password.html:20
 #, fuzzy
-#| msgid "Vecā parole"
-msgid "Jaunā parole:"
-msgstr "Old password"
+#| msgid "atkārtojiet paroli"
+msgid "Jauna parole:"
+msgstr "New password:"
 
 #: .\templates\majaslapa\change-password.html:22
 #, fuzzy
 #| msgid "atkārtojiet paroli"
-msgid "Apstiprināt jauno paroli:"
-msgstr "repeat password"
+msgid "Atkārtojiet jauno paroli:"
+msgstr "Repeat new password:"
+
+#: .\templates\majaslapa\change-password.html:24
+msgid "Iesniegt"
+msgstr "Submit"
+
+#: .\templates\majaslapa\change-password.html:27
+msgid ""
+"Jūsu parole nedrīkst būt pārāk līdzīga citai jūsu personiskajai informācijai."
+msgstr "Your password can't be too similar to your other personal information."
 
 #: .\templates\majaslapa\change-password.html:28
-msgid "Parole nedrīkst būt pārāk līdzīga pārējai personīgajai informācijai."
-msgstr "Your password can’t be too similar to your other personal information."
-
-#: .\templates\majaslapa\change-password.html:29
-msgid "Parolei ir jābūt vismaz 8 zīmi garai."
+msgid "Jūsu parolei jāsatur vismaz 8 rakstzīmes."
 msgstr "Your password must contain at least 8 characters."
 
-#: .\templates\majaslapa\change-password.html:30
-msgid "Parole nedrīkst būt no bieži lietotu paroļu saraksta."
+#: .\templates\majaslapa\change-password.html:29
+msgid "Jūsu parole nevar būt bieži lietota parole."
 msgstr "Your password can’t be a commonly used password."
 
-#: .\templates\majaslapa\change-password.html:31
-msgid "Parole nedrīkst sastāvēt tikai no cipariem."
+#: .\templates\majaslapa\change-password.html:30
+msgid "Jūsu parole nevar būt tikai cipars."
 msgstr "Your password can’t be entirely numeric."
 
 #: .\templates\majaslapa\home.html:7
@@ -181,6 +187,14 @@ msgstr "E-mail"
 #| msgid "atkārtojiet paroli"
 msgid "Atkārtot paroli"
 msgstr "repeat password"
+
+#, fuzzy
+#~| msgid "atkārtojiet paroli"
+#~ msgid "Apstiprināt jauno paroli:"
+#~ msgstr "repeat password"
+
+#~ msgid "Parole nedrīkst sastāvēt tikai no cipariem."
+#~ msgstr "Your password can’t be entirely numeric."
 
 #~ msgid "Latviešu"
 #~ msgstr "Latvian"

@@ -152,8 +152,7 @@ li,a{
     padding-left: 5px;
     padding: 0 20px;
     font-size: 30px;
-    font-weight: 300;
-    position: relative;
+    position: static;
 }
 
 .right_menu a{
@@ -200,14 +199,21 @@ transition: all 0.3s ease 0s;
     .stick2{
         margin-top:7px
     }
-
+    .Logo{
+        font-size: 24px;
+        padding-left: 4px;
+    }
 
 }
 
+
 .boxContainer{
-display: flex;
-align-items: center;
-justify-content: center;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-right: 340px;
+
+
 }
 
 .cart-phone{

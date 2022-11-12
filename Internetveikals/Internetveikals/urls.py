@@ -24,6 +24,7 @@ from majaslapa import views
 
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.sakums.as_view(),name='sakums'),

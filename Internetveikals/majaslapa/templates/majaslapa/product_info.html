@@ -21,4 +21,20 @@
 
     <a href="{% url 'cart_add' Preces.id %}">Add To Cart</a>
 
+    {% if signature_valid %}
+    <h2>swedbank signature valid</h2>
+{% else %}
+    <h2>swedbank signature invalid</h2>
+{% endif %}
+<table>
+    {% for value, key in data %}
+    <tr>
+        <td>{{ key }}</td>
+        <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+</table>
+    </body>
+</html>
+
 {% endblock %}

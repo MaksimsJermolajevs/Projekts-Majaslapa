@@ -24,6 +24,19 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage
 from django.views.generic.list import ListView
 from django.db.models import Q
+from django.template import RequestContext
+from django.urls import reverse
+from django.http import HttpResponse
+
+from django.shortcuts import render
+
+from django.views.decorators.csrf import csrf_exempt
+
+from django_banklink.forms import PaymentRequest
+from django_banklink.utils import verify_signature
+from majaslapa.models import Transaction
+from majaslapa.signals import transaction_succeeded
+from majaslapa.signals import transaction_failed
 
 
 
@@ -221,3 +234,47 @@ def cart_clear(request):
 @login_required(login_url='/account/login/')
 def cart_detail(request):
     return render(request, 'cart/cart_detail.html')
+
+
+
+@csrf_exempt
+def response(request):
+    if request.method == 'POST':
+        data = request.POST
+    else:
+        data = request.GET
+    if 'VK_MAC' not in data:
+        raise Http404("VK_MAC not in request")
+    signature_valid = verify_signature(data, data['VK_MAC'])
+    if not signature_valid:
+        raise Http404("Invalid signature. ")
+    transaction = get_object_or_404(Transaction, pk = data['VK_REF'])
+    if data['VK_AUTO'] == 'Y':
+        transaction.status = 'C'
+        transaction.save()
+        transaction_succeeded.send(Transaction, transaction = transaction)
+        return HttResponse("request handled, swedbank")
+    else:
+        if data['VK_SERVICE'] == '1901':
+            url = transaction.redirect_on_failure
+            transaction.status = 'F'
+            transaction.save()
+            transaction_failed.send(Transaction, transaction = transaction)
+        else:
+            url = transaction.redirect_after_success
+        return HttpResponseRedirect(url)
+
+def request(request, description, message, amount, currency, redirect_to):
+    if 'HTTP_HOST' not in request.META:
+        raise Http404("HTTP/1.1 protocol only, specify Host header")
+    protocol = 'https' if request.is_secure() else 'http'
+    url = '%s://%s%s' % (protocol, request.META['HTTP_HOST'], reverse(response))
+    context = RequestContext(request)
+    user = None if request.user.is_anonymous() else request.user
+    context['form'] = PaymentRequest(description = description,
+                                     amount = amount,
+                                     currency = currency,
+                                     redirect_to = redirect_to,
+                                     message = message,
+                                     user = user)
+    return render("django_banklink/request.html", context)
