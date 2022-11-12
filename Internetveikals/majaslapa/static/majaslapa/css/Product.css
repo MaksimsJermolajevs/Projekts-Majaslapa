@@ -1,145 +1,225 @@
-<<<<<<< HEAD
-=======
-.sidebar{
-    background: #fff;
-    height: 1080px;
-    width: 340px;
-    padding: 10px 20px;
+.sidebar {
+	background: #fff;
+	min-height:85%;
+	width: 340px;
+	padding: 10px 20px;
+    position: absolute;
+    top: 180px;
+    bottom: 0;
+    height: 1250px;
 }
-.sidebar_content  a{
-    font-family: 'Montserrat', sans-serif;
-    color: black;
-    text-decoration: none;
-    padding-left: 10px;
-    font-size: 100%; 
-    font-weight: 500;
 
+.filter_title a {
+	font-family: "Montserrat", sans-serif;
+	color: black;
+	font-weight: 570;
+	font-size: 130%;
 }
-.sidebar_checkbox{
-    list-style: none;
+.filter_title_main {
+	border-bottom: 1px solid #d9d9d9;
+	padding-bottom: 5px;
+	padding-top: 5px;
 }
 .filter_title_main a{
-    font-family: 'Montserrat', sans-serif;
     color: black;
-    font-weight: 700;
-    font-size: 160%;
 }
-.filter_title a{
-    font-family: 'Montserrat', sans-serif;
-    color: black;
-    font-weight: 570;
-    font-size: 130%; 
+.sidebar_content {
+	border-bottom: 1px solid #d9d9d9;
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
 }
-.filter_title_main{
-    border-bottom: 1px solid #D9D9D9;
-    padding-bottom: 5px;
-    padding-top: 5px;
+.input1 input {
+	width: 75px;
+	height: 30px;
+	background-color: #e8e8e8;
+	border-color: #c1c1c1;
+	border-width: 1px;
+	text-align: center;
+	border-style: solid;
 }
-.sidebar_content{
-    border-bottom: 1px solid #D9D9D9;
+.filter_title {
+	padding-top: 10px;
+	padding-left: 9px;
 }
-.input1 input{
-    width: 75px;
-    height: 40px;
-    background-color: #E8E8E8;
-    border-color: #C1C1C1 ;
-    border-width: 1px ;
-    text-align: center;
-    border-style: solid;
-
+.input1 {
+	padding: 20px;
 }
-.filter_title{
-    padding-top: 10px;
-    padding-left: 9px;
+.title1 i {
+	position: relative;
+	left: 210px;
+	cursor: pointer;
 }
-.input1{
-    padding: 20px 50px;
+.input1 a {
+	padding: 0px 10px;
+    font-size:15px;
 }
-.title1 img{
-    padding-left: 200px;
+.title2 i {
+	position: relative;
+	left: 120px;
+	cursor: pointer;
 }
-.input1 a{
-    padding-right: 7px;
+.marks {
+	padding: 15px 20px;
 }
-.title2 img{
-    padding-left: 112px;
-}
-.marks{
-    padding:15px 20px;
-}
-.marks input{
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-.mark{
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 20px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-     user-select: none;
-     font-family: 'Montserrat', sans-serif;
-
-}
-.mark:hover input ~ .checkmark {
-    background-color: #ccc;
+.marks input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
 }
 .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-    border: 1px solid #C1C1C1 ;
-  }
-  .mark:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
-  .mark input:checked ~ .checkmark {
-    background-color: rgb(39, 41, 39);
-  }
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-  .mark input:checked ~ .checkmark:after {
-    display: block;
-  }
-  .mark .checkmark:after {
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-.sidebar_content li{
-    list-style: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border: 1px solid #c1c1c1;
 }
-.list-items{
-   
+.mark:hover input ~ .checkmark {
+	background-color: #ccc;
 }
-.select-btn{
-    cursor: pointer;
+.mark input:checked ~ .checkmark {
+	background-color: rgb(39, 41, 39);
 }
-.select-btn.open  .list-items{
-    display: block;
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
 }
-.select-btn.open {
-    transform: rotate(-180deg);
+.mark input:checked ~ .checkmark:after {
+	display: block;
+}
+.mark .checkmark:after {
+	left: 7px;
+	top: 3px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+.sidebar_content li {
+	list-style: none;
 }
 
-   
->>>>>>> 123dec96c04d1b07a16ef805baa135e46136390d
+.select-btn {
+	cursor: pointer;
+}
+.select-btn.open .list-items {
+	display: block;
+}
+.select-btn.open {
+	transform: rotate(-180deg);
+}
+
+.sidebar_content {
+	position: relative;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 1.4s ease;
+	/* overflow-y: auto; */
+}
+
+.acardion.active .sidebar_content {
+	max-height: 300px;
+}
+.fa-solid {
+	color: black;
+}
+
+section {
+	min-height: 100vh;
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.acardion.active svg {
+	transform: rotate(180deg);
+}
+
+svg {
+	transition: transform 0.5s ease-in;
+	position: absolute;
+	left: 300px;
+}
+
+.item {
+	color: black;
+}
+
+.acardion{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    text-align: center;
+    padding: 5px;
+    top: 100px;
+}
+
+.sidebar_content.active  {
+	max-height: 300px;
+}
+.acardion{
+    background-color: #fff
+}
+.products-container{
+    height: 800px;
+    margin-left: 338px;
+    
+}
+.row1{
+    display: flex;
+    margin: 15px;
+}
+.prod1{
+    flex-basis: 22%;
+    height: 500px;
+    background-color: #fff;
+    margin: 20px;
+    padding:0px 25px;
+    cursor: pointer;
+    
+}
+.product-img{
+    border-bottom: 1px solid #D9D9D9;
+    padding-left: 10px;
+}
+.product-img img{
+    height: 200px;
+    display: flex;
+    padding-left: 30px;
+}
+.product-opt h1{
+    padding-top: 20px;
+}
+.product-opt p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+.product-opt ul {
+    padding-left: 23px;
+    padding-top: 15px;
+    padding-bottom: 35px;
+    color: #636363;
+}
+.product-opt li{
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 5px;
+}
+.product-status{
+    display: flex;
+}
+.product-status img{
+    padding-right: 10px;
+}
+
+
