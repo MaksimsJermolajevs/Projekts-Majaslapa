@@ -1,3 +1,5 @@
+
+
 """
 Django settings for Internetveikals project.
 
@@ -215,18 +217,3 @@ JAZZMIN_SETTINGS = {
 
 CART_SESSION_ID = 'cart'
 
-
-# PRIVATE_KEY =  getattr(settings, 'BANKLINK_PRIVATE_KEY', None)
-# if not PRIVATE_KEY:
-#     raise ImproperlyConfigured(u"EdvardsBankLink")
-
-# SND_ID = getattr(settings, 'BANKLINK_SND_ID', None)
-# if not SND_ID:
-#     raise ImproperlyConfigured(u"Pass")
-
-# PUBLIC_KEY = getattr(settings, 'BANKLINK_PUBLIC_KEY', None)
-# if not PUBLIC_KEY:
-#     raise ImproperlyConfigured(u"Pass")
-
-# BANKLINK_URL = getattr(settings, 'BANKLINK_REQUEST_URL',
-#                                 'https://ib.swedbank.lv/banklink')

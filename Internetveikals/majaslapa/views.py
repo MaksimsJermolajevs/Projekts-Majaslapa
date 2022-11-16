@@ -30,16 +30,17 @@ from django.http import HttpResponse
 
 from django.shortcuts import render
 
-from django.views.decorators.csrf import csrf_exempt
 
-from django_banklink.forms import PaymentRequest
-from django_banklink.utils import verify_signature
-from majaslapa.models import Transaction
-from majaslapa.signals import transaction_succeeded
-from majaslapa.signals import transaction_failed
+def search(request):
 
+    search_query = request.GET.get('search', '')
+    if search_query:
+        Preces = Product.objects.filter(Q(title__icontains=search_query))
+    else:
+        Preces = Product.objects.all()
 
-
+    return render(request, 'majaslapa/Product.html',{
+        'product_list': Preces,})
 class sakums(ListView):
     def get(self, request):
         search_query = request.GET.get('search', '')
@@ -125,11 +126,36 @@ class PasswordsChangeView(PasswordChangeView):
 
 
 
-def category(request, slug_url):
-    kategorija = Category.objects.get(slug=slug_url)
-    Preces = Product.objects.all().filter(category = kategorija)
+class category(ListView):
+    def get(self, request, slug_url):
 
-    return render(request, 'majaslapa/Product.html',{'product_list': Preces, "kategorija":kategorija})
+        price_from = request.GET.get('price_from', 0)
+        price_to = request.GET.get('price_to', 1000)
+
+        kategorija = Category.objects.get(slug=slug_url)
+        Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to)
+        Specifikacija = ProductSpecification.objects.all().filter (Q(Product_type__name__contains = kategorija.name )
+            | Q(Product_type__name_lv__contains = kategorija.name_lv)).order_by('productspecificationvalue').values('productspecificationvalue__value',
+                'name')
+
+        p = Paginator(Preces, 2)
+        page_num = request.GET.get('page', 1)
+        try:
+            page = p.page(page_num)
+        except EmptyPage:
+            page = p.page(1)
+    # Specifikacijas_id = ProductSpecification.objects.values_list('id')
+    # specifikacijas_vertiba = ProductSpecificationValue.objects.filter(specification_id__in = Specifikacijas_id)
+
+        return render(request, 'majaslapa/Product.html',{
+            'product_list': page,
+            'kategorija':kategorija,
+            'Specifikacija':Specifikacija,
+        # 'Specifikacija_veriba':specifikacijas_vertiba,
+            'price_from':price_from,
+            'price_to':price_to,
+        })
+
 
 def product_info(request, slug_url):
     Preces = Product.objects.get(slug=slug_url)
@@ -236,45 +262,3 @@ def cart_detail(request):
     return render(request, 'cart/cart_detail.html')
 
 
-
-@csrf_exempt
-def response(request):
-    if request.method == 'POST':
-        data = request.POST
-    else:
-        data = request.GET
-    if 'VK_MAC' not in data:
-        raise Http404("VK_MAC not in request")
-    signature_valid = verify_signature(data, data['VK_MAC'])
-    if not signature_valid:
-        raise Http404("Invalid signature. ")
-    transaction = get_object_or_404(Transaction, pk = data['VK_REF'])
-    if data['VK_AUTO'] == 'Y':
-        transaction.status = 'C'
-        transaction.save()
-        transaction_succeeded.send(Transaction, transaction = transaction)
-        return HttResponse("request handled, swedbank")
-    else:
-        if data['VK_SERVICE'] == '1901':
-            url = transaction.redirect_on_failure
-            transaction.status = 'F'
-            transaction.save()
-            transaction_failed.send(Transaction, transaction = transaction)
-        else:
-            url = transaction.redirect_after_success
-        return HttpResponseRedirect(url)
-
-def request(request, description, message, amount, currency, redirect_to):
-    if 'HTTP_HOST' not in request.META:
-        raise Http404("HTTP/1.1 protocol only, specify Host header")
-    protocol = 'https' if request.is_secure() else 'http'
-    url = '%s://%s%s' % (protocol, request.META['HTTP_HOST'], reverse(response))
-    context = RequestContext(request)
-    user = None if request.user.is_anonymous() else request.user
-    context['form'] = PaymentRequest(description = description,
-                                     amount = amount,
-                                     currency = currency,
-                                     redirect_to = redirect_to,
-                                     message = message,
-                                     user = user)
-    return render("django_banklink/request.html", context)

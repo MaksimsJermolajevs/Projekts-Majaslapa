@@ -33,12 +33,12 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('account/login/', loginpage, name='login'),
     path('register/', register, name='register'),
-    path('category/<slug:post_slug>', category, name='category'),
+    path('category/<slug:post_slug>', category.as_view(), name='category'),
     path('logout/', logoutUser, name='logout'),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('shopingcart/', cart, name='cart'),
     path('product/<str:slug_url>', product_info, name='product'),
-
+    path('search/', search, name='search'),
 
     path('cart/add/<int:id>/', views.cart_add, name='cart_add'),
     path('cart/item_clear/<int:id>/', views.item_clear, name='item_clear'),
@@ -66,7 +66,7 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('account/login/', loginpage, name='login'),
     path('register/', register, name='register'),
-    path('category/<str:slug_url>', category, name='category'),
+    path('category/<str:slug_url>', category.as_view(), name='category'),
     path('logout/', logoutUser, name='logout'),
     path('accounts/', include('allauth.urls')),
     path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
@@ -76,6 +76,8 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='majaslapa/password_reset_sent.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='majaslapa/password_reser_confirm.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='majaslapa/password_reser_done.html'), name='password_reset'),
+    path('search/', search, name='search'),
+
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
