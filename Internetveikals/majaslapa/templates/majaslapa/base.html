@@ -7,7 +7,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>{% block title %}{% endblock %}</title>
-		<link rel="icon" href="{% static '/majaslapa/image/Logo.png' %} " />
+		<link rel="shortcut icon" href="{% static '/majaslapa/image/Logo.png' %} " />
 		<link rel="stylesheet" href="{% static '/majaslapa/css/base.css' %}" />
 		{% block css %}{% endblock %}
 		<script
@@ -85,15 +85,20 @@
 			<div class="Logo">
 				<a class="Logo" href="{% url 'sakums' %}">BALTICTECH.com</a>
 			</div>
-			<form class="boxContainer" action='{% url "sakums" %}'>
+			<form class="boxContainer" action='{% url "search" %}'>
 				<input type="text" placeholder="{% trans 'Meklēt...' %}" class="search" name='search' />
 			</form>
 			<ul class="right_menu">
 				<li class="cart"><a href="{% url 'cart' %}">{% trans 'Grozs' %}</a></li>
 				<ion-icon name="cart-outline" class="carticon"></ion-icon>
 				<li class="acc">
-					<a href="{% url 'account' %}">{% trans 'Profils' %}</a
-					><i class="bi bi-person-circle"></i>
+					{% if user.is_authenticated %}
+						<a href="{% url 'account' %}" style='position: absolute; right:40px ;top:5px; display:inline-block;'>{% trans 'Profils' %}</a>
+						<img src="{{ user.profile.image.url }}" alt="Profile" style='width:35px;height:35px; display:inline-block; border-radius: 50%;position: absolute;right:0; top:-2px'/>
+					{% else %}
+						<a href="{% url 'account' %}" style=' display:inline-block;'>{% trans 'Profils' %}</a>
+						<i class="bi bi-person-circle"></i>
+					{% endif %}
 				</li>
 			</ul>
 		</div>

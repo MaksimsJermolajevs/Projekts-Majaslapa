@@ -1,34 +1,32 @@
 from unicodedata import category
 from django.views.generic.base import View
 from email import message
-from django.shortcuts import render, redirect
 from .forms import *
-from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
 from .tokens import account_activation_token
-from django.template.loader import render_to_string
+from django.template import loader
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.paginator import Paginator, EmptyPage
 from django.views.generic.list import ListView
 from django.db.models import Q
-from django.template import RequestContext
-from django.urls import reverse
-from django.http import HttpResponse
+import stripe
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.template.loader import render_to_string
+from django.utils.translation import gettext as _
 
-from django.shortcuts import render
+
 
 
 def search(request):
@@ -41,13 +39,11 @@ def search(request):
 
     return render(request, 'majaslapa/Product.html',{
         'product_list': Preces,})
+
+
 class sakums(ListView):
     def get(self, request):
-        search_query = request.GET.get('search', '')
-        if search_query:
-            kategorija = Category.objects.filter(Q(name__icontains=search_query))
-        else:
-            kategorija = Category.objects.all().filter(is_active=True)
+        kategorija = Category.objects.all().filter(is_active=True)
 
         p = Paginator(kategorija, 10)
         page_num = request.GET.get('page', 1)
@@ -67,7 +63,7 @@ def account(request):
                                    instance=request.user.profile)
         if  p_form.is_valid():
             p_form.save()
-            return redirect('account') # Redirect back to profile page
+            return redirect('account') # Redirect back to profile pag
 
     else:
         p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -78,6 +74,13 @@ def account(request):
 
     return render(request, 'majaslapa/account.html', context)
 
+
+@login_required(login_url='login/')
+def deleteuser(request):
+
+    user = request.user
+    user.delete()
+    return redirect('sakums')
 
 def about(request):
     return render(request, 'majaslapa/about.html')
@@ -95,7 +98,7 @@ def loginpage(request):
             login(request, user)
             return redirect('sakums')
         else:
-            messages.info(request, 'Nav pareizs lietotājvārds vai parole')
+            messages.warning(request, _('Nav pareizs lietotājvārds vai parole'))
 
     context = {}
     return render(request, 'majaslapa/login.html', context)
@@ -110,7 +113,7 @@ def register(request):
             user.is_active = False
             user.save()
             list(messages.get_messages(request))
-            messages.success(request, "Registration sucessful")
+            messages.success(request, _("Reģistrācija veiksmīga"))
             activateEmail(request, user, form.cleaned_data.get('email'))
             return redirect('login')
         else:
@@ -125,20 +128,36 @@ class PasswordsChangeView(PasswordChangeView):
     success_url = reverse_lazy('account')
 
 
-
 class category(ListView):
     def get(self, request, slug_url):
 
         price_from = request.GET.get('price_from', 0)
         price_to = request.GET.get('price_to', 1000)
 
-        kategorija = Category.objects.get(slug=slug_url)
-        Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to)
-        Specifikacija = ProductSpecification.objects.all().filter (Q(Product_type__name__contains = kategorija.name )
-            | Q(Product_type__name_lv__contains = kategorija.name_lv)).order_by('productspecificationvalue').values('productspecificationvalue__value',
-                'name')
+        filtrs = request.GET.get('filter')
 
-        p = Paginator(Preces, 2)
+        kategorija = Category.objects.get(slug=slug_url)
+
+        if filtrs:
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).filter(productspecificationvalue__value__contains = filtrs)
+        else:
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to)
+
+
+        if Product.objects.all().filter (Q(category = kategorija)):
+            obj  = Product.objects.all().filter (Q(category = kategorija)).first()
+            Specifikacija = ProductSpecification.objects.all().filter(Q(Product_type__id__contains= obj.product_type.id))
+            SpecifikacijaVertiba = ProductSpecificationValue.objects.all()
+        else:
+            Specifikacija = ''
+            SpecifikacijaVertiba = ''
+
+        if SpecifikacijaVertiba == SpecifikacijaVertiba:
+            SpecifikacijaVertiba == ''
+
+
+
+        p = Paginator(Preces, 10)
         page_num = request.GET.get('page', 1)
         try:
             page = p.page(page_num)
@@ -151,13 +170,16 @@ class category(ListView):
             'product_list': page,
             'kategorija':kategorija,
             'Specifikacija':Specifikacija,
-        # 'Specifikacija_veriba':specifikacijas_vertiba,
+            'Specifikacija_veriba':SpecifikacijaVertiba,
             'price_from':price_from,
             'price_to':price_to,
         })
 
 
 def product_info(request, slug_url):
+    logged_user = request.user
+    user_id = logged_user.id
+    # stripe_webhook(user_id)
     Preces = Product.objects.get(slug=slug_url)
     return render(request, 'majaslapa/product_info.html',{'Preces': Preces})
 
@@ -188,33 +210,44 @@ def activate(request, uidb64, token):
         messages.success(request,"Paldies par e-pasta apstiprinājumu. Tagad varat pierakstīties savā kontā.")
         return redirect('login')
     else:
-        messages.error(request,'Aktivizācijas saite nav derīga!')
+        messages.error(request, _('Aktivizācijas saite nav derīga!'))
     return redirect('login')
 
 
 def activateEmail(request, user, to_email):
-    mail_subject = 'Aktivizējiēt savu konu Baltictech.store'
-    message = render_to_string('majaslapa/template_activate_account.html',{
+    # username = user.username
+    mail_subject = 'Aktivizējiēt savu konu Baltictech'
+    Email = [to_email]
+
+    context = {
         'user': user.username,
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
         "protocol": "https" if request.is_secure() else 'http'
-    })
-    email = EmailMessage(mail_subject, message, to=[to_email])
+    }
+    message = render_to_string('majaslapa/template_activate_account.html', context=context)
+
+    email = EmailMessage(mail_subject, message, settings.EMAIL_HOST_USER ,to=Email)
+    email.content_subtype = 'html'
+    email.fail_silently = False
+
+    # email.content_subtype = 'html'
     if email.send():
-        messages.success(request, f'Cien {user}, lūdzu dodieties uz e-pasta {to_email} iesūtni un noklikšķiniet uz \
-            saņemta aktivizācijas saite, lai apstiprinātu un pabeigtu reģistrāciju. Piezīme: Ja neredzat vēstūli, lūdzu pārbaudiet mēstules mapi.')
+        messages.success(request, _(f'Cien {user}, lūdzu dodieties uz e-pasta {Email} iesūtni un noklikšķiniet uz \
+            saņemta aktivizācijas saite, lai apstiprinātu un pabeigtu reģistrāciju. Piezīme: Ja neredzat vēstūli, lūdzu pārbaudiet mēstules mapi.'))
     else:
-        messages.error(request, f'Notika problēma, sūtot e-pastu uz {to_email}, pārbaudiet, vai ierakstījāt pareizi.')
+        messages.error(request, _(f'Notika problēma, sūtot e-pastu uz {Email}, pārbaudiet, vai ierakstījāt pareizi.'))
 # Create your views here.
 
-
+import uuid
 #Groza funkcija:
 #Groza lapa
 @login_required(login_url='/account/login/')
 def cart(request):
     return render(request, 'majaslapa/cart.html')
+
+
 
 #Groza pievienošana
 @login_required(login_url='/account/login/')
@@ -262,3 +295,148 @@ def cart_detail(request):
     return render(request, 'cart/cart_detail.html')
 
 
+
+@csrf_exempt
+@login_required(login_url='/account/login/')
+def stripe_config(request):
+    if request.method == 'GET':
+        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(stripe_config, safe=False)
+
+
+@login_required(login_url='/account/login/')
+@csrf_exempt
+def create_checkout_sessionn(request, slug_url):
+    user = request.user
+    Preces = Product.objects.get(slug=slug_url)
+    if Preces.discount_price is None:
+        Price = Preces.regular_price
+    else:
+        Price = Preces.discount_price
+    if request.method == 'GET':
+        domain_url = 'http://127.0.0.1:8000/'+Preces.slug
+        doamin = 'http://127.0.0.1:8000'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                success_url = domain_url + '/success/',#?session_id={CHECKOUT_SESSION_ID}
+                cancel_url = domain_url + '/cancelled/',
+                payment_method_types=['card'],
+                line_items = [
+                    {
+                        'quantity': 1,
+                        'price_data' : {
+                            'currency': "eur",
+                            'unit_amount' : int(Price * 100),
+                        'product_data': {
+                            'name': Preces.title,
+                            'description': Preces.desciption,
+      },
+                }
+                    }
+                ],
+                metadata= {
+                    'product_id' : Preces.id,
+                    'client_reference_id' : user.id},
+                mode='payment',
+            )
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+
+from django.views.generic import TemplateView
+class SuccessView(TemplateView):
+    template_name = 'majaslapa/test1.html'
+
+
+class CancelledView(TemplateView):
+    template_name = 'majaslapa/test2.html'
+
+
+@csrf_exempt
+def stripe_webhook(request):
+    endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+    # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+
+        customer_email = session['customer_details']['email']
+        product_id = session['metadata']['product_id']
+        user_id = session['metadata']['client_reference_id']
+        Order_number = session['created']
+        amount = session['amount_total']
+        product = Product.objects.get(id=product_id)
+
+        send_mail(
+            subject='Paldies ka iegadajaties produktu no mūsu veikala',
+            message='Paldies, par pirkumu',
+            recipient_list=[customer_email],
+            from_email='balticctech@gmail.com',
+        )
+
+        orders.objects.create(
+            Order_number=Order_number,
+            quantity= 1,
+            amount = amount / 100,
+            product_id = product_id,
+            user_id = user_id
+         )
+
+    return HttpResponse(status=200)
+
+@login_required(login_url='/account/login/')
+@csrf_exempt
+def create_checkout_session(request, slug_url):
+    user = request.user
+    Preces = Product.objects.get(slug=slug_url)
+    if Preces.discount_price is None:
+        Price = Preces.regular_price
+    else:
+        Price = Preces.discount_price
+    if request.method == 'GET':
+        domain_url = 'http://127.0.0.1:8000/'+Preces.slug
+        doamin = 'http://127.0.0.1:8000'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                success_url = domain_url + '/success/',#?session_id={CHECKOUT_SESSION_ID}
+                cancel_url = domain_url + '/cancelled/',
+                payment_method_types=['card'],
+                line_items = [
+                    {
+                        'quantity': 1,
+                        'price_data' : {
+                            'currency': "eur",
+                            'unit_amount' : int(Price * 100),
+                        'product_data': {
+                            'name': Preces.title,
+                            'description': Preces.desciption,
+      },
+                }
+                    }
+                ],
+                metadata= {
+                    'product_id' : Preces.id,
+                    'client_reference_id' : user.id},
+                mode='payment',
+            )
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})

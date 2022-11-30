@@ -5,25 +5,20 @@
 }
 
 #category .cat-container {
-    display:flex;
-    padding-top: 30px;
-    padding-left: 160px;
-    flex-wrap: wrap;
-    padding-right: 50px;
+    padding-top: 25px;
+    padding-left: 100px;
+    padding-right: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 
 #category .cat {
     width: 17em;
     height: 17em;
-    padding: 20px 0;
-    border: 1px solid #fff;
-    cursor: pointer;
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-    margin: 15px 0 0 40px;
-    transition: 0.2s ease;
-    position: relative;
     background-color: #fff;
+
 }
 
 #category .cat:hover{
@@ -31,8 +26,9 @@
 }
 
 #category .cat img {
-    height: 140px;
+    height: 200px;
     border-radius: 20px;
+    padding-top: 50px;
 }
 
 #category .cat h1 {
@@ -41,7 +37,7 @@
 }
 
 #category .cat hr {
-    margin-top:40px;
+    margin-top:30px;
     color: rgba(255, 255, 255, 0.13);
     width: 245px;
     margin-left: 20px;

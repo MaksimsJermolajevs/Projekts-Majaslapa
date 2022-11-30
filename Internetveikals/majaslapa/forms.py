@@ -3,10 +3,9 @@ from django.contrib.auth import get_user_model
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from .models import Profile
-# from django.core.urlresolvers import reverse
-from django.contrib.sites.models import Site
-from django.utils.safestring import mark_safe
-from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+from django.db.models import Q
+from django.utils.translation import gettext as _
 
 
 User = get_user_model()
@@ -46,7 +45,8 @@ class CreateUserForm(UserCreationForm):
         user = model.objects.filter(email__iexact=email)
 
         if user.exists():
-            raise forms.ValidationError("A user with that email already exists")
+            raise forms.ValidationError(_("Lietotājs ar šādu e-pastu jau eksistē!"))
+
 
         return self.cleaned_data.get('email')
 
@@ -73,3 +73,10 @@ class FormChangePassword(PasswordChangeForm):
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
 
+from django.contrib.auth.models import User
+
+
+class UserDeleteForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = []

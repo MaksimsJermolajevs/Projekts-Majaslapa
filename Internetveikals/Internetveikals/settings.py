@@ -34,6 +34,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ["https://fe89-212-142-81-248.eu.ngrok.io"]
+
+
 
 # Application definition
 
@@ -58,6 +61,7 @@ INSTALLED_APPS = [
     'cart',
     'crispy_forms',
     'majaslapa.apps.UsersConfig',
+    "django_admin_lightweight_date_hierarchy",
 ]
 SITE_ID = 1
 
@@ -212,8 +216,26 @@ JAZZMIN_SETTINGS = {
     "login_logo": None,
     "login_logo_dark": None,
     "site_logo_classes": "img-circle",
+    "language_chooser": True
 }
 
 
 CART_SESSION_ID = 'cart'
 
+APPEND_SLASH=False
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51M5VxtAiAB9ovPLga1k2eSAWMRn7F6vw40FGkloEscteVnlNmD1zOILAnCpgdroNDXRWFuhNiDtpOPu7z8ffVZzo00QZVw6MIz'
+STRIPE_SECRET_KEY = 'sk_test_51M5VxtAiAB9ovPLgA2df0XbLinZBiwnZwVCF3rOfGBVMgInrqZZzIiIRXs5SGYBpvFQ6yqInTGWu9KTziIV49Ue100b3VTJZTE'
+STRIPE_ENDPOINT_SECRET = 'whsec_3968e39f8d852940ae08b12da5496411298768c227beb093cd8d68075fd33bc7'
+
+
+
+from django.contrib.messages import constants as messages
+
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }

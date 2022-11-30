@@ -149,6 +149,7 @@ svg {
 	transition: transform 0.5s ease-in;
 	position: absolute;
 	left: 300px;
+	margin-top: -15px;
 }
 
 .item {
@@ -181,16 +182,16 @@ svg {
     margin: 15px;
 }
 .prod1{
-	display: inline-flex;
-    flex-basis: 22%;
+	display:inline-block;
+	position: static;
     height: 365px;
     background-color: #fff;
     margin: 20px;
     padding:0px 25px;
     cursor: pointer;
-	width: 270px;
+	width: 260px;
 	margin-top: 20px;
-	display: inline-flex;
+
 
 }
 .product-img{
@@ -222,8 +223,6 @@ svg {
 }
 .product-status{
     display:inline-flex;
-	position: absolute;
-	top: 460px;
 }
 
 ul li{
@@ -311,3 +310,11 @@ ul li{
   }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+
+.acardion a{
+	display: block;
+	margin-right: 150px;
+	text-align: left;
+	font-size:medium;
+}

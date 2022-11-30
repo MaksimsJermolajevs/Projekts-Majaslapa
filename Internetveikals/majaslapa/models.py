@@ -1,13 +1,12 @@
 
 from django.conf import settings
 from django.urls import reverse
-from tabnanny import verbose
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.models import User
-import uuid
-from PIL import Image
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 
 class Category(MPTTModel):
@@ -25,7 +24,7 @@ class Category(MPTTModel):
         verbose_name= 'Attēls priekš kategorijas',
         help_text='Augšupielādējiet produkta attēlu',
         upload_to='images_category/',
-        default='images_category/default.png'
+        default='images_category/no-image.png'
     )
 
     class MPTTMeta:
@@ -45,7 +44,6 @@ class Category(MPTTModel):
 class ProductType(models.Model):
 
     name = models.CharField(verbose_name=('Produkta nosaukums'), help_text='Obligāti', max_length=255, unique=True)
-    is_active = models.BooleanField(verbose_name=('Ir aktīvs'), default=True)
 
     class Meta:
         verbose_name = ('Produkta veids')
@@ -101,6 +99,7 @@ class Product(models.Model):
         },
         max_digits=6,
         decimal_places=2,
+        blank=True
     )
 
     is_active = models.BooleanField(
@@ -112,7 +111,7 @@ class Product(models.Model):
         verbose_name= 'Attēls',
         help_text='Augšupielādējiet produkta attēlu',
         upload_to='images-product/',
-        default='images/default.png'
+        default='images-product/no-image.png'
     )
     created_at = models.DateTimeField(('Izveidots plkst'), auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(('Atjaunināts plkst'), auto_now_add=True, editable=False)
@@ -178,4 +177,26 @@ class Profile(models.Model):
     image = models.ImageField(default='default.png', upload_to='profile_pics')
 
     def __str__(self):
-        return f'{self.user.username} Profile' #show how we want it to be displayed
+        return f'{self.user.username} Profile'
+
+
+class orders(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    Order_number = models.IntegerField(validators=[
+            MaxValueValidator(9999999999),
+            MinValueValidator(1)
+        ])
+    quantity = models.IntegerField()
+    amount = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        )
+    created_at = models.DateTimeField( auto_now_add=True, editable=False)
+    Orderstatus = (
+        ('Apstrāda', 'Apstrāda'),
+        ('Sūta', 'Sūta'),
+        ('Atcelts', 'Atcelts'),
+        ('Pabeigts','Pabeigts'),
+    )
+    status = models.CharField(max_length=150, choices=Orderstatus, default='Apstrāda')

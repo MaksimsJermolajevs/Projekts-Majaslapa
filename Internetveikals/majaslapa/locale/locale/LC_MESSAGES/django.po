@@ -1,0 +1,232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-30 23:43+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\majaslapa\forms.py:48
+msgid "Lietotājs ar šādu e-pastu jau eksistē!"
+msgstr "A user with this email already exists!"
+
+#: .\majaslapa\models.py:20
+msgid "Kategorijas drošs URL"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\Contact.html:5
+#: .\majaslapa\templates\majaslapa\base.html:31
+msgid "kontakti"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\Product.html:21
+msgid "Filtri"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\Product.html:25
+#: .\majaslapa\templates\majaslapa\cart.html:24
+msgid "Cena"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\Product.html:40
+msgid "līdz"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\Product.html:107
+msgid "Ir pieejams"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\Product.html:110
+msgid "nav pieejams"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\about.html:5
+#: .\majaslapa\templates\majaslapa\base.html:26
+msgid "Par mums"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:7
+#: .\majaslapa\templates\majaslapa\base.html:47
+#: .\majaslapa\templates\majaslapa\base.html:96
+#: .\majaslapa\templates\majaslapa\base.html:99
+msgid "Profils"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:15
+msgid "Sveiks"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:19
+msgid "Mainīt bildi"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:21
+msgid "Saglabāt"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:26
+msgid "Mainīt paroli"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:28
+msgid "Mani pasūtījumi"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:29
+msgid "Dzēst profilu"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\base.html:43
+#: .\majaslapa\templates\majaslapa\base.html:92
+#: .\majaslapa\templates\majaslapa\cart.html:7
+msgid "Grozs"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\base.html:70
+msgid "Izlogoties"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\base.html:74
+#: .\majaslapa\templates\majaslapa\login.html:8
+#: .\majaslapa\templates\majaslapa\login.html:21
+#: .\majaslapa\templates\majaslapa\login.html:36
+#: .\majaslapa\templates\majaslapa\register.html:33
+msgid "Pieslēgties"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\base.html:78
+#: .\majaslapa\templates\majaslapa\login.html:38
+#: .\majaslapa\templates\majaslapa\register.html:6
+#: .\majaslapa\templates\majaslapa\register.html:16
+#: .\majaslapa\templates\majaslapa\register.html:30
+msgid "Reģistrēties"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\base.html:89
+msgid "Meklēt..."
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\cart.html:23
+msgid "Produkts"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\cart.html:25
+msgid "Daudzums"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\cart.html:26
+#: .\majaslapa\templates\majaslapa\cart.html:49
+msgid "Kopā"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:6
+msgid "Paroles maiņa"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:18
+msgid "Pašreizējā parole:"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:20
+msgid "Jauna parole:"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:22
+msgid "Atkārtojiet jauno paroli:"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:24
+msgid "Iesniegt"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:27
+msgid ""
+"Jūsu parole nedrīkst būt pārāk līdzīga citai jūsu personiskajai informācijai."
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:28
+msgid "Jūsu parolei jāsatur vismaz 8 rakstzīmes."
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:29
+msgid "Jūsu parole nevar būt bieži lietota parole."
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\change-password.html:30
+msgid "Jūsu parole nevar būt tikai cipars."
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\home.html:7
+msgid "Sākums"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\home.html:19
+msgid "Iepirkties pēc kategorijas"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\login.html:25
+#: .\majaslapa\templates\majaslapa\register.html:45
+msgid "Lietotājvārds"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\login.html:27
+#: .\majaslapa\templates\majaslapa\register.html:47
+msgid "Parole"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\login.html:43
+msgid "Aizmirsi paroli?"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:6
+#: .\majaslapa\templates\majaslapa\password_reser_done.html:6
+#: .\majaslapa\templates\majaslapa\password_reset.html:6
+#: .\majaslapa\templates\majaslapa\password_reset_sent.html:6
+msgid "Atjaunot paroli"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\register.html:46
+msgid "E-pasts"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\register.html:48
+msgid "Atkārtot paroli"
+msgstr ""
+
+#: .\majaslapa\views.py:101
+msgid "Nav pareizs lietotājvārds vai parole"
+msgstr ""
+
+#: .\majaslapa\views.py:116
+msgid "Reģistrācija veiksmīga"
+msgstr ""
+
+#: .\majaslapa\views.py:213
+msgid "Aktivizācijas saite nav derīga!"
+msgstr ""
+
+#: .\majaslapa\views.py:237
+#, python-brace-format
+msgid ""
+"Cien {user}, lūdzu dodieties uz e-pasta {Email} iesūtni un noklikšķiniet "
+"uz             saņemta aktivizācijas saite, lai apstiprinātu un pabeigtu "
+"reģistrāciju. Piezīme: Ja neredzat vēstūli, lūdzu pārbaudiet mēstules mapi."
+msgstr ""
+
+#: .\majaslapa\views.py:240
+#, python-brace-format
+msgid ""
+"Notika problēma, sūtot e-pastu uz {Email}, pārbaudiet, vai ierakstījāt "
+"pareizi."
+msgstr ""

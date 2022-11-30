@@ -26,7 +26,7 @@
 			><input type="button" value="{% trans 'Mainīt paroli' %}"
 		/></a>
 		<input type="button" value="{% trans 'Mani pasūtījumi' %}" />
-		<input type="button" value="{% trans 'Dzēst profilu' %}" class="del" />
+		<a onclick="document.getElementById('id01').style.display='block'"><input type="button" value="{% trans 'Dzēst profilu' %}" class="del" /></a>
 
 		<img src="{{ user.profile.image.url }}" alt="Profile" />
 		<div class="info">
@@ -35,4 +35,36 @@
 		</div>
 	</form>
 </div>
+
+
+
+<div id="id01" class="modal">
+	<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+	<form class="modal-content" action="">
+	  <div class="container">
+		<h1>Dzēst kontu</h1>
+		<p>Vai tiešām vēlaties dzēst savu kontu?</p>
+		{{ delete_form }}
+		<div class="clearfix">
+		  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Acelt</button>
+		  <a href="{% url 'deleteuser' %}"><button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Dzēst</button></a>
+		</div>
+	  </div>
+	</form>
+  </div>
+
+
+  <script>
+	// Get the modal
+	var modal = document.getElementById('id01');
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+		modal.style.display = "none";
+	  }
+	}
+	</script>
+
+
 {% endblock %}

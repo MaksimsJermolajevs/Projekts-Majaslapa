@@ -18,11 +18,11 @@
 		{% csrf_token %}
 	<div class="sidebar">
 		<div class="filter_title_main">
-			<a>Filters</a>
+			<a>{% trans 'Filtri' %}</a>
 		</div>
 		<div class="filter_title">
 			<div class="acardion">
-				<a>Price</a>
+				<a>{% trans 'Cena' %}</a>
 				<svg width="15" height="10" viewBox="0 0 42 25">
 					<path
 						d="M3 3L21 21L39 3"
@@ -37,14 +37,14 @@
 				<form method="POST" action="">
 				<div class="input1">
 					<input type="number" value="{{price_from}}" name="price_from" />
-					<a>to</a>
+					<a>{% trans 'līdz' %}</a>
 					<input type="number" value="{{price_to}}" name="price_to" />
 					<div class="slider">
 						<div class="progress"></div>
 					</div>
 					<div class="range-input">
-						<input type="range" class="range-min" min="0" max="1000" value="0" step="1"/>
-						<input type="range" class="range-max" min="0" max="1000" value="1000" step="1"/>
+						<input type="range" class="range-min" min="0" max="1000" value="{{price_from}}" step="1"/>
+						<input type="range" class="range-max" min="0" max="1000" value="{{price_to}}" step="1"/>
 					</div>
 			</div>
 		</div>
@@ -67,12 +67,15 @@
 			</div>
 			<div class="sidebar_content">
 				<ul class="list-items">
-					{% for Spec in Specifikacija_veribad %}
+					{% for Spec in Specifikacija_veriba %}
 					<li class="item">
-						<input type="checkbox" name="Acer" id="Acer" />
-						<label for="Acer">{{ Specification.productspecificationvalue__value }}</label>
+						{% if Spec.specification == Specification  %}
+						<input type="checkbox" name="filter" id="{{ Spec.value }}" value="{{ Spec.value }}" />
+							<label for="{{ Spec.value }}">{{ Spec.value }}</label>
+						{%endif%}
 					</li>
 					{% endfor %}
+					<input type="submit" value="OK">
 				</ul>
 			</div>
 			{% endfor %}
@@ -86,7 +89,12 @@
 				<img src="{{Product.image.url}}" alt="pc" />
 			</div>
 			<div class="product-opt">
-				<h1>{{ Product.regular_price }}</h1>
+				{% if Product.discount_price is null %}
+					<h1>{{ Product.regular_price }} </h1>
+				{% else %}
+					<h5> <del>{{ Product.regular_price }}</del> </h5>
+					<h2>{{ Product.discount_price }} </h2>
+				{% endif %}
 				<p>{{ Product.title }}</p>
 				<ul>
 					<li>Intel Core i3-8130U CPU</li>
@@ -94,8 +102,13 @@
 					<li>8 GB RAM</li>
 				</ul>
 				<div class="product-status">
-					<span style="font-family: wingdings; font-size: 200%; color:green; margin-top:-5px">&#252;</span>
-					<p>Item is avalable</p>
+					{% if Product.is_active == True %}
+						<span style="position:relative; font-family: wingdings; font-size: 200%; color:green; margin-top:-5px; top:-4px; right:5px" >&#252;</span>
+						<p>{% trans 'Ir pieejams' %}</p>
+					{% else %}
+						<span style="position:relative; font-family: wingdings; font-size: 150%; color:red; margin-top:-5px; top:-4px; right:5px ">&#10005;</span>
+						<p>{% trans 'nav pieejams' %}</p>
+					{% endif %}
 				</div>
 			</div>
         </a>
@@ -106,17 +119,17 @@
 
 		<div class="pagination">
 			{% if product_list.has_previous %}
-				<a href="{% url "category" kategorija.slug %}?page={{product_list.previous_page_number}}">&laquo;</a>
+				<a href="?{{ request.GET.urlencode }}&page={{product_list.previous_page_number}}">&laquo;</a>
 			{% endif %}
 			{% for num_page in product_list.paginator.page_range %}
 				{% if product_list.number == num_page %}
-					<a class="active" href="{% url "category" kategorija.slug %}?page={{ num_page }}">{{num_page}}</a>
+					<a class="active" href="?{{ request.GET.urlencode }}&page={{ num_page }}">{{num_page}}</a>
 				{% else %}
-					<a  href="{% url "category" kategorija.slug %}?page={{ num_page }}">{{num_page}}</a>
+					<a  href="?{{ request.GET.urlencode }}&page={{ num_page }}">{{num_page}}</a>
 				{% endif %}
 			{% endfor %}
 			{% if product_list.has_next %}
-				<a href="{% url "category" kategorija.slug %}?page={{product_list.next_page_number}}">&raquo;</a>
+				<a href="?{{ request.GET.urlencode }}&page={{product_list.next_page_number}}">&raquo;</a>
 			{% endif %}
 		</div>
 	</nav>

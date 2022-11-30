@@ -21,12 +21,15 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.i18n import i18n_patterns
 from majaslapa import views
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('', views.sakums.as_view(),name='sakums'),
     path('account/', account, name='account'),
     path('about/', about, name='about'),
@@ -54,11 +57,17 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='majaslapa/password_reset_sent.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='majaslapa/password_reser_confirm.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='majaslapa/password_reser_done.html'), name='password_reset'),
+    path('<str:slug_url>/create-checkout-session/', views.create_checkout_session),
+    path('config/', views.stripe_config),
+    path('webhook/', views.stripe_webhook),\
+    path('account/delete-user/', views.deleteuser, name='deleteuser'),
+    path('/create-checkout-session/', views.create_checkout_sessionn),
 
     path('i18n/',include('django.conf.urls.i18n')),
 
 
 ] + i18n_patterns(
+    path('admin/', admin.site.urls),
     path('', views.sakums.as_view(), name='sakums'),
     path('shopingcart/', cart, name='cart'),
     path('account/', account, name='account'),
@@ -71,12 +80,16 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
 
-    path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='majaslapa/password_reset.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='majaslapa/password_reset_sent.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='majaslapa/password_reser_confirm.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='majaslapa/password_reser_done.html'), name='password_reset'),
+    path('<str:slug_url>/create-checkout-session/', views.create_checkout_session),
     path('search/', search, name='search'),
+    path('webhook', views.stripe_webhook), # new
+    path('<str:slug_url>/success/', SuccessView.as_view(), name = 'success'),
+    path('<str:slug_url>/cancelled/', CancelledView.as_view(), name = 'cancel'),
+    path('/create-checkout-session/', views.create_checkout_sessionn),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 SOCIAL_AUTH_URL_NAMESPACE = 'social'

@@ -1,6 +1,35 @@
-{% load static %}
-{% autoescape off %}
-    Sveiks {{ User.username }},
-    Lūdzu, noklikšķiniet uz tālāk esošās saites, lai apstiprinātu reģistrāciju:
-    http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
-{% endautoescape %}
+<body style="background-color: #d3d3d3;">
+    <br></br>
+    <center>
+    <div style="background-color: #fff; width: 70%; height: 600px; border-radius: 5px; margin-top: 50px; font-family: Roboto;">
+        <br></br>
+        <p style='font-size: 22px;'>Sveiks <a style='color=green;'>{{ user }}</a>,<p>
+        <hr style="color: #0d6efd; width: 80%;">
+        <p style="font-size: 30px;">Paldies, ka reģistrējāties BalticTech!</p>
+        <br>
+            <p style="font-size: 20px;">Lai aktivizētu savu kontu, ir jānospiež šī pogu!!!</p>
+            <br><br>
+            <a href='http://{{ domain }}{% url 'activate' uidb64=uid token=token %}'
+                style='background-color:#7fff00;
+                       display:block;
+                       color: #fff;
+                       width: 200px;
+                       height: 50px;
+                       border: none;
+                       border-radius: 9px;
+                       font-size: 35px;
+                       font-family: sans-serif;
+                       text-decoration: none;
+                       text-align: inherit center;'
+                > Aktivizēt </a>
+
+            <br><br>
+            <p style="font-size: 30px; color: Green">Paldies Jums, jauku dienu!!!</p>
+            <br></br>
+        </br>
+    </div>
+    </center>
+    <br></br><br></br><br></br><br></br><br></br>
+</body>
+
+
