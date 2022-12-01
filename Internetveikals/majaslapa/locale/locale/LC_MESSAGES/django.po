@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 23:43+0200\n"
+"POT-Creation-Date: 2022-12-01 12:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,6 +86,22 @@ msgstr ""
 #: .\majaslapa\templates\majaslapa\account.html:29
 msgid "Dzēst profilu"
 msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:45
+msgid "Dzēst kontu"
+msgstr "Delete account"
+
+#: .\majaslapa\templates\majaslapa\account.html:46
+msgid "Vai tiešām vēlaties dzēst savu kontu?"
+msgstr "Are you sure you want to delete your account?"
+
+#: .\majaslapa\templates\majaslapa\account.html:49
+msgid "Atcelt"
+msgstr "Cancel"
+
+#: .\majaslapa\templates\majaslapa\account.html:50
+msgid "Dzēst"
+msgstr "Delete"
 
 #: .\majaslapa\templates\majaslapa\base.html:43
 #: .\majaslapa\templates\majaslapa\base.html:92
