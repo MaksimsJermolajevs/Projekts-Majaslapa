@@ -1,6 +1,35 @@
 {% extends 'majaslapa/base.html' %}
+{% load static %}
 {% load i18n %}
 
 {% block title %}
 {% trans 'kontakti' %}
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/majaslapa/css/Contact.css' %}" />
+{% endblock %}
+
+
+{% block body %}
+<div class="ContactUsRectangle">
+
+    <h1>Contact Us</h1>
+    <input type="text" name='username' placeholder="Your username" class='input'>
+    <input type="text" name="e-mail" placeholder="Your e-mail address" class="input">
+    <div class="Horizontal_Line"></div>
+    <div class="Vertical_Line"></div>
+    <input type="text" name="subject" placeholder="Subject" class="input">
+    <form action="">
+        <!--<textarea name="details" class="details_textarea" cols="30" rows="10"></textarea>-->
+        <input type="text" name="details" placeholder="Details" class="input_details" style="display:block;text-align: start;">
+    </form>
+    <input type="submit" name="submit" class="ContactUs_Submit" placeholder="Submit">
+    
+</div>
+<div class="ContactUsRectangle_RightSide">
+    <img class="Mobile_Image" src="{% static 'majaslapa/image/telephonepng.png' %}" alt="Mobile"/>
+    <img class="Email_Image" src="{% static 'majaslapa/image/emailpng.png' %}" alt="E-mail"/>
+</div>
+
 {% endblock %}
