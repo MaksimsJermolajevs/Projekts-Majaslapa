@@ -1,9 +1,10 @@
 .ContactUsRectangle {
+    margin-top: 40px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    height: 800px;
+    height: 1300px;
     width: 90%;
     border-radius: 5px;
     background-color: #ffffff;
@@ -12,37 +13,48 @@
     border: rgb(133, 133, 133, 0.2);
     border-width: 2px;
     border-style: solid;
+    margin-bottom: 40px;
 }
 
 h1 {
     font-weight: lighter;
     padding-left: 50px;
-    padding-top: 35px;
-    padding-bottom: 20px;
+    padding-top: 50px;
+    padding-bottom: 25px;
     display: flex;
 }
 
 .Horizontal_Line {
     margin-left: 50px;
     margin-top: 20px;
-    margin-bottom: 13px;
+    margin-bottom: 20px;
     display: flex;
     height: 1px;
-    width: 60%;
+    width: 50%;
     background-color: rgb(226, 226, 226);
 }
 
 .Vertical_Line {
     position: absolute;
     display: block;
-    margin-left: 60%;
+    margin-left: 56%;
     margin-top: -210px;
-    height: 70%;
+    height: 54%;
     width: 1px;
     background-color: rgb(226, 226, 226);
 }
 
-.register_button {
+.Horizontal_Line2 {
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 540px;
+    margin-bottom: 13px;
+    height: 1px;
+    width: 94%;
+    background-color: rgb(226, 226, 226);
+}
+
+.submit_button {
     margin-top: 10px;
     font-size: 15px;
     padding: 10px 160px;
@@ -54,25 +66,129 @@ h1 {
     background: rgba(80, 253, 0, 0.7);
 }
 
-
-
-.Mobile_Image{
-    margin-left: 700px;
-    margin-top: -500px;
-    display: block;
-    position: relative;
-    top: px;
-    height: 60px;
-    width: 60px;
+.FAQ_Rectangle {
+    margin-left: 50px;
+    margin-top: 45px;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 94%;
+    height: 300px;
+    
 }
 
-.Email_Image{
-    margin-left: 700px;
+.FAQ_Header {
+    margin-top: 445px;
+    font-weight: lighter;
+    padding-left: 50px;
+    padding-top: 35px;
+    padding-bottom: 20px;
+    display: flex;
+    font-size: 32px;
+}
+
+.FAQ_Question {
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    display: flex;
+    font-size: 24px;
+    list-style-type: circle;
+}
+
+.FAQ_Answer {
+    margin-left: 36px;
+    margin-bottom: 28px;
+    font-weight: light;
+    display: flex;
+    font-size: 17px;
+}
+
+.Horizontal_Line3 {
+    margin-top: -13px;
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: rgb(226, 226, 226);
+}
+
+.Horizontal_Line4 {
+    margin-top: -12px;
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: rgb(226, 226, 226);
+}
+
+ul {
+    list-style-type: disc;
+}
+
+.FAQ_Rectangle p {
+    color: black;
+}
+
+.FAQ_Rectangle ul {
+    color: black;
+}
+
+.FAQ_Rectangle li {
+    color: black;
+}
+
+.Mobile_Image{
+    margin-left: 630px;
+    margin-top: -312px;
     display: block;
     position: relative;
-    top: 30px;
-    height: 46px;
-    width: 60px;
+    height: 66px;
+    width: 70px;
+}
+
+.Mobile_Title {
+    margin-left: 720px;
+    margin-top: -58px;
+    display: block;
+    height: 66px;
+    width: 70px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Mobile_Number {
+    margin-left: 720px;
+    margin-top: -39px;
+    height: 66px;
+    width: 200px;
+    font-size: 20px;
+}
+
+
+.Email_Image{
+    position: relative;
+    display: block;
+    margin-left: 630px;
+    margin-top: -173px;
+    height: 52px;
+    width: 70px;
+}
+
+.Email_Title {
+    margin-left: 720px;
+    margin-top: -51px;
+    display: block;
+    height: 66px;
+    width: 70px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Email {
+    margin-left: 720px;
+    margin-top: -39px;
+    height: 66px;
+    width: 200px;
+    font-size: 20px;
 }
 
 
@@ -112,8 +228,10 @@ input {
 }
 
 .input {
+    padding-right: 20%;
+    display: block;
     margin-left: 50px;
-    width: 60%;
+    width: 50%;
     margin-top: 10px;
     margin-bottom: 7px;
     outline: none;
@@ -140,6 +258,22 @@ input {
     font-size: 16px;
 }
 
+.details_textarea {
+    height: 260px;
+    margin-left: 50px;
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    outline: none;
+    border: 1px solid rgb(133, 133, 133, 0.2);
+    padding: 12px 20px;
+    /* margin-bottom: 10px; */
+    border-radius: 5px;
+    background: #f7f7f7;
+    font-size: 16px;
+    resize: none;
+}
+
 .input_details::placeholder {
     position: absolute;
 }
@@ -148,11 +282,15 @@ input {
     position: absolute;
 }
 
+.Contact_Info {
+    margin-left: 500px;
+}
+
 .ContactUs_Submit {
     text-align: center;
-    width: 60%;
+    width: 50%;
     margin-left: 50px;
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 15px;
     padding: 10px 160px;
     border-radius: 5px;
