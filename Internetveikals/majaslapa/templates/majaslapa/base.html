@@ -27,10 +27,12 @@
 				</li>
 				<b class="stick1">|</b>
 				<li class="left">
-					<a class="contact" href="{% url 'contact' %}"
-						>{% trans 'kontakti' %}</a
-					>
+					<a class="contact" href="{% url 'contact' %}">{% trans 'kontakti' %}</a>
 				</li>
+				{% if user.is_superuser %}
+				<b style='color:#fff; margin-right:15px'>|</b>
+					<a class="contact" href="{% url 'admin:index' %}">Admin</a>
+				{% endif %}
 			</ul>
 
 			{% get_current_language as CURRENT_LANGUAGE %}

@@ -177,11 +177,12 @@ class category(ListView):
 
 
 def product_info(request, slug_url):
-    logged_user = request.user
-    user_id = logged_user.id
-    # stripe_webhook(user_id)
     Preces = Product.objects.get(slug=slug_url)
-    return render(request, 'majaslapa/product_info.html',{'Preces': Preces})
+    image_prod = ProductImage.objects.filter(product_id = Preces.id)
+    if request.method == 'POST':
+        quantity = request.POST.get('quantity')
+        print(quantity)
+    return render(request, 'majaslapa/product_info.html',{'Preces': Preces, 'image' : image_prod})
 
 def contact(request):
     if request.method == 'POST':

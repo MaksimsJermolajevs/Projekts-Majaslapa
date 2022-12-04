@@ -182,3 +182,6 @@ button:hover{
     display: none;
 } */
 /* LOGIN AND REGISTER*/
+.error .errorlist{
+    display: none;
+}

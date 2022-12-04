@@ -28,7 +28,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name ='admin'),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('', views.sakums.as_view(),name='sakums'),
     path('account/', account, name='account'),
@@ -67,7 +67,7 @@ urlpatterns = [
 
 
 ] + i18n_patterns(
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name ='admin'),
     path('', views.sakums.as_view(), name='sakums'),
     path('shopingcart/', cart, name='cart'),
     path('account/', account, name='account'),
@@ -90,6 +90,7 @@ urlpatterns = [
     path('<str:slug_url>/success/', SuccessView.as_view(), name = 'success'),
     path('<str:slug_url>/cancelled/', CancelledView.as_view(), name = 'cancel'),
     path('/create-checkout-session/', views.create_checkout_sessionn),
+    path('product/<str:slug_url>', product_info, name='product'),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 SOCIAL_AUTH_URL_NAMESPACE = 'social'

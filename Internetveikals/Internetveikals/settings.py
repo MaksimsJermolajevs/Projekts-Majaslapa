@@ -34,7 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ["https://fe89-212-142-81-248.eu.ngrok.io"]
+CSRF_TRUSTED_ORIGINS = ["https://e532-212-142-81-248.eu.ngrok.io"]
 
 
 

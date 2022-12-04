@@ -155,15 +155,6 @@ class ProductImage(models.Model):
         default='images/default.png'
     )
 
-    alt_text = models.CharField(
-        verbose_name=('Alternatīva teksts'),
-        help_text='Lūdzu pievienojiet alternatīvu tekstu',
-        max_length=255,
-        null=True,
-        blank=True,
-    )
-
-    is_feature = models.BooleanField(default=False,verbose_name = ('Galvenā bilde'))
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     class Meta:

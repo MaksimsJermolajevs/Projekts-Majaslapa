@@ -1,96 +1,63 @@
+{% extends 'majaslapa/base.html' %}
+{% load static %}
+{% load i18n %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://use.fontawesome.com/42a043e373.js"></script>
-</head>
-<body>
-    <header class="header">
-        <div class="site_top_menu">
-            <ul class="left_top">
-                <li class="left"><a class="about" href="#">About</a></li>
-                <li class="left"><a class="contact" href="#">Contact</a></li>
-            </ul>
-            
-            <ul class="right_top">
-                <li class="right1">
-                    <img src="images/lvicon.png" alt="lv">
-                    <a href="#">LV</a>
-                </li>
-                <li class="right1">
-                    <img class="ukimg" src="images/UkIcon.png" alt="en">
-                    <a class="EN" href="#">EN</a>
-                </li>
-                <li class="right"><a href="./login.html">Login</a></li>
-                <li class="right"><a href="./register.html">Register</a></li>
-            </ul>
+{% block title %}
+{{ Preces.title }}
+{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static '/majaslapa/css/product_info.css' %}">
+{% endblock %}
 
-        </div>
+{% block body %}
 
-        <div class="site_undertop">
-            <div class="Logo">
-                <a class="Logo" href="#">BALTICHTECH.com</a>
-            </div>
-            <div class="wrapper">
-                <div class="search_box">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <input type="text" class="input" placeholder="Search">
-                    
-                </div>
-            </div>
-            <ul class="right_menu">
-                <li class="cart"><a href="#">In cart(2)</a></li>
-                <li class="cartimg"><img src="images/CartIcon.png" alt="cart"></li>
-                <li class="acc"><a href="#">Account</a></li>
-                <li class="accimg"><img  src="images/AccountIcon 1.png" alt="Account"></li>
-            
-            </ul>
-        </div>
-    </header>
     <div class="productdetail">
         <div  class="producttop">
             <div class="photos">
                 <div class="mainimage">
-                    <img src="/images/asus1.png"  id="imagebox">
+                    <img src="{{Preces.image.url}}"  id="imagebox">
                 </div>
                <div class="small-img">
-                    <img src="/images/asus1.png" onclick="clickimg(this)">
-                    <img src="/images/asus2.png" onclick="clickimg(this)">
-                    <img src="/images/asus3.png" onclick="clickimg(this)">
-                    <img src="/images/asus4.png" onclick="clickimg(this)">
+                    <img src="{{Preces.image.url}}" onclick="clickimg(this)">
+                    {% for image in image %}
+                        <img src="{{image.image.url}}" onclick="clickimg(this)">
+                    {%endfor%}
                </div>
             </div>
             <div class="priceandbuy">
                 <div class="prodname">
-                    <p>Portatīvais dators HP 250 G7 15."  </p>
+                    <p>{{ Preces.title }}</p>
                 </div>
                 <div class="buttons price">
-                    <h2>599  €</h2>
+
+                    {% if Preces.discount_price is null %}
+					<h1>{{ Preces.regular_price }}  € </h1>
+				{% else %}
+					<h3> <del>{{ Preces.regular_price }}   €</del> </h3>
+					<h2>{{ Preces.discount_price }}  € </h2>
+				{% endif %}
                 </div>
                 <div class="buttons buttonsb">
+                    <form method='POST'>
                     <div class="inputb">
-                        <a>Quantity: </a>
-                        <input type="number" value="1">
+                        <a>{% trans 'Daudzums:' %} </a>
+                        <input type="number" value="1" min='1'>
                     </div>
+                </form>
+                    {% if Preces.is_active == True %}
                     <div class="inputc">
-                        <button class="checkout1">Check Out</button>
-                        <button class="addtocart">Add To Cart</button>
+                        <button type='' class="checkout1" class="button is-primary" id="submitBtn">{% trans 'Pirkt' %}</button>
+                        <a href="{% url 'cart_add' Preces.id %}"> <button class="addtocart">{% trans 'Ielikt Grozā' %}</button></a>
                     </div>
+                    {% else %}
+                    {% endif %}
                 </div>
+            </form>
             </div>
         </div>
         <div class="productbot">
-            <p>Tehniskā specifikācija</p>
+            <p>{%trans 'Tehniskā specifikācija'%}</p>
             <div class="allspec">
                 <div class="specleft">
                     <table class="tablel1">
@@ -147,9 +114,7 @@
                             <td><a>Hard Drive (SSD)</a></td>
                             <td align="right"><a>256 GB</a></td>
                         </tr>
-                        
                     </table>
-                    
                 </div>
                 <div class="specright">
                     <table class="tabler1">
@@ -176,7 +141,6 @@
                             <td><a>Video card</a></td>
                             <td align="right"><a>Intel UHD Graphics 620</a></td>
                         </tr>
-                        
                     </table>
                     <table class="tabler3">
                         <tr>
@@ -195,18 +159,46 @@
                             <td><a>Processor frequency</a></td>
                             <td align="right"><a>2.2 GHz</a></td>
                         </tr>
-                        
                     </table>
                 </div>
             </div>
         </div>
-        
+
     </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
     <script>
         function clickimg(smallImg){
             var fullImg = document.getElementById("imagebox")
             fullImg.src = smallImg.src
         }
+
+
+        console.log("Sanity check!");
+
+        // Get Stripe publishable key
+        fetch("/config/")
+        .then((result) => { return result.json(); })
+        .then((data) => {
+          // Initialize Stripe.js
+          const stripe = Stripe(data.publicKey);
+
+          // new
+          // Event handler
+          document.querySelector("#submitBtn").addEventListener("click", () => {
+            // Get Checkout Session ID
+            fetch("/{{ Preces.slug }}/create-checkout-session/")
+            .then((result) => { return result.json(); })
+            .then((data) => {
+              console.log(data);
+              // Redirect to Stripe Checkout
+              return stripe.redirectToCheckout({sessionId: data.sessionId})
+            })
+            .then((res) => {
+              console.log(res);
+            });
+          });
+        });
     </script>
-</body>
-</html>
+    {% endblock %}
