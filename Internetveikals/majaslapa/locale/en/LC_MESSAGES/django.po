@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-30 23:31+0200\n"
+"POT-Creation-Date: 2022-12-04 15:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,10 +26,65 @@ msgstr "A user with this email already exists!"
 msgid "Kategorijas drošs URL"
 msgstr ""
 
-#: .\majaslapa\templates\majaslapa\Contact.html:5
+#: .\majaslapa\templates\majaslapa\Contact.html:6
 #: .\majaslapa\templates\majaslapa\base.html:31
 msgid "kontakti"
 msgstr "Contact"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:17
+msgid "Sazinieties ar mums"
+msgstr "Contact Us"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:20
+msgid "Tavs vārds"
+msgstr "Your name"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:21
+msgid "Tava epasta adrese"
+msgstr "Your e-mail address"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:24
+msgid "Temats"
+msgstr "Subject"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:25
+msgid "Apraksts"
+msgstr "details"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:26
+#: .\majaslapa\templates\majaslapa\change-password.html:24
+msgid "Iesniegt"
+msgstr "Submit"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:31
+msgid "Telefona nr.:"
+msgstr "Mobile:"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:35
+msgid "E-pasts:"
+msgstr "E-mail:"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:40
+msgid "Bieži uzdotie jautājumi"
+msgstr "Frequently asked questions"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:43
+msgid "• Kā es varu redzēt izmaksas?"
+msgstr "• How can I see the cost?"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:44
+msgid "Maksa summa tiks aprēķināta pasūtijumu lapā."
+msgstr "The amount of the fee will be calculated on the order page."
+
+#: .\majaslapa\templates\majaslapa\Contact.html:46
+msgid "• Cik ātri varēs saņemt preci?"
+msgstr "• How soon can you receive the product?"
+
+#: .\majaslapa\templates\majaslapa\Contact.html:47
+msgid ""
+"Ir paredzēts ka pasūtiju jūs saņemsiet no 1 dienas līdz 2 nedēļam, atkarīgs "
+"ko jūs pasūtīsiet."
+msgstr "It is expected that you will receive the order from 1 day to 2 weeks, depending on what you order."
 
 #: .\majaslapa\templates\majaslapa\Product.html:21
 msgid "Filtri"
@@ -87,6 +142,20 @@ msgstr "My orders"
 #: .\majaslapa\templates\majaslapa\account.html:29
 msgid "Dzēst profilu"
 msgstr "Delete profile"
+
+#: .\majaslapa\templates\majaslapa\account.html:45
+#, fuzzy
+#| msgid "Dzēst profilu"
+msgid "Dzēst kontu"
+msgstr "Delete profile"
+
+#: .\majaslapa\templates\majaslapa\account.html:46
+msgid "Vai tiešām vēlaties dzēst savu kontu?"
+msgstr ""
+
+#: .\majaslapa\templates\majaslapa\account.html:49
+msgid "Acelt"
+msgstr ""
 
 #: .\majaslapa\templates\majaslapa\base.html:43
 #: .\majaslapa\templates\majaslapa\base.html:92
@@ -154,10 +223,6 @@ msgstr "New password:"
 #| msgid "atkārtojiet paroli"
 msgid "Atkārtojiet jauno paroli:"
 msgstr "Repeat new password:"
-
-#: .\majaslapa\templates\majaslapa\change-password.html:24
-msgid "Iesniegt"
-msgstr "Submit"
 
 #: .\majaslapa\templates\majaslapa\change-password.html:27
 msgid ""
@@ -227,24 +292,29 @@ msgstr "Incorrect username or password"
 msgid "Reģistrācija veiksmīga"
 msgstr "Registration successful"
 
-#: .\majaslapa\views.py:213
+#: .\majaslapa\views.py:226
 msgid "Aktivizācijas saite nav derīga!"
 msgstr "Activation link is invalid!"
 
-#: .\majaslapa\views.py:237
+#: .\majaslapa\views.py:250
 #, python-brace-format
 msgid ""
 "Cien {user}, lūdzu dodieties uz e-pasta {Email} iesūtni un noklikšķiniet "
 "uz             saņemta aktivizācijas saite, lai apstiprinātu un pabeigtu "
 "reģistrāciju. Piezīme: Ja neredzat vēstūli, lūdzu pārbaudiet mēstules mapi."
-msgstr "Dear {user}, please go to {Email} inbox and click on received activation link to confirm and complete registration. Note: If you do not see the email, please check your spam folder."
+msgstr ""
+"Dear {user}, please go to {Email} inbox and click on received activation "
+"link to confirm and complete registration. Note: If you do not see the "
+"email, please check your spam folder."
 
-#: .\majaslapa\views.py:240
+#: .\majaslapa\views.py:253
 #, python-brace-format
 msgid ""
 "Notika problēma, sūtot e-pastu uz {Email}, pārbaudiet, vai ierakstījāt "
 "pareizi."
-msgstr "There was a problem sending email to {Email}, please check if you typed it correctly."
+msgstr ""
+"There was a problem sending email to {Email}, please check if you typed it "
+"correctly."
 
 #~ msgid "Pirkt"
 #~ msgstr "Check Out"

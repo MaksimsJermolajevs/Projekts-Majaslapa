@@ -14,37 +14,37 @@
 {% block body %}
 <div class="ContactUsRectangle">
 
-    <h1>Contact Us</h1>
+    <h1>{% trans 'Sazinieties ar mums' %}</h1>
     <form method='POST'>
         {% csrf_token %}
-        <input type="text" name='name' placeholder="Your name" class='input' required>
-        <input type="email" name="e-mail" placeholder="Your e-mail address" class="input">
+        <input type="text" name='name' placeholder="{% trans 'Tavs vārds' %}" class='input' required>
+        <input type="email" name="e-mail" placeholder="{% trans 'Tava epasta adrese' %}" class="input">
         <div class="Horizontal_Line"></div>
         <div class="Vertical_Line"></div>
-        <input type="text" name="subject" placeholder="Subject" class="input">
-        <textarea class="details_textarea" name='details' placeholder="Details" style="font-family:'Montserrat', sans-serif;min-height:45px;max-height: 300px;" name="" rows="4" cols="50"></textarea>
-        <input type="submit" name="submit" class="ContactUs_Submit" placeholder="Submit">
+        <input type="text" name="subject" placeholder="{% trans 'Temats' %}" class="input">
+        <textarea class="details_textarea" name='details' placeholder="{% trans 'Apraksts' %}" style="font-family:'Montserrat', sans-serif;min-height:45px;max-height: 300px;" name="" rows="4" cols="50"></textarea>
+        <input type="submit" name="submit" class="ContactUs_Submit" placeholder="{% trans 'Iesniegt' %}">
     </form>
 
     <div class="Contact_Info">
         <img class="Mobile_Image" src="{% static 'majaslapa/image/telephonepng.png' %}" alt="Mobile"/>
-        <p class="Mobile_Title">Mobile:</p>
+        <p class="Mobile_Title">{% trans 'Telefona nr.:' %}</p>
          <p class="Mobile_Number">+371 20000000</p>
 
          <img class="Email_Image" src="{% static 'majaslapa/image/emailpng.png' %}" alt="E-mail"/>
-         <p class="Email_Title">E-mail:</p>
+         <p class="Email_Title">{% trans 'E-pasts:' %}</p>
          <p class="Email">balticctech@gmail.com</p>
     </div>
     <div class="Horizontal_Line2"></div>
 
-    <p class="FAQ_Header">Frequently asked questions</p>
+    <p class="FAQ_Header">{% trans 'Bieži uzdotie jautājumi' %}</p>
     <div class="FAQ_Rectangle">
         <div class="FAQ_Text">
-            <li class="FAQ_Question">• How do I see the shipping costs?</li>
-            <p class="FAQ_Answer">The shipping will be calculated at the check out page.</p>
+            <li class="FAQ_Question">{% trans '• Kā es varu redzēt izmaksas?' %}</li>
+            <p class="FAQ_Answer">{% trans 'Maksa summa tiks aprēķināta pasūtijumu lapā.'%}</p>
             <div class="Horizontal_Line3"></div>
-            <li class="FAQ_Question">• How fast is going to be the shipping?</li>
-            <p class="FAQ_Answer">Expect the delivery to take anywhere from 1 day to 2 weeks depending on your location.</p>
+            <li class="FAQ_Question">{% trans '• Cik ātri varēs saņemt preci?'%}</li>
+            <p class="FAQ_Answer">{% trans 'Ir paredzēts ka pasūtiju jūs saņemsiet no 1 dienas līdz 2 nedēļam, atkarīgs ko jūs pasūtīsiet.' %}</p>
             <div class="Horizontal_Line4"></div>
         </div>
     </div>
