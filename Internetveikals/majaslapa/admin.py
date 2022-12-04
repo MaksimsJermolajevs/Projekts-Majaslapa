@@ -65,3 +65,9 @@ class orders(admin.ModelAdmin):
     list_display = ('user','product', 'quantity', 'amount', 'Order_number','created_at', 'status')
     search_fields = ('Order_number', 'user','product')
     list_filter = ['status']
+
+
+@admin.register(Contact)
+class Contact(admin.ModelAdmin):
+    list_display = ('email','name', 'subject')
+    search_fields = ('email', 'name','subject')

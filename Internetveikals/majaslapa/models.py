@@ -200,3 +200,12 @@ class orders(models.Model):
         ('Pabeigts','Pabeigts'),
     )
     status = models.CharField(max_length=150, choices=Orderstatus, default='Apstrāda')
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200, null=False)
+    email = models.EmailField(null=False)
+    subject = models.CharField(max_length=200, null=False)
+    details = models.TextField(null=False)
+    def __str__(self):
+        return self.name

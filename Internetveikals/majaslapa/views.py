@@ -184,6 +184,19 @@ def product_info(request, slug_url):
     return render(request, 'majaslapa/product_info.html',{'Preces': Preces})
 
 def contact(request):
+    if request.method == 'POST':
+        contact = Contact()
+        name = request.POST.get('name')
+        email = request.POST.get('e-mail')
+        subject = request.POST.get('subject')
+        details = request.POST.get('details')
+
+        contact.name = name
+        contact.email = email
+        contact.subject = subject
+        contact.details = details
+        contact.save()
+        return redirect('sakums')
     return render(request, 'majaslapa/contact.html')
 
 

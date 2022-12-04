@@ -73,7 +73,7 @@ h1 {
     background-color: #f1f1f1;
     width: 94%;
     height: 300px;
-    
+
 }
 
 .FAQ_Header {
@@ -194,18 +194,6 @@ ul {
 
 
 input {
-    writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
-    text-rendering: auto;
-    color: fieldtext;
     letter-spacing: normal;
     word-spacing: normal;
     line-height: normal;
@@ -224,7 +212,6 @@ input {
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
-    
 }
 
 .input {
@@ -299,7 +286,6 @@ input {
     color: rgb(85, 85, 85);
     cursor: pointer;
     background: rgba(99, 180, 61, 0.7);
-    font
 }
 
 .ContactUs_Submit::placeholder {
