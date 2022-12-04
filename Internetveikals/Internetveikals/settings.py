@@ -228,14 +228,5 @@ STRIPE_SECRET_KEY = 'sk_test_51M5VxtAiAB9ovPLgA2df0XbLinZBiwnZwVCF3rOfGBVMgInrqZ
 STRIPE_ENDPOINT_SECRET = 'whsec_3968e39f8d852940ae08b12da5496411298768c227beb093cd8d68075fd33bc7'
 
 
-
-from django.contrib.messages import constants as messages
-
-
-MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-secondary',
-        messages.INFO: 'alert-info',
-        messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
-        messages.ERROR: 'alert-danger',
- }
+from django.contrib.messages import constants as message_constants
+MESSAGE_LEVEL = message_constants.DEBUG

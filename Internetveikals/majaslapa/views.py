@@ -196,7 +196,8 @@ def contact(request):
         contact.subject = subject
         contact.details = details
         contact.save()
-        return redirect('sakums')
+
+        messages.success(request, _("Jūsu vēstule tika nosūtia mums!"), extra_tags='alert')
     return render(request, 'majaslapa/contact.html')
 
 

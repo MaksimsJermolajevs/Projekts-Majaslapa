@@ -19,9 +19,11 @@
 
         <div class="LoginMain">
             <h1>{% trans 'Pieslēgties' %}</h1>
+            {% if messages %}
             {% for message in messages %}
                 <p id="messages">{{message}}</p>
             {% endfor %}
+            {% endif %}
                 <input type="text" name='username' placeholder="{% trans 'Lietotājvārds' %}" class='input'>
                 <div class='login'>
                     <input type="password" name='password' placeholder="{% trans 'Parole' %}" class='input' id='passwordField'>

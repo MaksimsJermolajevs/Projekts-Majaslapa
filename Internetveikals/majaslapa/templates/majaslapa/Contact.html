@@ -17,6 +17,13 @@
     <h1>{% trans 'Sazinieties ar mums' %}</h1>
     <form method='POST'>
         {% csrf_token %}
+
+        {% if messages %}
+        {% for message in messages %}
+            <p id="messages">{{message}}</p>
+        {% endfor %}
+        {% endif %}
+
         <input type="text" name='name' placeholder="{% trans 'Tavs vārds' %}" class='input' required>
         <input type="email" name="e-mail" placeholder="{% trans 'Tava epasta adrese' %}" class="input">
         <div class="Horizontal_Line"></div>
