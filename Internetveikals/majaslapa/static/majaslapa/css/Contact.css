@@ -73,7 +73,7 @@ h1 {
     background-color: #f1f1f1;
     width: 94%;
     height: 300px;
-
+    
 }
 
 .FAQ_Header {
@@ -137,7 +137,7 @@ ul {
 }
 
 .Mobile_Image{
-    margin-left: 630px;
+    margin-left: 43%;
     margin-top: -312px;
     display: block;
     position: relative;
@@ -146,17 +146,17 @@ ul {
 }
 
 .Mobile_Title {
-    margin-left: 720px;
+    margin-left: 55%;
     margin-top: -58px;
     display: block;
     height: 66px;
-    width: auto;
+    width: 70px;
     font-size: 20px;
     font-weight: bold;
 }
 
 .Mobile_Number {
-    margin-left: 720px;
+    margin-left: 55%;
     margin-top: -39px;
     height: 66px;
     width: 200px;
@@ -167,33 +167,46 @@ ul {
 .Email_Image{
     position: relative;
     display: block;
-    margin-left: 630px;
+    margin-left: 43%;
     margin-top: -173px;
     height: 52px;
     width: 70px;
 }
 
 .Email_Title {
-    margin-left: 720px;
+    margin-left: 55%;
     margin-top: -51px;
     display: block;
     height: 66px;
-    width: auto;
+    width: 70px;
     font-size: 20px;
     font-weight: bold;
 }
 
 .Email {
-    margin-left: 720px;
+    margin-left: 55%;
     margin-top: -39px;
     height: 66px;
     width: 200px;
     font-size: 20px;
 }
 
-
+.Contact_Info {
+}
 
 input {
+    writing-mode: horizontal-tb !important;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    text-rendering: auto;
+    color: fieldtext;
     letter-spacing: normal;
     word-spacing: normal;
     line-height: normal;
@@ -212,6 +225,7 @@ input {
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
+    
 }
 
 .input {
@@ -278,33 +292,18 @@ input {
     width: 50%;
     margin-left: 50px;
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px 160px;
     border-radius: 5px;
     outline: none;
     border: none;
-    color: rgb(255, 255, 255);
+    color: rgb(85, 85, 85);
     cursor: pointer;
     background: rgba(99, 180, 61, 0.7);
+    font
 }
 
 .ContactUs_Submit::placeholder {
     background-color: white;
 }
 
-#messages{
-    border-radius: 0.25rem;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
-    background-color: #fff;
-    border-left: 5px solid #e9ecef;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-left-color: #71d653;
-    width: 50%;
-    margin-left: 50px;
-}
-
-
-.errorlist{
-    display: none;
-}
