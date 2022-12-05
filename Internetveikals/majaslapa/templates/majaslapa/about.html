@@ -1,6 +1,64 @@
-{% extends 'majaslapa/base.html' %}
-{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https:fonts.googleapis.com/css2?family=Work+Sans:wght@100&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Internetveikals/majaslapa/static/majaslapa/css/about.css">
+    <title>shop</title>
+</head>
+<body>
+    <div class="site_top_menu">
+        <ul class="left_top">
+            <li class="left"><a class="about" href="{% url 'about' %}">Par mums</a></li>
+            <b class ='stick'>|</b>
+            <li class="left"><a class="contact" href="{% url 'contact' %}">kontakti</a></li>
+        </ul>
 
-{% block title %}
-{% trans 'Par mums' %}
-{% endblock %}
+        <ul class="right_top">
+            <li class="right1">
+                <img class='lvimg' src="{% static 'majaslapa/image/LV.png' %}" alt="lv">
+                <a class='LV' href="/lv{{ request.get_full_path |slice:'3:'}}">LV</a>
+            </li>
+            <li class="right1">
+                <img class="ukimg" src="{% static 'majaslapa/image/ENG.png' %}" alt="en">
+                <a class="EN" href="/en{{ request.get_full_path |slice:'3:'}}">EN</a>
+            </li>
+            <b class ='stick'>|</b>
+            <li class="right"><a href="{% url 'logout' %}">Izlogoties</a></li>
+            <li class="right"><a href="{% url 'login' %}">Pieslēgties</a></li>
+            <b class ='stick'>|</b>
+            <li class="right"><a href="{% url 'register' %}">Reģistrēties</a></li>
+        </ul>
+
+
+    </div>
+
+    <div class="site_undertop">
+        <div class="Logo">
+            <a class="Logo" href="{% url 'sakums' %}">BALTICTECH.com</a>
+        </div>
+        <div class="boxContainer">
+            <input type="text" placeholder="Meklēt..." class="search" />
+        </div>
+        <ul class="right_menu">
+            <li class="cart"><a href="#">Grozs</a></li>
+            <ion-icon name="cart-outline" class='carticon'></ion-icon>
+            <li class="acc"><a href="{% url 'account' %}">Profils</a><i class="bi bi-person-circle"></i></li>
+        </ul>
+    </div>
+    <section>
+        <div class="about_us">
+
+        </div>
+    </section class="about">
+        <div class="box">
+            <div class="Vertical_Line"></div>
+            <div class="main">
+                <h1>About Us</h1>
+                <h2>We are upcoming brand from Latvia. We specialize in providing you with the newest technologies with the lowest prices,
+                fastest shipping, responsive customer service, and most of all a pleasant shopping expirience.</h5>
+            </div>
+        </div>    
+    </section>
