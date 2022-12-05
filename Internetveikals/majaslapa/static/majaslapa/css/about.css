@@ -202,6 +202,7 @@ main, h1{
     width: fit-content;
     margin-inline: auto;
     padding-top: 1px;
+    font-weight: 10;
 }
 main, h2{
     padding-top: 70px;
