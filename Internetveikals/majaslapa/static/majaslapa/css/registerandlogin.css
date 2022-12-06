@@ -13,7 +13,7 @@
 }
 
 h1{
-    font-size: 2rem;
+    font-size: 28px;
     color: #07001f;
     margin-bottom: 1.2rem;
     font-family: 'Montserrat', sans-serif;
@@ -47,21 +47,22 @@ button{
 }
 
 button:hover{
-    background:chartreuse ;
+    background:rgb(89, 179, 0) ;
 }
 .register_button{
-    margin-top: 10px;
+    margin-top: 15px;
     font-size:15px;
     padding: 10px 160px;
-    border-radius: 20px;
+    border-radius: 5px;
     outline: none;
     border: none;
-    color: rgb(85, 85, 85);
+    color: #ffffff;
+    filter: drop-shadow(0 0 1px #6FB64D);
     cursor:pointer;
-    background: rgba(80, 253, 0, 0.7);
+    background: #6FB64D;
 }
 .register_button:hover{
-    background:rgba(117, 117, 117, 0.322) ;
+    background:rgba(99, 180, 61, 0.7);
 }
 .login_button{
     margin-top: 10px;
@@ -110,7 +111,7 @@ button:hover{
 
 }
 
-.eror{
+.eror {
     border-radius: 0.25rem;
     box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
     background-color: #fff;
@@ -142,6 +143,45 @@ button:hover{
     border-radius: 20px;
     background: #e4e4e4;
     font-size: 16px;
+}
+
+.input {
+    padding-right: 20%;
+    display: block;
+    margin-left: 50px;
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    outline: none;
+    border: 1px solid rgb(133, 133, 133, 0.2);
+    padding: 12px 20px;
+    /* margin-bottom: 10px; */
+    border-radius: 5px;
+    background: #f7f7f7;
+    font-size: 16px;
+}
+
+.password_reset_form input {
+    padding-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    float: right;
+    display: block;
+    height: 35px;
+    width: 80%;
+    outline: none;
+    border: 1px solid rgb(133, 133, 133, 0.2);
+    padding: 12px 20px;
+    /* margin-bottom: 10px; */
+    border-radius: 5px;
+    background: #e4e4e4;
+}
+
+.password_reset_form label {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 20px;
+    float: left;
 }
 
 #messages{
@@ -182,6 +222,3 @@ button:hover{
     display: none;
 } */
 /* LOGIN AND REGISTER*/
-.error .errorlist{
-    display: none;
-}
