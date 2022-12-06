@@ -157,7 +157,6 @@
 .tablel3{
     width: 500px;
     border-collapse:collapse;
-    
 }
 .tabler1{
     width: 500px;
@@ -190,4 +189,8 @@ tr:last-child{
 .inputb a{
     color: black;
     margin-right: 10px;
+}
+
+.image{
+    width: 15px;
 }

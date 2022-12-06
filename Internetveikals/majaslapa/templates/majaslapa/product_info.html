@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-
+{% for product in product_list %}
     <div class="productdetail">
         <div  class="producttop">
             <div class="photos">
@@ -20,7 +20,7 @@
                 </div>
                <div class="small-img">
                     <img src="{{Preces.image.url}}" onclick="clickimg(this)">
-                    {% for image in image %}
+                    {% for image in image_prod %}
                         <img src="{{image.image.url}}" onclick="clickimg(this)">
                     {%endfor%}
                </div>
@@ -61,110 +61,30 @@
             <div class="allspec">
                 <div class="specleft">
                     <table class="tablel1">
+                        {% for spec in product.Produkta_specifikacija.all %}
+                        {% if spec.specification_value == 'Yes' %}
                         <tr>
-                            <td><a>Manufacturer</a></td>
-                            <td align="right"><a>HP</a></td>
+                            <td><a>{{ spec.specification }}</td>
+                            <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' src="no" %}" /></td>
                         </tr>
+                        {% elif spec.specification_value == 'No'%}
                         <tr>
-                            <td><a>Model</a></td>
-                            <td align="right"><a>G7</a></td>
+                            <td><a>{{ spec.specification }}</td>
+                            <td align="right"><img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" /></td>
                         </tr>
+                        {% else %}
                         <tr>
-                            <td><a>Video camera</a></td>
-                            <td align="right"><img src="/images/CheckIcon 1.png" src="no"></td>
+                            <td><a>{{ spec.specification }}</td>
+                            <td align="right"><a>{{spec.specification_value}}</a></td>
                         </tr>
-                        <tr>
-                            <td><a>Microphone</a></td>
-                            <td align="right"><img src="/images/CheckIcon 1.png" src="no"></td>
-                        </tr>
-                        <div class="borderbot"></div>
-                        <tr>
-                            <td><a>Weight</a></td>
-                            <td align="right"><a>1.78 KG</a></td>
-                        </tr>
-                    </table>
-                    <table class="tablel2">
-                        <tr>
-                            <td><a>Screen size</a></td>
-                            <td align="right"><a>15.6”</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Resolution</a></td>
-                            <td align="right"><a>1920x1080</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Screen surface type</a></td>
-                            <td align="right"><a>Matte</a></td>
-                        </tr>
-                    </table>
-                    <table class="tablel3">
-                        <tr>
-                            <td><a>RAM</a></td>
-                            <td align="right"><a>8 GB</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Max RAM</a></td>
-                            <td align="right"><a>16 GB</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Hard disk (HDD)</a></td>
-                            <td align="right"><img src="/images/checkno.png" src="no"></td>
-                        </tr>
-                        <tr>
-                            <td><a>Hard Drive (SSD)</a></td>
-                            <td align="right"><a>256 GB</a></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="specright">
-                    <table class="tabler1">
-                        <tr>
-                            <td><a>WiFi</a></td>
-                            <td align="right"><img src="/images/CheckIcon 1.png" src="yes"></td>
-                        </tr>
-                        <tr>
-                            <td><a>Wi-Fi standard</a></td>
-                            <td align="right"><a>IEEE 802.11a/b/g/n/ac</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Bluetooth</a></td>
-                            <td align="right"><img src="/images/CheckIcon 1.png" src="yes"></td>
-                        </tr>
+                        {% endif %}
+                        {% endfor %}
 
-                    </table>
-                    <table class="tabler2">
-                        <tr>
-                            <td><a>Video card type</a></td>
-                            <td align="right"><a>Intel (integrated)</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Video card</a></td>
-                            <td align="right"><a>Intel UHD Graphics 620</a></td>
-                        </tr>
-                    </table>
-                    <table class="tabler3">
-                        <tr>
-                            <td><a>Processor type</a></td>
-                            <td align="right"><a>Intel Core i3</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Processor</a></td>
-                            <td align="right"><a>Intel Core i3-8130U</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Cores</a></td>
-                            <td align="right"><a>2</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Processor frequency</a></td>
-                            <td align="right"><a>2.2 GHz</a></td>
-                        </tr>
                     </table>
                 </div>
             </div>
         </div>
-
-    </div>
+{% endfor %}
 
     <script src="https://js.stripe.com/v3/"></script>
 
@@ -201,4 +121,7 @@
           });
         });
     </script>
+
+    
     {% endblock %}
+

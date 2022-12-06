@@ -2,9 +2,10 @@ from django.contrib import admin
 from django import forms
 from mptt.admin import MPTTModelAdmin
 from.models import *
-from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from django.utils.html import format_html
 from django.contrib.auth.admin import UserAdmin
+from modeltranslation.admin import TranslationTabularInline
 
 # Register your models here.
 # admin.site.register(Category)
@@ -14,6 +15,8 @@ from django.contrib.auth.admin import UserAdmin
 # admin.site.register(ProductSpecificationValue)
 admin.site.register(Profile)
 
+class SpecificationInline(TranslationTabularInline):
+    model = Specification
 
 
 @admin.register(Category)
@@ -27,28 +30,29 @@ class CategoryAdmin(TranslationAdmin):
     search_fields = ('name',)
     list_filter = ['is_active']
 
-class ProductSpecificationInline(admin.TabularInline):
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-          kwargs['queryset'] = ProductSpecification.objects.filter(product_id= Product.id)
-    model = ProductSpecification
+# class ProductSpecificationInline(admin.TabularInline):
+    # def formfield_for_foreignkey(self, db_field, request, **kwargs):
+    #       kwargs['queryset'] = ProductSpecification.objects.filter(product_id= Product.id)
+    # model = ProductSpecification
 
-@admin.register(ProductType)
-class ProductTypeAdmin(TranslationAdmin):
-    inlines = [
-        ProductSpecificationInline,
-    ]
-    search_fields = ('name', )
+# @admin.register(ProductType)
+# class ProductTypeAdmin(TranslationAdmin):
+#     inlines = [
+#         ProductSpecificationInline,
+#     ]
+#     search_fields = ('name', )
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
+    max_num = 3
 
-class ProductSpecificationValueInline(admin.TabularInline):
-    model = ProductSpecificationValue
+# class ProductSpecificationValueInline(admin.TabularInline):
+#     model = ProductSpecificationValue
 
 @admin.register(Product)
 class ProductAdmin(TranslationAdmin):
     inlines = [
-        ProductSpecificationValueInline, ProductImageInline
+        ProductImageInline, SpecificationInline
     ]
 
     def image_tag(self, obj):
@@ -71,3 +75,6 @@ class orders(admin.ModelAdmin):
 class Contact(admin.ModelAdmin):
     list_display = ('email','name', 'subject')
     search_fields = ('email', 'name','subject')
+
+
+

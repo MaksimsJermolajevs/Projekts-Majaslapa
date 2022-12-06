@@ -144,16 +144,16 @@ class category(ListView):
             Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to)
 
 
-        if Product.objects.all().filter (Q(category = kategorija)):
-            obj  = Product.objects.all().filter (Q(category = kategorija)).first()
-            Specifikacija = ProductSpecification.objects.all().filter(Q(Product_type__id__contains= obj.product_type.id))
-            SpecifikacijaVertiba = ProductSpecificationValue.objects.all()
-        else:
-            Specifikacija = ''
-            SpecifikacijaVertiba = ''
+        # if Product.objects.all().filter (Q(category = kategorija)):
+        #     obj  = Product.objects.all().filter (Q(category = kategorija)).first()
+        #     Specifikacija = ProductSpecification.objects.all().filter(Q(Product_type__id__contains= obj.product_type.id))
+        #     SpecifikacijaVertiba = ProductSpecificationValue.objects.all()
+        # else:
+        #     Specifikacija = ''
+        #     SpecifikacijaVertiba = ''
 
-        if SpecifikacijaVertiba == SpecifikacijaVertiba:
-            SpecifikacijaVertiba == ''
+        # if SpecifikacijaVertiba == SpecifikacijaVertiba:
+        #     SpecifikacijaVertiba == ''
 
 
 
@@ -169,8 +169,8 @@ class category(ListView):
         return render(request, 'majaslapa/Product.html',{
             'product_list': page,
             'kategorija':kategorija,
-            'Specifikacija':Specifikacija,
-            'Specifikacija_veriba':SpecifikacijaVertiba,
+            # 'Specifikacija':Specifikacija,
+            # 'Specifikacija_veriba':SpecifikacijaVertiba,
             'price_from':price_from,
             'price_to':price_to,
         })
@@ -178,11 +178,22 @@ class category(ListView):
 
 def product_info(request, slug_url):
     Preces = Product.objects.get(slug=slug_url)
-    image_prod = ProductImage.objects.filter(product_id = Preces.id)
+    # image_prod = ProductImage.objects.filter(product_id = Preces.id)
+    # spec_value_prod = ProductSpecificationValue.objects.filter(product_id = Preces.id)
+    # spec_prod = ProductSpecification.objects.filter(Product_type_id = 3)
+
+    # context
+    # Product_Type = Product.objects.filter(product_type_id = 3)
+    # spec_prod = ProductSpecification.objects.filter(Product_type_id = 3)
+    context = {
+        'Preces' : Product.objects.get(slug=slug_url),
+        'product_list': Product.objects.filter(id = Preces.id),
+        'image_prod' : ProductImage.objects.filter(product_id = Preces.id),
+    }
     if request.method == 'POST':
         quantity = request.POST.get('quantity')
         print(quantity)
-    return render(request, 'majaslapa/product_info.html',{'Preces': Preces, 'image' : image_prod})
+    return render(request, 'majaslapa/product_info.html', context)
 
 def contact(request):
     if request.method == 'POST':
@@ -222,7 +233,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
 
-        messages.success(request,"Paldies par e-pasta apstiprinājumu. Tagad varat pierakstīties savā kontā.")
+        messages.success(request, _("Paldies par e-pasta apstiprinājumu. Tagad varat pierakstīties savā kontā."))
         return redirect('login')
     else:
         messages.error(request, _('Aktivizācijas saite nav derīga!'))
@@ -319,7 +330,6 @@ def stripe_config(request):
         return JsonResponse(stripe_config, safe=False)
 
 
-@login_required(login_url='/account/login/')
 @csrf_exempt
 def create_checkout_sessionn(request, slug_url):
     user = request.user
@@ -415,7 +425,6 @@ def stripe_webhook(request):
 
     return HttpResponse(status=200)
 
-@login_required(login_url='/account/login/')
 @csrf_exempt
 def create_checkout_session(request, slug_url):
     user = request.user

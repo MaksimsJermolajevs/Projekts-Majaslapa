@@ -23,12 +23,9 @@ li,a{
 }
 .left_top{
      list-style: none;
-     
-     
 }
 .right_top{
     list-style: none;
-    
 }
 .left_top li{
     display: inline-block;
@@ -60,7 +57,6 @@ li,a{
     position: absolute;
     top: 20px;
     right: 245px;
-    
 }
 .EN{
     padding-left: 30px;
@@ -73,8 +69,6 @@ li,a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-
 }
 .right_menu{
     list-style: none;
@@ -84,8 +78,6 @@ li,a{
 .right_menu li{
     justify-content: center;
     display: inline-block;
-    
-    
 }
 .cart{
     position: absolute;
