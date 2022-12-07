@@ -19,13 +19,9 @@
 
         <div class="LoginMain">
             <h1>{% trans 'Pieslēgties' %}</h1>
-            <div class='error'>
-                {% if messages %}
-                {% for message in messages %}
-                    <p id="messages">{{message}}</p>
-                {% endfor %}
-                {% endif %}
-            </div>
+            {% for message in messages %}
+                <p id="messages">{{message}}</p>
+            {% endfor %}
                 <input type="text" name='username' placeholder="{% trans 'Lietotājvārds' %}" class='input'>
                 <div class='login'>
                     <input type="password" name='password' placeholder="{% trans 'Parole' %}" class='input' id='passwordField'>
@@ -43,13 +39,12 @@
 
             <div class="member">
                 <div class="recover">
-                    <a href="{% url 'reset_password' %}">{% trans 'Aizmirsi paroli?' %}</a>
+                    <a  class="Forgot_your_password" href="{% url 'reset_password' %}">{% trans 'Aizmirsi paroli?' %}</a>
                 </div>
 
-                <a class='google'>
-                    <a href="{% provider_login_url 'google' %}">Sign in google</a>
-                    <a href="{% provider_login_url "facebook"%}">Sign in Facebook</a>
-                </a>
+                <a class="Google_signin" href="{% provider_login_url 'google' %}">Sign in google</a>
+                <a class="Facebook_signin" href="{% provider_login_url 'facebook' %}">Sign in Facebook</a>
+
             </div>
         </div>
 
