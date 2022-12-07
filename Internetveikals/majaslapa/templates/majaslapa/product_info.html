@@ -39,15 +39,16 @@
 				{% endif %}
                 </div>
                 <div class="buttons buttonsb">
-                    <form method='POST'>
                     <div class="inputb">
-                        <a>{% trans 'Daudzums:' %} </a>
-                        <input type="number" value="1" min='1'>
+                        <form method='POST' id='form'>
+                            {% csrf_token %}
+                            <a>{% trans 'Daudzums:' %} </a>
+                            <input type="number" value="1" min='1' max='{{ Preces.quantity }}' name='quantity' id='quantity'>
+                        </form>
                     </div>
-                </form>
                     {% if Preces.is_active == True %}
                     <div class="inputc">
-                        <button type='' class="checkout1" class="button is-primary" id="submitBtn">{% trans 'Pirkt' %}</button>
+                        <button class="checkout1" class="button is-primary" id="submitBtn">{% trans 'Pirkt' %}</button>
                         <a href="{% url 'cart_add' Preces.id %}"> <button class="addtocart">{% trans 'Ielikt Grozā' %}</button></a>
                     </div>
                     {% else %}
@@ -89,6 +90,9 @@
     <script src="https://js.stripe.com/v3/"></script>
 
     <script>
+
+        form = document.querySelector("#form");
+
         function clickimg(smallImg){
             var fullImg = document.getElementById("imagebox")
             fullImg.src = smallImg.src
@@ -117,11 +121,18 @@
             })
             .then((res) => {
               console.log(res);
+  
             });
           });
         });
-    </script>
 
-    
+        {% comment %} form = document.querySelector("#form");
+        button = document.querySelector(".checkout1");
+
+        button.addEventListener("click", ()=>{
+            form.submit()
+          }); {% endcomment %}
+
+    </script>
     {% endblock %}
 

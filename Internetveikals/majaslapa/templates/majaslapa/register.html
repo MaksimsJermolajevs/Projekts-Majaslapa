@@ -26,10 +26,10 @@
             {{f}}
             {% endfor %}
 
-        <input type="submit" name="submit" class="register_button" value="{% trans 'Reģistrēties' %}" />
-        <a class="Or"><img  src="{% static 'majaslapa/image/OR.png' %}" width="330px" height="70px" panding-top: '100px' display: 'block'></a>
+            <input type="submit" name="submit" class="register_button" value="{% trans 'Reģistrēties' %}" />
+            <p class='p'><span class='span'>{% trans 'vai' %}</span></p>
+            <a href='{% url 'login' %}'><input type="button" class='register_button' value="{% trans 'Pieslēgties' %}" /></a>
 
-        <a href='{% url 'login' %}' class='register_button'>{% trans 'Pieslēgties' %}</a>
 
 
         </div>

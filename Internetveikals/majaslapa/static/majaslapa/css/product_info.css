@@ -149,33 +149,7 @@
     border-collapse:collapse;
     margin-bottom: 50px;
 }
-.tablel2{
-    width: 500px;
-    border-collapse:collapse;
-    margin-bottom: 50px;
-}
-.tablel3{
-    width: 500px;
-    border-collapse:collapse;
-}
-.tabler1{
-    width: 500px;
-    border-collapse:collapse;
-    margin-bottom: 50px;
-}
-.tabler2{
-    width: 500px;
-    border-collapse:collapse;
-    margin-bottom: 50px;
-}
-.tabler3{
-    width: 500px;
-    border-collapse:collapse;
-    margin-bottom: 50px;
-}
-.tabler1 td{
-    justify-content: space-between;
-}
+
 tr{
     border-bottom: 1px solid #D9D9D9;
 }
@@ -194,3 +168,4 @@ tr:last-child{
 .image{
     width: 15px;
 }
+

@@ -22,19 +22,23 @@
             {% for message in messages %}
                 <p id="messages">{{message}}</p>
             {% endfor %}
-                <input type="text" name='username' placeholder="{% trans 'Lietotājvārds' %}" class='input'>
+            <div class='inputbox'>
+                <input type="text" name='username' class='input' required='required'>
+                <span>{% trans 'Lietotājvārds' %}</span>
                 <div class='login'>
-                    <input type="password" name='password' placeholder="{% trans 'Parole' %}" class='input' id='passwordField'>
+                    <input type="password" name='password' class='input' id='passwordField' required='required'>
+                    <span>{% trans 'Parole' %}</span>
                     <ion-icon name="eye-off-outline" class='showPasswordToggle'></ion-icon>
                 </div>
+            </div>
                 {% comment %} <input type='text' name='password' class='input' required>
                 <label for=''>password</label>
                 <ion-icon name="eye-off-outline"></ion-icon> {% endcomment %}
 
             <div class='reg_log'>
                 <input type="submit" name="submit" class='register_button' value="{% trans 'Pieslēgties' %}" />
-                <a class="Or"><img  src="{% static 'majaslapa/image/OR.png' %}" width="330px" height="70px" margin-bottom="100px"></a>
-                <a href='{% url 'register' %}' class='register_button'>{% trans 'Reģistrēties' %}</a>
+                <p class='p'><span class='span'>{% trans 'vai' %}</span></p>
+                <a href='{% url 'register' %}'><input type="button" class='register_button' value="{% trans 'Reģistrēties' %}" /></a>
             </div>
 
             <div class="member">

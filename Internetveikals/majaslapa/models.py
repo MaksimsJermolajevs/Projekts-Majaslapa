@@ -1,11 +1,13 @@
 
 from django.conf import settings
+from django.db.models import CharField, Model
 from django.urls import reverse
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from autoslug import AutoSlugField
 
 
 
@@ -49,7 +51,7 @@ class Product(models.Model):
     )
 
     desciption = models.TextField(verbose_name='Apraksts', help_text=('nav nepieciešams'), blank=True)
-    slug = models.SlugField(max_length=255, verbose_name = ('tīmekļa adreses identifikācija'))
+    slug = AutoSlugField(populate_from='title',max_length=255, verbose_name = ('tīmekļa adreses identifikācija'))
     regular_price = models.DecimalField(
         verbose_name='Parastā cena',
         help_text = ('Maksimums 9999.99'),
@@ -74,6 +76,8 @@ class Product(models.Model):
         decimal_places=2,
         blank=True
     )
+
+    quantity = models.IntegerField(default= 0)
 
     is_active = models.BooleanField(
         verbose_name = 'Produkta redzamība',

@@ -34,7 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ["https://e532-212-142-81-248.eu.ngrok.io"]
+CSRF_TRUSTED_ORIGINS = ["https://03e4-212-142-81-248.eu.ngrok.io"]
 
 
 
@@ -230,3 +230,4 @@ STRIPE_ENDPOINT_SECRET = 'whsec_3968e39f8d852940ae08b12da5496411298768c227beb093
 
 from django.contrib.messages import constants as message_constants
 MESSAGE_LEVEL = message_constants.DEBUG
+

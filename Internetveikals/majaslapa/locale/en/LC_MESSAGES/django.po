@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 21:03+0200\n"
+"POT-Creation-Date: 2022-12-08 01:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Lietotājs ar šādu e-pastu jau eksistē!"
 msgstr "A user with this email already exists!"
 
-#: .\majaslapa\models.py:20
+#: .\majaslapa\models.py:22
 msgid "Kategorijas drošs URL"
 msgstr ""
 
@@ -120,7 +120,10 @@ msgid ""
 "Mēs esam topošais zīmols no Latvijas. Mēs specializējamies jaunāko "
 "tehnoloģiju nodrošināšanā ar viszemākajām cenām, ātrākā piegāde, atsaucīga "
 "klientu apkalpošana un, galvenais, patīkama iepirkšanās pieredze."
-msgstr "We are upcoming brand from Latvia. We specialize in providing you with the newest technologies with the lowest prices, fastest shipping, responsive customer service, and most of all a pleasant shopping expirience."
+msgstr ""
+"We are upcoming brand from Latvia. We specialize in providing you with the "
+"newest technologies with the lowest prices, fastest shipping, responsive "
+"customer service, and most of all a pleasant shopping expirience."
 
 #: .\majaslapa\templates\majaslapa\account.html:7
 #: .\majaslapa\templates\majaslapa\base.html:49
@@ -142,6 +145,8 @@ msgid "Saglabāt"
 msgstr "Save"
 
 #: .\majaslapa\templates\majaslapa\account.html:26
+#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:26
+#: .\majaslapa\templates\majaslapa\password_reset.html:23
 msgid "Mainīt paroli"
 msgstr "Change password"
 
@@ -259,42 +264,83 @@ msgstr "Home"
 msgid "Iepirkties pēc kategorijas"
 msgstr "Shop by Category"
 
-#: .\majaslapa\templates\majaslapa\login.html:29
+#: .\majaslapa\templates\majaslapa\login.html:27
 #: .\majaslapa\templates\majaslapa\register.html:45
 msgid "Lietotājvārds"
 msgstr "Username"
 
-#: .\majaslapa\templates\majaslapa\login.html:31
+#: .\majaslapa\templates\majaslapa\login.html:30
 #: .\majaslapa\templates\majaslapa\register.html:47
 msgid "Parole"
 msgstr "Password"
+
+#: .\majaslapa\templates\majaslapa\login.html:41
+#: .\majaslapa\templates\majaslapa\register.html:31
+msgid "vai"
+msgstr "or"
 
 #: .\majaslapa\templates\majaslapa\login.html:47
 msgid "Aizmirsi paroli?"
 msgstr "Forgot your password?"
 
 #: .\majaslapa\templates\majaslapa\password_reser_confirm.html:6
-#: .\majaslapa\templates\majaslapa\password_reser_done.html:6
 #: .\majaslapa\templates\majaslapa\password_reset.html:6
+#: .\majaslapa\templates\majaslapa\password_reset.html:17
+#: .\majaslapa\templates\majaslapa\password_reset_complete.html:6
 #: .\majaslapa\templates\majaslapa\password_reset_sent.html:6
 #, fuzzy
 #| msgid "atkārtojiet paroli"
 msgid "Atjaunot paroli"
 msgstr "repeat password"
 
-#: .\majaslapa\templates\majaslapa\product_info.html:44
+#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:17
+#, fuzzy
+#| msgid "atkārtojiet paroli"
+msgid "Ievadiet jauno paroli"
+msgstr "repeat password"
+
+#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:19
+msgid ""
+"Lūdzu ievadiet jauno paroli divreiz, lai varētu pārbaudīt, ka tā ir "
+"uzrakstīta pareizi."
+msgstr "Please enter the new password twice so that you can check that it is spelled correctly."
+
+#: .\majaslapa\templates\majaslapa\password_reset_complete.html:16
+#, fuzzy
+#| msgid "Jūsu vēstule tika nosūtia mums!"
+msgid "Jūsu parole tika nomainīta!"
+msgstr "Your password was changed!"
+
+#: .\majaslapa\templates\majaslapa\password_reset_sent.html:16
+msgid "Paroles pārstatīšana nosūtīta"
+msgstr "Password reset sent"
+
+#: .\majaslapa\templates\majaslapa\password_reset_sent.html:17
+msgid ""
+"Ja sistēmā ir konts ar jūsu e-pasta adresi, tad mēs jums tikko nosūtījām e-"
+"pasta ziņojumu ar paroles iestatīšanas instrukciju. Jums to tūlīt vajadzētu "
+"saņemt."
+msgstr "If you have an account with your email address in the system, then we have just sent you an email with instructions for setting a password. You should receive it immediately."
+
+#: .\majaslapa\templates\majaslapa\password_reset_sent.html:18
+msgid ""
+"Ja nesaņemat e-pastu, lūdzu, pārliecinieties, vai esat ievadījis reģistrētu "
+"adresi un pārbaudiet savu mēstuļu mapi."
+msgstr "If you do not receive an email, please make sure you have entered a registered address and check your spam folder."
+
+#: .\majaslapa\templates\majaslapa\product_info.html:45
 msgid "Daudzums:"
 msgstr "Quantity:"
 
-#: .\majaslapa\templates\majaslapa\product_info.html:50
+#: .\majaslapa\templates\majaslapa\product_info.html:51
 msgid "Pirkt"
 msgstr "Check Out"
 
-#: .\majaslapa\templates\majaslapa\product_info.html:51
+#: .\majaslapa\templates\majaslapa\product_info.html:52
 msgid "Ielikt Grozā"
 msgstr "Add To Cart"
 
-#: .\majaslapa\templates\majaslapa\product_info.html:60
+#: .\majaslapa\templates\majaslapa\product_info.html:61
 msgid "Tehniskā specifikācija"
 msgstr "Technical specification"
 
@@ -308,31 +354,31 @@ msgstr "E-mail"
 msgid "Atkārtot paroli"
 msgstr "repeat password"
 
-#: .\majaslapa\views.py:101
+#: .\majaslapa\views.py:102
 msgid "Nav pareizs lietotājvārds vai parole"
 msgstr "Incorrect username or password"
 
-#: .\majaslapa\views.py:116
+#: .\majaslapa\views.py:117
 #, fuzzy
 #| msgid "Reģistrēties"
 msgid "Reģistrācija veiksmīga"
 msgstr "Registration successful"
 
-#: .\majaslapa\views.py:201
+#: .\majaslapa\views.py:206
 msgid "Jūsu vēstule tika nosūtia mums!"
 msgstr "Your letter has been sent to us!"
 
-#: .\majaslapa\views.py:225
+#: .\majaslapa\views.py:230
 msgid ""
 "Paldies par e-pasta apstiprinājumu. Tagad varat pierakstīties savā kontā."
 msgstr ""
 "Thanks for the email confirmation. You can now sign in to your account."
 
-#: .\majaslapa\views.py:228
+#: .\majaslapa\views.py:233
 msgid "Aktivizācijas saite nav derīga!"
 msgstr "Activation link is invalid!"
 
-#: .\majaslapa\views.py:252
+#: .\majaslapa\views.py:257
 #, python-brace-format
 msgid ""
 "Cien {user}, lūdzu dodieties uz e-pasta {Email} iesūtni un noklikšķiniet "
@@ -343,7 +389,7 @@ msgstr ""
 "link to confirm and complete registration. Note: If you do not see the "
 "email, please check your spam folder."
 
-#: .\majaslapa\views.py:255
+#: .\majaslapa\views.py:260
 #, python-brace-format
 msgid ""
 "Notika problēma, sūtot e-pastu uz {Email}, pārbaudiet, vai ierakstījāt "

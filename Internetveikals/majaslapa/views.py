@@ -25,6 +25,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
+from django.db.models import F
 
 
 
@@ -178,13 +179,6 @@ class category(ListView):
 
 def product_info(request, slug_url):
     Preces = Product.objects.get(slug=slug_url)
-    # image_prod = ProductImage.objects.filter(product_id = Preces.id)
-    # spec_value_prod = ProductSpecificationValue.objects.filter(product_id = Preces.id)
-    # spec_prod = ProductSpecification.objects.filter(Product_type_id = 3)
-
-    # context
-    # Product_Type = Product.objects.filter(product_type_id = 3)
-    # spec_prod = ProductSpecification.objects.filter(Product_type_id = 3)
     context = {
         'Preces' : Product.objects.get(slug=slug_url),
         'product_list': Product.objects.filter(id = Preces.id),
@@ -400,12 +394,14 @@ def stripe_webhook(request):
     # Handle the checkout.session.completed event
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
+        line_items = stripe.checkout.Session.list_line_items(session.id)
 
         customer_email = session['customer_details']['email']
         product_id = session['metadata']['product_id']
         user_id = session['metadata']['client_reference_id']
         Order_number = session['created']
         amount = session['amount_total']
+        quantity_order = line_items.data[0]['quantity']
         product = Product.objects.get(id=product_id)
 
         send_mail(
@@ -417,11 +413,13 @@ def stripe_webhook(request):
 
         orders.objects.create(
             Order_number=Order_number,
-            quantity= 1,
+            quantity= quantity_order,
             amount = amount / 100,
             product_id = product_id,
             user_id = user_id
          )
+
+        Product.objects.filter(id = product_id).update(quantity=F('quantity') - quantity_order)
 
     return HttpResponse(status=200)
 
