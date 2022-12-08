@@ -166,12 +166,12 @@ transition: all 0.3s ease 0s;
 
 .search{
     border: none;
-    height: 32px;
-    width: 550px;
+    height: 40px;
+    width: 750px;
     padding: 0px 15px;
-    border-radius: 50px;
+    border-radius: 5px;
     font-size: 18px;
-    font-family: 'nunito';
+    font-family: 'Montserrat', sans-serif;
     color: #424242;
     /* margin-left: 350px;
     align-items: center; */
