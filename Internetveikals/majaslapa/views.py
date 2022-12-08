@@ -26,6 +26,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 from django.db.models import F
+from django.db.models import Max
 
 
 
@@ -132,30 +133,20 @@ class PasswordsChangeView(PasswordChangeView):
 class category(ListView):
     def get(self, request, slug_url):
 
-        price_from = request.GET.get('price_from', 0)
-        price_to = request.GET.get('price_to', 1000)
-
         filtrs = request.GET.get('filter')
 
         kategorija = Category.objects.get(slug=slug_url)
+
+        # Max_price = Product.objects.all().order_by('regular_price')
+        # print(Max_price)
+
+        price_from = request.GET.get('price_from', 0)
+        price_to = request.GET.get('price_to', 2000)
 
         if filtrs:
             Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).filter(productspecificationvalue__value__contains = filtrs)
         else:
             Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to)
-
-
-        # if Product.objects.all().filter (Q(category = kategorija)):
-        #     obj  = Product.objects.all().filter (Q(category = kategorija)).first()
-        #     Specifikacija = ProductSpecification.objects.all().filter(Q(Product_type__id__contains= obj.product_type.id))
-        #     SpecifikacijaVertiba = ProductSpecificationValue.objects.all()
-        # else:
-        #     Specifikacija = ''
-        #     SpecifikacijaVertiba = ''
-
-        # if SpecifikacijaVertiba == SpecifikacijaVertiba:
-        #     SpecifikacijaVertiba == ''
-
 
 
         p = Paginator(Preces, 10)
@@ -164,14 +155,10 @@ class category(ListView):
             page = p.page(page_num)
         except EmptyPage:
             page = p.page(1)
-    # Specifikacijas_id = ProductSpecification.objects.values_list('id')
-    # specifikacijas_vertiba = ProductSpecificationValue.objects.filter(specification_id__in = Specifikacijas_id)
 
         return render(request, 'majaslapa/Product.html',{
             'product_list': page,
             'kategorija':kategorija,
-            # 'Specifikacija':Specifikacija,
-            # 'Specifikacija_veriba':SpecifikacijaVertiba,
             'price_from':price_from,
             'price_to':price_to,
         })

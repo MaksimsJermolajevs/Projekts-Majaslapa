@@ -40,7 +40,7 @@
                 </div>
                 <div class="buttons buttonsb">
                     <div class="inputb">
-                        <form method='POST' id='form'>
+                        <form action="" method="post" id='form'>
                             {% csrf_token %}
                             <a>{% trans 'Daudzums:' %} </a>
                             <input type="number" value="1" min='1' max='{{ Preces.quantity }}' name='quantity' id='quantity'>
@@ -86,9 +86,8 @@
             </div>
         </div>
 {% endfor %}
-
     <script src="https://js.stripe.com/v3/"></script>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
 
         form = document.querySelector("#form");
@@ -121,7 +120,6 @@
             })
             .then((res) => {
               console.log(res);
-  
             });
           });
         });
@@ -132,6 +130,13 @@
         button.addEventListener("click", ()=>{
             form.submit()
           }); {% endcomment %}
+
+          const selectElement = document.querySelector('#quantity');
+          const submit = document.querySelector('#submitBtn');
+
+          selectElement.addEventListener('change', (event) => {
+              (submit).submit()
+          });
 
     </script>
     {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-08 01:19+0200\n"
+"POT-Creation-Date: 2022-12-08 21:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,9 +52,8 @@ msgid "Apraksts"
 msgstr "Details"
 
 #: .\majaslapa\templates\majaslapa\Contact.html:33
-#: .\majaslapa\templates\majaslapa\change-password.html:24
-msgid "Iesniegt"
-msgstr "Submit"
+msgid "iesniegt"
+msgstr "submit"
 
 #: .\majaslapa\templates\majaslapa\Contact.html:38
 msgid "Telefona nr.:"
@@ -145,8 +144,8 @@ msgid "Saglabāt"
 msgstr "Save"
 
 #: .\majaslapa\templates\majaslapa\account.html:26
-#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:26
 #: .\majaslapa\templates\majaslapa\password_reset.html:23
+#: .\majaslapa\templates\majaslapa\password_reset_confirm.html:26
 msgid "Mainīt paroli"
 msgstr "Change password"
 
@@ -186,7 +185,7 @@ msgstr "Logout"
 #: .\majaslapa\templates\majaslapa\login.html:8
 #: .\majaslapa\templates\majaslapa\login.html:21
 #: .\majaslapa\templates\majaslapa\login.html:40
-#: .\majaslapa\templates\majaslapa\register.html:33
+#: .\majaslapa\templates\majaslapa\register.html:32
 msgid "Pieslēgties"
 msgstr "Login"
 
@@ -222,22 +221,20 @@ msgid "Paroles maiņa"
 msgstr "Password"
 
 #: .\majaslapa\templates\majaslapa\change-password.html:18
-#, fuzzy
-#| msgid "Vecā parole"
 msgid "Pašreizējā parole:"
 msgstr "Current password:"
 
 #: .\majaslapa\templates\majaslapa\change-password.html:20
-#, fuzzy
-#| msgid "atkārtojiet paroli"
 msgid "Jauna parole:"
 msgstr "New password:"
 
 #: .\majaslapa\templates\majaslapa\change-password.html:22
-#, fuzzy
-#| msgid "atkārtojiet paroli"
 msgid "Atkārtojiet jauno paroli:"
 msgstr "Repeat new password:"
+
+#: .\majaslapa\templates\majaslapa\change-password.html:24
+msgid "Iesniegt"
+msgstr "Submit"
 
 #: .\majaslapa\templates\majaslapa\change-password.html:27
 msgid ""
@@ -283,33 +280,31 @@ msgstr "or"
 msgid "Aizmirsi paroli?"
 msgstr "Forgot your password?"
 
-#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:6
 #: .\majaslapa\templates\majaslapa\password_reset.html:6
 #: .\majaslapa\templates\majaslapa\password_reset.html:17
 #: .\majaslapa\templates\majaslapa\password_reset_complete.html:6
+#: .\majaslapa\templates\majaslapa\password_reset_confirm.html:6
 #: .\majaslapa\templates\majaslapa\password_reset_sent.html:6
-#, fuzzy
-#| msgid "atkārtojiet paroli"
 msgid "Atjaunot paroli"
-msgstr "repeat password"
+msgstr "Repeat password"
 
-#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:17
+#: .\majaslapa\templates\majaslapa\password_reset_complete.html:16
+msgid "Jūsu parole tika nomainīta!"
+msgstr "Your password was changed!"
+
+#: .\majaslapa\templates\majaslapa\password_reset_confirm.html:17
 #, fuzzy
 #| msgid "atkārtojiet paroli"
 msgid "Ievadiet jauno paroli"
 msgstr "repeat password"
 
-#: .\majaslapa\templates\majaslapa\password_reser_confirm.html:19
+#: .\majaslapa\templates\majaslapa\password_reset_confirm.html:19
 msgid ""
 "Lūdzu ievadiet jauno paroli divreiz, lai varētu pārbaudīt, ka tā ir "
 "uzrakstīta pareizi."
-msgstr "Please enter the new password twice so that you can check that it is spelled correctly."
-
-#: .\majaslapa\templates\majaslapa\password_reset_complete.html:16
-#, fuzzy
-#| msgid "Jūsu vēstule tika nosūtia mums!"
-msgid "Jūsu parole tika nomainīta!"
-msgstr "Your password was changed!"
+msgstr ""
+"Please enter the new password twice so that you can check that it is spelled "
+"correctly."
 
 #: .\majaslapa\templates\majaslapa\password_reset_sent.html:16
 msgid "Paroles pārstatīšana nosūtīta"
@@ -320,13 +315,18 @@ msgid ""
 "Ja sistēmā ir konts ar jūsu e-pasta adresi, tad mēs jums tikko nosūtījām e-"
 "pasta ziņojumu ar paroles iestatīšanas instrukciju. Jums to tūlīt vajadzētu "
 "saņemt."
-msgstr "If you have an account with your email address in the system, then we have just sent you an email with instructions for setting a password. You should receive it immediately."
+msgstr ""
+"If you have an account with your email address in the system, then we have "
+"just sent you an email with instructions for setting a password. You should "
+"receive it immediately."
 
 #: .\majaslapa\templates\majaslapa\password_reset_sent.html:18
 msgid ""
 "Ja nesaņemat e-pastu, lūdzu, pārliecinieties, vai esat ievadījis reģistrētu "
 "adresi un pārbaudiet savu mēstuļu mapi."
-msgstr "If you do not receive an email, please make sure you have entered a registered address and check your spam folder."
+msgstr ""
+"If you do not receive an email, please make sure you have entered a "
+"registered address and check your spam folder."
 
 #: .\majaslapa\templates\majaslapa\product_info.html:45
 msgid "Daudzums:"

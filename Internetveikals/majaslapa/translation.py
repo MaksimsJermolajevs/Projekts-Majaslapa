@@ -13,5 +13,5 @@ class CategoryTranslationOption(TranslationOptions):
 
 @register(Specification)
 class SpecificationTranslationOption(TranslationOptions):
-    fields = ('specification',)
+    fields = ('specification', 'specification_value',)
 
