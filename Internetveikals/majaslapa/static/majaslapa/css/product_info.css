@@ -224,17 +224,3 @@ tr:last-child{
     color: green;
 }
 
-
-
-.prodapraksts{
-    width: 1070px;
-    padding-bottom: 20px;
-    margin-left: 40px;
-}
-.displayflex{
-    display: flex;
-    justify-content: space-between;
-}
-.img1{
-    padding-bottom: -5;
-}
