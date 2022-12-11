@@ -1,143 +1,224 @@
-{% extends 'majaslapa/base.html' %}
-{% load static %}
-{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/42a043e373.js"></script>
+    <script src="scriptprod.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="site_top_menu">
+            <ul class="left_top">
+                <li class="left"><a class="about" href="#">About</a></li>
+                <li class="left"><a class="contact" href="#">Contact</a></li>
+            </ul>
+            
+            <ul class="right_top">
+                <li class="right1">
+                    <img src="images/lvicon.png" alt="lv">
+                    <a href="#">LV</a>
+                </li>
+                <li class="right1">
+                    <img class="ukimg" src="images/UkIcon.png" alt="en">
+                    <a class="EN" href="#">EN</a>
+                </li>
+                <li class="right"><a href="./login.html">Login</a></li>
+                <li class="right"><a href="./register.html">Register</a></li>
+            </ul>
 
-{% block title %}
-{{ Preces.title }}
-{% endblock %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static '/majaslapa/css/product_info.css' %}">
-{% endblock %}
+        </div>
 
-{% block body %}
-{% for product in product_list %}
+        <div class="site_undertop">
+            <div class="Logo">
+                <a class="Logo" href="#">BALTICHTECH.com</a>
+            </div>
+            <div class="wrapper">
+                <div class="search_box">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" class="input" placeholder="Search">
+                    
+                </div>
+            </div>
+            <ul class="right_menu">
+                <li class="cart"><a href="#">In cart(2)</a></li>
+                <li class="cartimg"><img src="images/CartIcon.png" alt="cart"></li>
+                <li class="acc"><a href="#">Account</a></li>
+                <li class="accimg"><img  src="images/AccountIcon 1.png" alt="Account"></li>
+            
+            </ul>
+        </div>
+    </header>
     <div class="productdetail">
         <div  class="producttop">
             <div class="photos">
                 <div class="mainimage">
-                    <img src="{{Preces.image.url}}"  id="imagebox">
+                    <img src="/images/asus1.png"  id="imagebox">
                 </div>
                <div class="small-img">
-                    <img src="{{Preces.image.url}}" onclick="clickimg(this)">
-                    {% for image in image_prod %}
-                        <img src="{{image.image.url}}" onclick="clickimg(this)">
-                    {%endfor%}
+                    <img src="/images/asus1.png" onclick="clickimg(this)">
+                    <img src="/images/asus2.png" onclick="clickimg(this)">
+                    <img src="/images/asus3.png" onclick="clickimg(this)">
+                    <img src="/images/asus4.png" onclick="clickimg(this)">
                </div>
             </div>
             <div class="priceandbuy">
                 <div class="prodname">
-                    <p>{{ Preces.title }}</p>
+                    <p>Portatīvais dators HP 250 G7 15."  </p>
                 </div>
                 <div class="buttons price">
-
-                    {% if Preces.discount_price is null %}
-					<h1>{{ Preces.regular_price }}  € </h1>
-				{% else %}
-					<h3> <del>{{ Preces.regular_price }}   €</del> </h3>
-					<h2>{{ Preces.discount_price }}  € </h2>
-				{% endif %}
+                    <h2>599  €</h2>
                 </div>
                 <div class="buttons buttonsb">
                     <div class="inputb">
-                        <form action="" method="post" id='form'>
-                            {% csrf_token %}
-                            <a>{% trans 'Daudzums:' %} </a>
-                            <input type="number" value="1" min='1' max='{{ Preces.quantity }}' name='quantity' id='quantity'>
-                        </form>
+                        <a>Quantity: </a>
+                        <input type="number" value="1">
                     </div>
-                    {% if Preces.is_active == True %}
                     <div class="inputc">
-                        <button class="checkout1" class="button is-primary" id="submitBtn">{% trans 'Pirkt' %}</button>
-                        <a href="{% url 'cart_add' Preces.id %}"> <button class="addtocart">{% trans 'Ielikt Grozā' %}</button></a>
+                        <button class="checkout1">Check Out</button>
+                        <button class="addtocart">Add To Cart</button>
                     </div>
-                    {% else %}
-                    {% endif %}
                 </div>
-            </form>
             </div>
         </div>
         <div class="productbot">
-            <p>{%trans 'Tehniskā specifikācija'%}</p>
-            <div class="allspec">
-                <div class="specleft">
-                    <table class="tablel1">
-                        {% for spec in product.Produkta_specifikacija.all %}
-                        {% if spec.specification_value == 'Yes' %}
-                        <tr>
-                            <td><a>{{ spec.specification }}</td>
-                            <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' src="no" %}" /></td>
-                        </tr>
-                        {% elif spec.specification_value == 'No'%}
-                        <tr>
-                            <td><a>{{ spec.specification }}</td>
-                            <td align="right"><img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" /></td>
-                        </tr>
-                        {% else %}
-                        <tr>
-                            <td><a>{{ spec.specification }}</td>
-                            <td align="right"><a>{{spec.specification_value}}</a></td>
-                        </tr>
-                        {% endif %}
-                        {% endfor %}
+            <div class="tabsname">
+                <ul>
+                    <li data-tab-target="#tehniskaspec1" class="active tab" ><p>Tehniskā specifikācija</p></li>
+                    <li data-tab-target="#prodapraksts1" class="tab"><p>Preces apraksts</p></li>
+                </ul>
+            </div>
+            <div class="active tehniskaspec" id="tehniskaspec1" data-tab-content>
+                <div class="displayflex">
+                    <div class="specleft">
+                        <table class="tablel1">
+                            <tr>
+                                <td><a>Manufacturer</a></td>
+                                <td align="right"><a>HP</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Model</a></td>
+                                <td align="right"><a>G7</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Video camera</a></td>
+                                <td align="right"><img src="/images/CheckIcon 1.png" src="no"></td>
+                            </tr>
+                            <tr>
+                                <td><a>Microphone</a></td>
+                                <td align="right"><img src="/images/CheckIcon 1.png" src="no"></td>
+                            </tr>
+                            <div class="borderbot"></div>
+                            <tr>
+                                <td><a>Weight</a></td>
+                                <td align="right"><a>1.78 KG</a></td>
+                            </tr>
+                        </table>
+                        <table class="tablel2">
+                            <tr>
+                                <td><a>Screen size</a></td>
+                                <td align="right"><a>15.6”</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Resolution</a></td>
+                                <td align="right"><a>1920x1080</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Screen surface type</a></td>
+                                <td align="right"><a>Matte</a></td>
+                            </tr>
+                        </table>
+                        <table class="tablel3">
+                            <tr>
+                                <td><a>RAM</a></td>
+                                <td align="right"><a>8 GB</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Max RAM</a></td>
+                                <td align="right"><a>16 GB</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Hard disk (HDD)</a></td>
+                                <td align="right"><img src="/images/checkno.png" src="no"></td>
+                            </tr>
+                            <tr>
+                                <td><a>Hard Drive (SSD)</a></td>
+                                <td align="right"><a>256 GB</a></td>
+                            </tr>
+                            
+                        </table>
+                        
+                    </div>
+                    <div class="specright">
+                        <table class="tabler1">
+                            <tr>
+                                <td><a>WiFi</a></td>
+                                <td align="right"><img src="/images/CheckIcon 1.png" src="yes"></td>
+                            </tr>
+                            <tr>
+                                <td><a>Wi-Fi standard</a></td>
+                                <td align="right"><a>IEEE 802.11a/b/g/n/ac</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Bluetooth</a></td>
+                                <td align="right"><img src="/images/CheckIcon 1.png" src="yes"></td>
+                            </tr>
 
-                    </table>
-                </div>
+                        </table>
+                        <table class="tabler2">
+                            <tr>
+                                <td><a>Video card type</a></td>
+                                <td align="right"><a>Intel (integrated)</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Video card</a></td>
+                                <td align="right"><a>Intel UHD Graphics 620</a></td>
+                            </tr>
+                            
+                        </table>
+                        <table class="tabler3">
+                            <tr>
+                                <td><a>Processor type</a></td>
+                                <td align="right"><a>Intel Core i3</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Processor</a></td>
+                                <td align="right"><a>Intel Core i3-8130U</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Cores</a></td>
+                                <td align="right"><a>2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a>Processor frequency</a></td>
+                                <td align="right"><a>2.2 GHz</a></td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                </div>    
+            </div>
+            <div class="prodapraksts" id="prodapraksts1" data-tab-content>
+                <img class="img1" src="/images/zenbookimg1.png">
+                <img class="img2" src="/images/zenbookimg2.png">
+                <img class="img3" src="/images/zenbookimg3.png">
             </div>
         </div>
-{% endfor %}
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        
+    </div>
     <script>
-
-        form = document.querySelector("#form");
-
         function clickimg(smallImg){
             var fullImg = document.getElementById("imagebox")
             fullImg.src = smallImg.src
         }
-
-
-        console.log("Sanity check!");
-
-        // Get Stripe publishable key
-        fetch("/config/")
-        .then((result) => { return result.json(); })
-        .then((data) => {
-          // Initialize Stripe.js
-          const stripe = Stripe(data.publicKey);
-
-          // new
-          // Event handler
-          document.querySelector("#submitBtn").addEventListener("click", () => {
-            // Get Checkout Session ID
-            fetch("/{{ Preces.slug }}/create-checkout-session/")
-            .then((result) => { return result.json(); })
-            .then((data) => {
-              console.log(data);
-              // Redirect to Stripe Checkout
-              return stripe.redirectToCheckout({sessionId: data.sessionId})
-            })
-            .then((res) => {
-              console.log(res);
-            });
-          });
-        });
-
-        {% comment %} form = document.querySelector("#form");
-        button = document.querySelector(".checkout1");
-
-        button.addEventListener("click", ()=>{
-            form.submit()
-          }); {% endcomment %}
-
-          const selectElement = document.querySelector('#quantity');
-          const submit = document.querySelector('#submitBtn');
-
-          selectElement.addEventListener('change', (event) => {
-              (submit).submit()
-          });
-
     </script>
-    {% endblock %}
-
+</body>
+</html>
