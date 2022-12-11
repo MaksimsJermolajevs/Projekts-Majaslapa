@@ -166,8 +166,8 @@ transition: all 0.3s ease 0s;
 
 .search{
     border: none;
-    height: 40px;
-    width: 750px;
+    height: 35px;
+    width: 720px;
     padding: 0px 15px;
     border-radius: 5px;
     font-size: 18px;

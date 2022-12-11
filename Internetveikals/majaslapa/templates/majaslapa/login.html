@@ -46,17 +46,22 @@
                     <a  class="Forgot_your_password" href="{% url 'reset_password' %}">{% trans 'Aizmirsi paroli?' %}</a>
                 </div>
                 <div class="Horizontal_line2"></div>
-                <div class="Google">
-                <a class="Google_signin" href="{% provider_login_url 'google' %}">Sign in using Google</a>
-                <img class="Google_image" src="{% static '/majaslapa/image/google.png' %}" alt="Google">
-                </div>
-                <div class="Facebook">
-                <a class="Facebook_signin" href="{% provider_login_url 'facebook' %}">Sign in using Facebook</a>
-                <img class="Facebook_image" src="{% static '/majaslapa/image/facebook.png' %}" alt="Google">
+                    <a href="{% provider_login_url 'google' %}">
+                        <div class="Google">
+                            <h class="Google_signin">{% trans 'Pierakstieties, izmantojot Google' %}</h>
+                            <img class="Google_image" src="{% static '/majaslapa/image/google.png' %}" alt="Google">
+                        </div>
+                    </a>
+                    <a href="{% provider_login_url 'facebook' %}">
+                        <div class="Facebook">
+                            <h class="Facebook_signin">{% trans 'Pierakstieties, izmantojot Facebook' %}</h>
+                            <img class="Facebook_image" src="{% static '/majaslapa/image/facebook.png' %}" alt="Google">
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-
+    </form>
 {% endblock %}
 
 {% block js %}

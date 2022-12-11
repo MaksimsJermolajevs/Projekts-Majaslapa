@@ -26,7 +26,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 from django.db.models import F
-from django.db.models import Max
 
 
 
@@ -129,7 +128,7 @@ class PasswordsChangeView(PasswordChangeView):
     form_class = FormChangePassword
     success_url = reverse_lazy('account')
 
-
+from django.db.models import Max
 class category(ListView):
     def get(self, request, slug_url):
 
@@ -139,9 +138,18 @@ class category(ListView):
 
         # Max_price = Product.objects.all().order_by('regular_price')
         # print(Max_price)
+        value = Product.objects.filter(
+            category = kategorija
+            ).aggregate(maxvalue=Max('regular_price'))['maxvalue']
+        print(value)
+
+        if not value:
+            value = 0
 
         price_from = request.GET.get('price_from', 0)
-        price_to = request.GET.get('price_to', 2000)
+        price_to = request.GET.get('price_to', value)
+
+
 
         if filtrs:
             Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).filter(productspecificationvalue__value__contains = filtrs)
@@ -409,6 +417,7 @@ def stripe_webhook(request):
         Product.objects.filter(id = product_id).update(quantity=F('quantity') - quantity_order)
 
     return HttpResponse(status=200)
+
 
 @csrf_exempt
 def create_checkout_session(request, slug_url):

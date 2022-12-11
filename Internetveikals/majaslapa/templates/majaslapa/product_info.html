@@ -44,6 +44,7 @@
                             {% csrf_token %}
                             <a>{% trans 'Daudzums:' %} </a>
                             <input type="number" value="1" min='1' max='{{ Preces.quantity }}' name='quantity' id='quantity'>
+                            <input type='sub'>
                         </form>
                     </div>
                     {% if Preces.is_active == True %}
@@ -54,7 +55,6 @@
                     {% else %}
                     {% endif %}
                 </div>
-            </form>
             </div>
         </div>
         <div class="productbot">
@@ -88,16 +88,8 @@
 {% endfor %}
     <script src="https://js.stripe.com/v3/"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <script>
-
-        form = document.querySelector("#form");
-
-        function clickimg(smallImg){
-            var fullImg = document.getElementById("imagebox")
-            fullImg.src = smallImg.src
-        }
-
-
         console.log("Sanity check!");
 
         // Get Stripe publishable key
@@ -106,7 +98,7 @@
         .then((data) => {
           // Initialize Stripe.js
           const stripe = Stripe(data.publicKey);
-
+  
           // new
           // Event handler
           document.querySelector("#submitBtn").addEventListener("click", () => {
@@ -123,21 +115,17 @@
             });
           });
         });
-
-        {% comment %} form = document.querySelector("#form");
-        button = document.querySelector(".checkout1");
-
-        button.addEventListener("click", ()=>{
-            form.submit()
-          }); {% endcomment %}
-
+  
           const selectElement = document.querySelector('#quantity');
           const submit = document.querySelector('#submitBtn');
 
           selectElement.addEventListener('change', (event) => {
               (submit).submit()
           });
-
     </script>
     {% endblock %}
+    
 
+{% block js %}
+    <script src="{% static '/majaslapa/js/product_info.js' %}"></script>
+{% endblock %}
