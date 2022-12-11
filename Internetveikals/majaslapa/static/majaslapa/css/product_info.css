@@ -3,10 +3,11 @@
     background-color: #fff;
     margin: 50px auto;
     width: 1200px;
-
+    max-height: 3000px;
+   
 }
 .producttop{
-    display:flex;
+    display: flex;
 }
 
 .small-img{
@@ -29,7 +30,9 @@
     opacity: 1;
 }
 .mainimage img{
-    height: 350px;
+    width: 350px;
+    margin-left: 60px;
+    
 }
 .photos{
     height: 500x;
@@ -45,6 +48,7 @@
     height: 370px;
     margin-left: 75px;
     margin-top: 70px;
+    
 }
 .priceandbuy  p{
     font-family: 'Montserrat', sans-serif;
@@ -64,9 +68,11 @@
 }
 .price{
     top:420px;
+    height: 100px;
 }
 .buttonsb{
     top: 547px;
+    height: 100px;
     
 }
 .inputb input{
@@ -123,7 +129,6 @@
 
 /* product top */
 .productbot{
-    height: 930px;
     width: 1070px;
     margin-left: 54px;
     margin-top: 50px;
@@ -134,12 +139,14 @@
     font-weight: bold;
     margin-bottom: 30px;
 }
-.allspec{
-    display: flex;
+.tehniskaspec{
+    display: block;
     justify-content: space-between;
+    padding-bottom: 30px;
+    
 }
 
-.allspec a{
+.tehniskaspec a{
     font-family: 'Montserrat', sans-serif;
     color: black;
     font-size: normal;
@@ -149,7 +156,34 @@
     border-collapse:collapse;
     margin-bottom: 50px;
 }
-
+.tablel2{
+    width: 500px;
+    border-collapse:collapse;
+    margin-bottom: 50px;
+}
+.tablel3{
+    width: 500px;
+    border-collapse:collapse;
+    
+}
+.tabler1{
+    width: 500px;
+    border-collapse:collapse;
+    margin-bottom: 50px;
+}
+.tabler2{
+    width: 500px;
+    border-collapse:collapse;
+    margin-bottom: 50px;
+}
+.tabler3{
+    width: 500px;
+    border-collapse:collapse;
+    margin-bottom: 50px;
+}
+.tabler1 td{
+    justify-content: space-between;
+}
 tr{
     border-bottom: 1px solid #D9D9D9;
 }
@@ -164,8 +198,43 @@ tr:last-child{
     color: black;
     margin-right: 10px;
 }
+[data-tab-content]{
+    display: none;
+}
+.active[data-tab-content]{
+    display: block;
+}
+.tabsname ul{
+    display:flex;
+    list-style-type: none;
+    justify-content: space-between;
 
-.image{
-    width: 15px;
+}
+.tabsname ul{
+    padding-right: 10px;
+}
+.tabsname{
+    width: 500px;
+    margin:auto 300px ;
+}
+.tab p{
+    cursor: pointer;
+}
+.tab.active{
+    color: green;
 }
 
+
+
+.prodapraksts{
+    width: 1070px;
+    padding-bottom: 20px;
+    margin-left: 40px;
+}
+.displayflex{
+    display: flex;
+    justify-content: space-between;
+}
+.img1{
+    padding-bottom: -5;
+}
