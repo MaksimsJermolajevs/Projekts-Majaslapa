@@ -14,3 +14,8 @@ tabs.forEach(tab => {
         target.classList.add('active')
     })
 })
+
+function clickimg(smallImg){
+  var fullImg = document.getElementById("imagebox")
+  fullImg.src = smallImg.src
+}
