@@ -224,6 +224,28 @@ tr:last-child{
 .tab.active{
     color: green;
 }
+<<<<<<< HEAD
 .tabsname li{
     color: black;
 }
+=======
+
+
+
+.prodapraksts{
+    width: 1070px;
+    padding-bottom: 20px;
+    margin-left: 40px;
+    background-color: ;
+}
+.displayflex{
+    display: flex;
+    justify-content: space-between;
+}
+.img1{
+    padding-bottom: -5;
+}
+
+
+
+>>>>>>> 1badbda69f47b236526ed41a46f62e0f3b70835f
