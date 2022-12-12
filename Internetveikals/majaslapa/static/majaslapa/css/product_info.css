@@ -30,7 +30,8 @@
     opacity: 1;
 }
 .mainimage img{
-    width: 350px;
+    width: auto;
+    height: 350px;
     margin-left: 60px;
     
 }
@@ -223,4 +224,6 @@ tr:last-child{
 .tab.active{
     color: green;
 }
-
+.tabsname li{
+    color: black;
+}
