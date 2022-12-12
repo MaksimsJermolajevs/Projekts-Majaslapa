@@ -20,7 +20,7 @@ msgstr ""
 
 #: .\majaslapa\forms.py:48
 msgid "Lietotājs ar šādu e-pastu jau eksistē!"
-msgstr "A user with this email already exists!"
+msgstr "A user with this e-mail already exists!"
 
 #: .\majaslapa\models.py:22
 msgid "Kategorijas drošs URL"
@@ -33,7 +33,7 @@ msgstr "Contact"
 
 #: .\majaslapa\templates\majaslapa\Contact.html:17
 msgid "Sazinieties ar mums"
-msgstr "Contact Us"
+msgstr "Contact us"
 
 #: .\majaslapa\templates\majaslapa\Contact.html:27
 msgid "Tavs vārds"
@@ -70,27 +70,27 @@ msgstr "Frequently asked questions"
 
 #: .\majaslapa\templates\majaslapa\Contact.html:50
 msgid "• Kā es varu redzēt izmaksas?"
-msgstr "• How can I see the cost?"
+msgstr "• How do I see the costs?"
 
 #: .\majaslapa\templates\majaslapa\Contact.html:51
 msgid "Maksa summa tiks aprēķināta pasūtijumu lapā."
-msgstr "The amount of the fee will be calculated on the order page."
+msgstr "The total cost will be calculated at the check out page."
 
 #: .\majaslapa\templates\majaslapa\Contact.html:53
 msgid "• Cik ātri varēs saņemt preci?"
-msgstr "• How soon can you receive the product?"
+msgstr "• How fast will the delivery be?"
 
 #: .\majaslapa\templates\majaslapa\Contact.html:54
 msgid ""
 "Ir paredzēts ka pasūtiju jūs saņemsiet no 1 dienas līdz 2 nedēļam, atkarīgs "
 "ko jūs pasūtīsiet."
 msgstr ""
-"It is expected that you will receive the order from 1 day to 2 weeks, "
-"depending on what you order."
+"You can expect the delivery to take anywhere from about 1 day to 2 weeks "
+"depending on your order."
 
 #: .\majaslapa\templates\majaslapa\Product.html:21
 msgid "Filtri"
-msgstr "filter"
+msgstr "Filters"
 
 #: .\majaslapa\templates\majaslapa\Product.html:25
 #: .\majaslapa\templates\majaslapa\cart.html:24
@@ -107,13 +107,13 @@ msgstr "Item is available"
 
 #: .\majaslapa\templates\majaslapa\Product.html:110
 msgid "nav pieejams"
-msgstr "Item not available"
+msgstr "Item is not available"
 
 #: .\majaslapa\templates\majaslapa\about.html:6
 #: .\majaslapa\templates\majaslapa\about.html:22
 #: .\majaslapa\templates\majaslapa\base.html:26
 msgid "Par mums"
-msgstr "About Us"
+msgstr "About us"
 
 #: .\majaslapa\templates\majaslapa\about.html:23
 msgid ""
@@ -121,9 +121,9 @@ msgid ""
 "tehnoloģiju nodrošināšanā ar viszemākajām cenām, ātrākā piegāde, atsaucīga "
 "klientu apkalpošana un, galvenais, patīkama iepirkšanās pieredze."
 msgstr ""
-"We are upcoming brand from Latvia. We specialize in providing you with the "
-"newest technologies with the lowest prices, fastest shipping, responsive "
-"customer service, and most of all a pleasant shopping expirience."
+"We are an upcoming brand from Latvia. We specialize in providing you with the "
+"newest technologies, the lowest prices, fastest shipping, responsive "
+"customer service, and most of all, a pleasant shopping experience."
 
 #: .\majaslapa\templates\majaslapa\account.html:7
 #: .\majaslapa\templates\majaslapa\base.html:49
@@ -156,21 +156,21 @@ msgstr "My orders"
 
 #: .\majaslapa\templates\majaslapa\account.html:29
 msgid "Dzēst profilu"
-msgstr "Delete profile"
+msgstr "Delete account"
 
 #: .\majaslapa\templates\majaslapa\account.html:45
 #, fuzzy
 #| msgid "Dzēst profilu"
 msgid "Dzēst kontu"
-msgstr "Delete profile"
+msgstr "Delete account"
 
 #: .\majaslapa\templates\majaslapa\account.html:46
 msgid "Vai tiešām vēlaties dzēst savu kontu?"
-msgstr ""
+msgstr "Are you sure you want to delete your account?"
 
 #: .\majaslapa\templates\majaslapa\account.html:49
 msgid "Acelt"
-msgstr ""
+msgstr "Cancel"
 
 #: .\majaslapa\templates\majaslapa\base.html:45
 #: .\majaslapa\templates\majaslapa\base.html:94
