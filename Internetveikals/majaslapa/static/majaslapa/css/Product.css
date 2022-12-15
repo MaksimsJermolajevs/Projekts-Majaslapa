@@ -200,8 +200,8 @@ svg {
 }
 .product-img img{
     height: 150px;
+	max-width: 200px;
     display: flex;
-    padding-left: 30px;
 }
 .product-opt h1{
     padding-top: 20px;
@@ -210,6 +210,9 @@ svg {
 .product-opt p {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .product-opt ul {
     padding-left: 23px;
@@ -223,6 +226,11 @@ svg {
 }
 .product-status{
     display:inline-flex;
+}
+
+.product-status img{
+    padding-right: 5px;
+	margin-bottom: 20px;
 }
 
 ul li{

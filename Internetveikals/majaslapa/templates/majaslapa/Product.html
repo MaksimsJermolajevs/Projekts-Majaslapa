@@ -104,10 +104,10 @@
 				</ul>
 				<div class="product-status">
 					{% if Product.is_active == True %}
-						<span style="position:relative; font-family: wingdings; font-size: 200%; color:green; margin-top:-5px; top:-4px; right:5px" >&#252;</span>
+						<img class='image' src="{% static '/majaslapa/image/CheckIcon.png'%}" alt='done' style='height:20px position:relative;'  />
 						<p>{% trans 'Ir pieejams' %}</p>
 					{% else %}
-						<span style="position:relative; font-family: wingdings; font-size: 150%; color:red; margin-top:-5px; top:-4px; right:5px ">&#10005;</span>
+						<img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" style='height:30px; position:relative; bottom:3px;' />
 						<p>{% trans 'nav pieejams' %}</p>
 					{% endif %}
 				</div>

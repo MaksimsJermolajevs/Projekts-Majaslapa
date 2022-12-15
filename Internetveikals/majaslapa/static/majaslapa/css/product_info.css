@@ -30,10 +30,8 @@
     opacity: 1;
 }
 .mainimage img{
-    width: auto;
+    max-width:500px;
     height: 350px;
-    margin-left: 60px;
-    
 }
 .photos{
     height: 500x;
@@ -224,11 +222,11 @@ tr:last-child{
 .tab.active{
     color: green;
 }
-<<<<<<< HEAD
+
 .tabsname li{
     color: black;
 }
-=======
+
 
 
 
@@ -245,7 +243,3 @@ tr:last-child{
 .img1{
     padding-bottom: -5;
 }
-
-
-
->>>>>>> 1badbda69f47b236526ed41a46f62e0f3b70835f
