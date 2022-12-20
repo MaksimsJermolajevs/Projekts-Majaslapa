@@ -37,7 +37,6 @@ nine==1.1.0
 oauthlib==3.2.1
 phonenumberslite==8.13.0
 Pillow==9.2.0
-psycopg2==2.9.4
 pycparser==2.21
 PyJWT==2.5.0
 python-decouple==3.6
