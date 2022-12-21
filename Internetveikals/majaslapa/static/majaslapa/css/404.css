@@ -1,0 +1,66 @@
+
+/***** 404 page *****/
+
+.cont404{
+    background-color: __blueviolet;
+    width: 800px;
+    max-height: 640px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    
+}
+.error a{
+    font-size: 300px;
+    color: rgb(87, 87, 87);
+    
+    text-transform: uppercase;
+    position: relative;
+}
+.error a::before{
+    content:attr(data-text);
+    position: absolute;
+    top: 180;
+    left: 0;
+    width: 0;
+    height: 100%;
+    color: rgb(111, 182, 77);
+    -webkit-text-stroke: 0vw rgb(190, 190, 190);
+    overflow: hidden;
+    animation: animate 15s linear infinite;
+}
+@keyframes animate{
+    0%,10%,100%{
+        width: 0;
+    }
+    70%,90%{
+        width: 100%;
+    }
+}
+
+.errorexp a{
+    font-size: 45px;
+    color: rgb(87, 87, 87);
+}
+.errorexp span{
+    color: rgb(111, 182, 77);
+}
+.descr a{
+    font-size: 40px;
+    color: rgb(87, 87, 87);
+}
+.descr span{
+    cursor: pointer;
+    color: rgb(111, 182, 77);
+    transform: scale(10);
+    transition: 0.5s;
+}
+.errorexp{
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+.descr span:hover{
+    opacity: 50%;
+}
+
