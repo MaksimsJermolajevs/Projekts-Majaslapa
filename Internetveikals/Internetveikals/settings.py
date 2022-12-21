@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w1z&-=gbzj-n4gr31hmk@6!nj8^s^1(@pk=yq&%^p(-dhg)0a3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -85,7 +85,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 ]
 
@@ -108,7 +107,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Internetveikals.wsgi.application'
 
 
 # Database
@@ -169,11 +167,20 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+
+if DEBUG:
+
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+else:
+
+  STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -230,4 +237,3 @@ STRIPE_ENDPOINT_SECRET = 'whsec_3968e39f8d852940ae08b12da5496411298768c227beb093
 
 from django.contrib.messages import constants as message_constants
 MESSAGE_LEVEL = message_constants.DEBUG
-

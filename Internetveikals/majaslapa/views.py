@@ -458,3 +458,10 @@ def create_checkout_session(request, slug_url):
             return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
+
+def eror404(request, exception):
+    return render(request, 'majaslapa/error/404.html')
+
+def handle_server_error(request):
+    return render(request, "majaslapa/error/500.html")

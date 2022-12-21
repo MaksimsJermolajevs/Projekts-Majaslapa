@@ -15,7 +15,7 @@ Including another URLconf
 """
 from majaslapa.views import *
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
@@ -23,11 +23,15 @@ from django.conf.urls.i18n import i18n_patterns
 from majaslapa import views
 from django.views.generic.base import RedirectView
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.static import serve
+
 
 
 
 
 urlpatterns = [
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path('admin/', admin.site.urls, name ='admin'),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('', views.sakums.as_view(),name='sakums'),
@@ -95,5 +99,10 @@ urlpatterns = [
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
+handler404 = 'majaslapa.views.eror404'
+handler500 = 'majaslapa.views.handle_server_error'
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

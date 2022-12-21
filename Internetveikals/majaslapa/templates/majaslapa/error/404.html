@@ -1,0 +1,27 @@
+
+{% extends 'majaslapa/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+404
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/majaslapa/css/error/404.css' %}" />
+{% endblock %}
+
+{% block body %}
+<div class="cont404">
+    <div class="error">
+        <a data-text="404">4<span>0</span>4</a>
+    </div>
+    <div class="errorexp">
+        <a>{% trans 'Lapa' %} <span>{% trans 'netika' %}</span> {% trans 'atrasta' %}</a>
+    </div>
+    <div class="descr">
+        <a>{% trans 'Atvainojiet, mēs nevarējām atrast šo lapu. Bet neuztraucieties, mūsu vietnē varat atrast daudz citu lietu' %} <a class='href' href="{% url 'sakums' %}">{% trans 'Sākumlapā' %}</a><a>.</a>
+    </div>
+</div>
+
+{% endblock %}

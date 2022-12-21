@@ -1,0 +1,27 @@
+
+{% extends 'majaslapa/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+404
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/majaslapa/css/error/404.css' %}" />
+{% endblock %}
+
+{% block body %}
+<div class="cont404">
+    <div class="error">
+        <a data-text="500">5<span>0</span>0</a>
+    </div>
+    <div class="errorexp">
+        <a>Page <span>not</span> found</a>
+    </div>
+    <div class="descr">
+        <a>Sorry,we couldn't find this page. But don't worry,you can find plenty of other things on our <a class='href' href="{% url 'sakums' %}">homepage</a>.</a>
+    </div>
+</div>
+
+{% endblock %}
