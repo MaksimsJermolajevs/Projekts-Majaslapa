@@ -163,12 +163,13 @@ class Contact(models.Model):
         return self.name
 
 
-
+class Specification_name(models.Model):
+    specification = models.CharField(max_length=255)
+    def __str__(self):
+        return self.specification
 
 class Specification(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=('Produkta_specifikacija'))
-    specification = models.CharField(max_length=255)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=('Produkta_specifikacijaa'), null=True)
+    specification = models.ForeignKey(Specification_name, on_delete=models.CASCADE, related_name=('Specification_name'))
     specification_value = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.specification[:50]

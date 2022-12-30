@@ -14,7 +14,7 @@
 {% block body %}
 
 <div class="site_center">
-	<form method="GET" action="" id='submit'>
+	<form method="GET" id='submit'>
 		{% csrf_token %}
 	<div class="sidebar">
 		<div class="filter_title_main">
@@ -36,25 +36,64 @@
 			<div class="sidebar_content">
 				<form method="POST" action="">
 				<div class="input1">
-					<input type="number" value="{{price_from}}" name="price_from" />
+					<input type="number" value="0" name="price_from" />
 					<a>{% trans 'līdz' %}</a>
 					<input type="number" value="{{price_to}}" name="price_to" />
 					<div class="slider">
 						<div class="progress"></div>
 					</div>
 					<div class="range-input">
-						<input type="range" class="range-min" min="0" max="1000" value="{{price_from}}" step="1"/>
-						<input type="range" class="range-max" min="0" max="{{price_to}}" value="{{price_to}}" step="1"/>
+						<input type="range" class="range-min" min="0" max="1000" value="0" step="1"/>
+						<input type="range" class="range-max" min="0" max="1000" value="{{price_to}}" step="1"/>
 					</div>
 			</div>
 		</div>
-
+		<div class="acardion">
+			<a>{% trans 'Kārtot pēc' %}</a>
+			<svg width="15" height="10" viewBox="0 0 42 25">
+				<path
+					d="M3 3L21 21L39 3"
+					stroke="black"
+					stroke-width="7"
+					fill="none"
+					stroke-linejoin="round"
+				/>
+			</svg>
 		</div>
+		<form method="GET" >
+		<div class="sidebar_content" name="sort_order" data-name="check">
+			<div class='checkbox-container'>
+				<input type='checkbox' id='cb1'  name='sort_order' value='Descending' onclick="onlyOne(this)">
+				<label for='cb1'>Lētākas augšpusē</label>
+			</div>
+			<div class='checkbox-container'>
+				<input type='checkbox' id='cb2' name='sort_order'  value='Ascending' onclick="onlyOne(this)">
+				<label for='cb2'>Dārgākas augšpusē</label>
+			</div>
+			<div class='checkbox-container'>
+				<input type='checkbox' id='cb3' name='sort_order' value='AZ' onclick="onlyOne(this)">
+				<label for='cb3'>A-Z</label>
+			</div>
+			<div class='checkbox-container'>
+				<input type='checkbox' id='cb4' name='sort_order' value='ZA' onclick="onlyOne(this)">
+				<label for='cb4'>Z-A</label>
+			</div>
+
+
+			{% comment %} <select name="sort_order" id="sort_order">
+				<option value="Ascending">Ascending</option>
+				<option value="Descending">Descending</option>
+			</select> {% endcomment %}
+			<button type="submit">Sort</button>
+		</div>
+	</form>
+	</div>
+
 
 		<div class="filter_title">
 			{% for Specification in Specifikacija %}
 			<div class="acardion">
-				<a>{{ Specification.name }}</a>
+				<a>{{ Specification.specification }}</a>
 				<svg width="15" height="10" viewBox="0 0 42 25">
 					<path
 						d="M3 3L21 21L39 3"
@@ -67,18 +106,16 @@
 			</div>
 			<div class="sidebar_content">
 				<ul class="list-items">
-					{% for Spec in Specifikacija_veriba %}
 					<li class="item">
-						{% if Spec.specification == Specification  %}
-						<input type="checkbox" name="filter" id="{{ Spec.value }}" value="{{ Spec.value }}" />
-							<label for="{{ Spec.value }}">{{ Spec.value }}</label>
-						{%endif%}
+						<input type="checkbox" name="filter" id="{{ Specification.specification_value }}" value="{{ Specification.specification_value }}" />
+							<label for="{{ Specification.specification_value }}">{{ Specification.specification_value }}</label>
 					</li>
-					{% endfor %}
 					<input type="submit" value="OK">
 				</ul>
 			</div>
+
 			{% endfor %}
+
 		</div>
 	</div>
 	<div class="products-container">
@@ -97,7 +134,6 @@
 				{% endif %}
 				<p>{{ Product.title }}</p>
 				<ul>
-					
 					<li>Intel Core i3-8130U CPU</li>
 					<li>Intel UHD Graphics 620 GPU</li>
 					<li>8 GB RAM</li>

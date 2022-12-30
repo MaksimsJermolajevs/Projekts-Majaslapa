@@ -15,6 +15,10 @@ from modeltranslation.admin import TranslationTabularInline
 # admin.site.register(ProductSpecificationValue)
 admin.site.register(Profile)
 
+@admin.register(Specification_name)
+class CategoryAdmin(TranslationAdmin):
+    pass
+
 class SpecificationInline(TranslationTabularInline):
     model = Specification
 
@@ -75,6 +79,7 @@ class orders(admin.ModelAdmin):
 class Contact(admin.ModelAdmin):
     list_display = ('email','name', 'subject')
     search_fields = ('email', 'name','subject')
+
 
 
 

@@ -26,6 +26,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 from django.db.models import F
+from decimal import Decimal
 
 
 
@@ -133,7 +134,6 @@ class category(ListView):
     def get(self, request, slug_url):
 
         filtrs = request.GET.get('filter')
-
         kategorija = Category.objects.get(slug=slug_url)
 
         # Max_price = Product.objects.all().order_by('regular_price')
@@ -148,13 +148,26 @@ class category(ListView):
 
         price_from = request.GET.get('price_from', 0)
         price_to = request.GET.get('price_to', value)
+        sort_order = request.GET.get('sort_order', 'Ascending')
+        sort_order = request.GET.get('sort_order', 'Descending')
+        sort_order = request.GET.get('sort_order', 'AZ')
+        sort_order = request.GET.get('sort_order', 'ZA')
 
+        spec = Specification.objects.all().filter (product__category = kategorija)
 
 
         if filtrs:
-            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).filter(productspecificationvalue__value__contains = filtrs)
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).filter(Produkta_specifikacijaa__specification_value = filtrs)
+        elif sort_order == 'Ascending':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('-regular_price')
+        elif sort_order == 'Descending':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('regular_price')
+        elif sort_order == 'AZ':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('title')
+        elif sort_order == 'ZA':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('-title')
         else:
-            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to)
+            Preces = Product.objects.all().filter (Q(category = kategorija)).order_by('-regular_price')
 
 
         p = Paginator(Preces, 10)
@@ -169,6 +182,7 @@ class category(ListView):
             'kategorija':kategorija,
             'price_from':price_from,
             'price_to':price_to,
+            'Specifikacija':spec
         })
 
 

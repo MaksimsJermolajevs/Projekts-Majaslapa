@@ -62,3 +62,18 @@ selectElement.addEventListener('change', (event) => {
 });
 
 
+//checkbox
+var last;
+document.addEventListener('input',(e)=>{
+var closest=e.target.closest("*[data-name='check']");
+console.log(closest)
+if(e.target.closest("*[data-name]")){
+if(last)
+last.checked=false;
+}
+
+e.target.checked=true;
+last=e.target;
+})
+
+//poga
