@@ -1,41 +1,56 @@
 /* My order */
 .order__wrap{
-    margin-top: 46px;
+    margin: 0 auto;
     width: 1500px;
-    margin: 46 auto 0 auto;
+    font-family: 'Montserrat', sans-serif;
 }
 .order-title{
     margin-bottom: 46px;
     font-weight: 400;
     font-size: 44px;
     line-height: 66px;
+    text-align: center;
+    margin-top: 46px;
 }
+
 .order__table{
     width: 100%;
+    text-align: center;
 }
 .order__table-main{
     width: 100%;
     border-collapse: collapse;
     align-items: center;
 }
-.order__table-main th,td{
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-}
-.order__table-main th{
+
+ .order__table-main tr{
+    border-bottom: 2px solid #D9D9D9;;
+ }
+ tr:last-child{
+    border: none;
+ }
+ tr:first-child{
+    border: none;
+ }
+
+ .order__table-main th{
     height: 73px;
     font-weight: 400;
     font-size: 24px;
     line-height: 36px;
+    background: rgba(99, 180, 61, 0.7);
+    color:#fff;
+
 }
 .order__table-main td{
+
     height: 117px;
     font-weight: 400;
     font-size: 22px;
     line-height: 33px;
+    background-color: #fff;
 }
 .order__link{
     color: #0038FFD4;
     cursor: pointer;
 }
-

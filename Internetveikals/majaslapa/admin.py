@@ -15,12 +15,16 @@ from modeltranslation.admin import TranslationTabularInline
 # admin.site.register(ProductSpecificationValue)
 admin.site.register(Profile)
 
+@admin.register(Specification)
+class CategoryAdmin(TranslationAdmin):
+    pass
+
 @admin.register(Specification_name)
 class CategoryAdmin(TranslationAdmin):
     pass
 
-class SpecificationInline(TranslationTabularInline):
-    model = Specification
+class SpecificationInline(admin.TabularInline):
+    model = All_specification
 
 
 @admin.register(Category)

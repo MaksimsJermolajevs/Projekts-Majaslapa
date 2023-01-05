@@ -42,6 +42,8 @@ class Category(MPTTModel):
     def __str__(self):
         return self.name
 
+
+
 class Product(models.Model):
     category = models.ForeignKey(Category,on_delete=models.RESTRICT, verbose_name = ('Kategorija'))
     title = models.CharField(
@@ -105,6 +107,22 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+class Specification(models.Model):
+    specification_value = models.CharField(max_length=255)
+    def __str__(self):
+        return self.specification_value
+
+class Specification_name(models.Model):
+    specifications = models.CharField(max_length=255 , null=True)
+    # product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=('Produkta_specifikacijaa'), null=True)
+    # specification = models.ForeignKey(Specification, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.specifications
+
+class All_specification(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=('Produkta_specifikacijaa'), null=True)
+    specification = models.ForeignKey(Specification, on_delete=models.CASCADE, related_name=('Specification_name'), null=True)
+    Specification_name = models.ForeignKey(Specification_name, on_delete=models.CASCADE, related_name=('Specification_name'), null=True)
 
 class ProductImage(models.Model):
 
@@ -162,14 +180,4 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
-
-class Specification_name(models.Model):
-    specification = models.CharField(max_length=255)
-    def __str__(self):
-        return self.specification
-
-class Specification(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=('Produkta_specifikacijaa'), null=True)
-    specification = models.ForeignKey(Specification_name, on_delete=models.CASCADE, related_name=('Specification_name'))
-    specification_value = models.CharField(max_length=255)
 

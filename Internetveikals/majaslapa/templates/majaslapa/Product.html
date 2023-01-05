@@ -107,8 +107,8 @@
 			<div class="sidebar_content">
 				<ul class="list-items">
 					<li class="item">
-						<input type="checkbox" name="filter" id="{{ Specification.specification_value }}" value="{{ Specification.specification_value }}" />
-							<label for="{{ Specification.specification_value }}">{{ Specification.specification_value }}</label>
+						<input type="checkbox" name="filter" id="{{ Specification.Specification_name }}" value="{{ Specification.Specification_name}}" />
+							<label for="{{ Specification.Specification_name }}">{{ Specification.Specification_name }}</label>
 					</li>
 					<input type="submit" value="OK">
 				</ul>
@@ -134,9 +134,10 @@
 				{% endif %}
 				<p>{{ Product.title }}</p>
 				<ul>
-					<li>Intel Core i3-8130U CPU</li>
+					<li>{{All_specification.Specification_name}}</li>
+					{% comment %} <li>Intel Core i3-8130U CPU</li>
 					<li>Intel UHD Graphics 620 GPU</li>
-					<li>8 GB RAM</li>
+					<li>8 GB RAM</li> {% endcomment %}
 				</ul>
 				<div class="product-status">
 					{% if Product.is_active == True %}
