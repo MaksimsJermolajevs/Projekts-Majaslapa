@@ -67,13 +67,13 @@
                 <div class="displayflex">
                     <div class="specleft">
                         <table class="tablel1">
-                            {% for spec in product.Produkta_specifikacija.all %}
+                            {% for spec in spec %}
                             {% if spec.specification_value == 'Yes' %}
                             <tr>
                                 <td><a>{{ spec.specification }}</td>
                                 <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' src="no" %}" /></td>
                             </tr>
-                            {% elif spec.specification_value == 'No'%}
+                            {% elif spec.Specification_name == 'No'%}
                             <tr>
                                 <td><a>{{ spec.specification }}</td>
                                 <td align="right"><img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" /></td>
@@ -81,7 +81,7 @@
                             {% else %}
                             <tr>
                                 <td><a>{{ spec.specification }}</td>
-                                <td align="right"><a>{{spec.specification_value}}</a></td>
+                                <td align="right"><a>{{spec.Specification_name}}</a></td>
                             </tr>
                             {% endif %}
                             {% endfor %}

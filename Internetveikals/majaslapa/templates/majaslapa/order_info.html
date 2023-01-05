@@ -1,0 +1,44 @@
+{% extends 'majaslapa/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+Pasūtijumi
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static '/majaslapa/css/order_info.css' %}">
+{% endblock %}
+
+{% block body %}
+    </header>
+    <main class="order__wrapper">
+        <section class="order__wrap">
+            <div class="order__title">
+                <h1 class="order-title">My orders</h1>
+            </div>
+            <div class="order__table">
+                <table class="order__table-main">
+                    <tr>
+                        <th>Nr.</th>
+                        <th>Product name</th>
+                        <th>Purchase date</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Product link</th>
+                    </tr>
+                    {% for order in order %}
+                    <tr>
+                        <td>{{ order.Order_number }}</td>
+                        <td> {{ order.product}} </td>
+                        <td>{{order.created_at}}</td>
+                        <td>{{order.status}}</td>
+                        <td>{{order.amount}}  €</td>
+                        <td><a class="order__link" href='{% url "product" order.product.slug %}'>Product page</a></td>
+                    </tr>
+                    {% endfor %}
+               </table>
+            </div>
+        </section>
+    </main>
+    {% endblock %}

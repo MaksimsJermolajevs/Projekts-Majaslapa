@@ -36,6 +36,7 @@ urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico'))),
     path('', views.sakums.as_view(),name='sakums'),
     path('account/', account, name='account'),
+    path('account/order/', order, name='order'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
     path('account/login/', loginpage, name='login'),
@@ -82,6 +83,7 @@ urlpatterns = [
     path('category/<str:slug_url>', category.as_view(), name='category'),
     path('logout/', logoutUser, name='logout'),
     path('accounts/', include('allauth.urls')),
+    path('account/order/', order, name='order'),
     path('password/', PasswordsChangeView.as_view(template_name='majaslapa/change-password.html'), name='password'),
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='majaslapa/password_reset.html'), name='reset_password'),

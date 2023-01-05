@@ -1,5 +1,5 @@
 from modeltranslation.translator import register, TranslationOptions, translator
-from .models import Product, Category, Specification
+from .models import Product, Category , Specification, Specification_name
 
 @register(Product)
 class ProductTranslationOption(TranslationOptions):
@@ -13,5 +13,8 @@ class CategoryTranslationOption(TranslationOptions):
 
 @register(Specification)
 class SpecificationTranslationOption(TranslationOptions):
-    fields = ('specification', 'specification_value',)
+    fields = ('specification_value',)
 
+@register(Specification_name)
+class SpecificationTranslationOption(TranslationOptions):
+    fields = ('specifications',)

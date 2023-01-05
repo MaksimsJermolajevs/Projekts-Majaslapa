@@ -26,8 +26,17 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
 from django.db.models import F
+from decimal import Decimal
 
 
+@login_required(login_url='login/')
+def order(request):
+    logined_user = request.user
+    user_id = logined_user.id
+    order = orders.objects.filter(user = user_id)
+    return render(request, 'majaslapa/order_info.html',{
+        'order' : order,
+    })
 
 
 def search(request):
@@ -133,7 +142,6 @@ class category(ListView):
     def get(self, request, slug_url):
 
         filtrs = request.GET.get('filter')
-
         kategorija = Category.objects.get(slug=slug_url)
 
         # Max_price = Product.objects.all().order_by('regular_price')
@@ -148,13 +156,31 @@ class category(ListView):
 
         price_from = request.GET.get('price_from', 0)
         price_to = request.GET.get('price_to', value)
+        sort_order = request.GET.get('sort_order', 'Ascending')
+        sort_order = request.GET.get('sort_order', 'Descending')
+        sort_order = request.GET.get('sort_order', 'AZ')
+        sort_order = request.GET.get('sort_order', 'ZA')
 
+        # sspec = Specification_name.objects.all()
+        # specification = Specification_name.object.all()
+        spec = All_specification.objects.all().filter (product__category = kategorija)
+        spec_product = All_specification.objects.all().filter (product__category = kategorija).filter(product__id = 2)
+
+        #Choices are: id, product, product_id, specification, specification_id, specification_value, specification_value_en, specification_value_lv
 
 
         if filtrs:
-            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).filter(productspecificationvalue__value__contains = filtrs)
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(Q(regular_price__lte=price_to)).filter(Q(Produkta_specifikacijaa__Specification_name = filtrs))
+        elif sort_order == 'Ascending':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('-regular_price')
+        elif sort_order == 'Descending':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('regular_price')
+        elif sort_order == 'AZ':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('title')
+        elif sort_order == 'ZA':
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('-title')
         else:
-            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to)
+            Preces = Product.objects.all().filter (Q(category = kategorija)).order_by('-regular_price')
 
 
         p = Paginator(Preces, 10)
@@ -169,6 +195,8 @@ class category(ListView):
             'kategorija':kategorija,
             'price_from':price_from,
             'price_to':price_to,
+            'Specifikacija':spec,
+            'spec_product' : spec_product
         })
 
 
@@ -178,10 +206,8 @@ def product_info(request, slug_url):
         'Preces' : Product.objects.get(slug=slug_url),
         'product_list': Product.objects.filter(id = Preces.id),
         'image_prod' : ProductImage.objects.filter(product_id = Preces.id),
+        'spec' : All_specification.objects.filter(product_id = Preces.id),
     }
-    if request.method == 'POST':
-        quantity = request.POST.get('quantity')
-        print(quantity)
     return render(request, 'majaslapa/product_info.html', context)
 
 def contact(request):
@@ -361,7 +387,7 @@ def create_checkout_sessionn(request, slug_url):
 
 from django.views.generic import TemplateView
 class SuccessView(TemplateView):
-    template_name = 'majaslapa/test1.html'
+    template_name = 'majaslapa/order_info.html'
 
 
 class CancelledView(TemplateView):

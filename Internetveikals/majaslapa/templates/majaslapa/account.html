@@ -25,7 +25,7 @@
 		<a href="{% url 'password' %}"
 			><input type="button" value="{% trans 'Mainīt paroli' %}"
 		/></a>
-		<input type="button" value="{% trans 'Mani pasūtījumi' %}" />
+		<a href="{% url 'order' %}"><input type="button" value="{% trans 'Mani pasūtījumi' %}" /></a>
 		<a onclick="document.getElementById('id01').style.display='block'"><input type="button" value="{% trans 'Dzēst profilu' %}" class="del" /></a>
 
 		<img src="{{ user.profile.image.url }}" alt="Profile" />
