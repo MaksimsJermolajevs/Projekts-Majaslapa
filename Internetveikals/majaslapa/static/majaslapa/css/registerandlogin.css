@@ -48,10 +48,14 @@ button{
 
 p {
     font-family: 'Montserrat', sans-serif;
-    height: 1px;
+    height: auto;
     width: 10;
     background-color: rgb(0, 0, 0,0.2);
     color: rgb(0, 0, 0, 0.4);
+}
+
+.p {
+    height: 1px;
 }
 
 .Horizontal_line1 {
