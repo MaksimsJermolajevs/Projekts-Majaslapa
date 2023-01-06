@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-20 23:55+0200\n"
+"POT-Creation-Date: 2023-01-06 22:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,32 +21,6 @@ msgstr ""
 #: .\forms.py:48
 msgid "Lietotājs ar šādu e-pastu jau eksistē!"
 msgstr "A user with this e-mail already exists!"
-
-#: .\models.py:22
-msgid "Kategorijas drošs URL"
-msgstr ""
-
-#: .\templates\majaslapa\404.html:20
-msgid "Lapa"
-msgstr "Page"
-
-#: .\templates\majaslapa\404.html:20
-msgid "netika"
-msgstr "not"
-
-#: .\templates\majaslapa\404.html:20
-msgid "atrasta"
-msgstr "found"
-
-#: .\templates\majaslapa\404.html:23
-msgid ""
-"Atvainojiet, mēs nevarējām atrast šo lapu. Bet neuztraucieties, mūsu vietnē "
-"varat atrast daudz citu lietu"
-msgstr "Sorry,we couldn't find this page. But don't worry,you can find plenty of other things on our"
-
-#: .\templates\majaslapa\404.html:23
-msgid "Sākumlapā"
-msgstr "homepage"
 
 #: .\templates\majaslapa\Contact.html:6 .\templates\majaslapa\base.html:30
 msgid "kontakti"
@@ -121,11 +95,27 @@ msgstr "Price"
 msgid "līdz"
 msgstr "to"
 
-#: .\templates\majaslapa\Product.html:108
+#: .\templates\majaslapa\Product.html:52
+msgid "Kārtot pēc"
+msgstr "Sort by"
+
+#: .\templates\majaslapa\Product.html:67
+msgid "Lētākas augšpusē"
+msgstr "Cheaper at the top"
+
+#: .\templates\majaslapa\Product.html:71
+msgid "Dārgākas augšpusē"
+msgstr "More expensive at the top"
+
+#: .\templates\majaslapa\Product.html:117
+msgid "Filtrēt"
+msgstr "Filter"
+
+#: .\templates\majaslapa\Product.html:146
 msgid "Ir pieejams"
 msgstr "Item is available"
 
-#: .\templates\majaslapa\Product.html:111
+#: .\templates\majaslapa\Product.html:149
 msgid "nav pieejams"
 msgstr "Item is not available"
 
@@ -261,6 +251,30 @@ msgstr "Your password can’t be a commonly used password."
 msgid "Jūsu parole nevar būt tikai cipars."
 msgstr "Your password can’t be entirely numeric."
 
+#: .\templates\majaslapa\error\404.html:20
+msgid "Lapa"
+msgstr "Page"
+
+#: .\templates\majaslapa\error\404.html:20
+msgid "netika"
+msgstr "not"
+
+#: .\templates\majaslapa\error\404.html:20
+msgid "atrasta"
+msgstr "found"
+
+#: .\templates\majaslapa\error\404.html:23
+msgid ""
+"Atvainojiet, mēs nevarējām atrast šo lapu. Bet neuztraucieties, mūsu vietnē "
+"varat atrast daudz citu lietu"
+msgstr ""
+"Sorry,we couldn't find this page. But don't worry,you can find plenty of "
+"other things on our"
+
+#: .\templates\majaslapa\error\404.html:23
+msgid "Sākumlapā"
+msgstr "homepage"
+
 #: .\templates\majaslapa\home.html:7
 msgid "Sākums"
 msgstr "Home"
@@ -371,31 +385,31 @@ msgstr "E-mail"
 msgid "Atkārtot paroli"
 msgstr "repeat password"
 
-#: .\views.py:102
+#: .\views.py:111
 msgid "Nav pareizs lietotājvārds vai parole"
 msgstr "Incorrect username or password"
 
-#: .\views.py:117
+#: .\views.py:126
 #, fuzzy
 #| msgid "Reģistrēties"
 msgid "Reģistrācija veiksmīga"
 msgstr "Registration successful"
 
-#: .\views.py:201
+#: .\views.py:227
 msgid "Jūsu vēstule tika nosūtia mums!"
 msgstr "Your letter has been sent to us!"
 
-#: .\views.py:225
+#: .\views.py:251
 msgid ""
 "Paldies par e-pasta apstiprinājumu. Tagad varat pierakstīties savā kontā."
 msgstr ""
 "Thanks for the email confirmation. You can now sign in to your account."
 
-#: .\views.py:228
+#: .\views.py:254
 msgid "Aktivizācijas saite nav derīga!"
 msgstr "Activation link is invalid!"
 
-#: .\views.py:252
+#: .\views.py:278
 #, python-brace-format
 msgid ""
 "Cien {user}, lūdzu dodieties uz e-pasta {Email} iesūtni un noklikšķiniet "
@@ -406,7 +420,7 @@ msgstr ""
 "link to confirm and complete registration. Note: If you do not see the "
 "email, please check your spam folder."
 
-#: .\views.py:255
+#: .\views.py:281
 #, python-brace-format
 msgid ""
 "Notika problēma, sūtot e-pastu uz {Email}, pārbaudiet, vai ierakstījāt "
