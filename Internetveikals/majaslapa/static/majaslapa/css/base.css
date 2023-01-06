@@ -182,7 +182,7 @@ transition: all 0.3s ease 0s;
     margin-right: 12px;
 }
 
-@media (max-width: 1553px){
+/* @media (max-width: 5000px){
     .right_menu{
         display: none;
         top: 20px;
@@ -204,7 +204,7 @@ transition: all 0.3s ease 0s;
         padding-left: 4px;
     }
 
-}
+} */
 
 
 .boxContainer{

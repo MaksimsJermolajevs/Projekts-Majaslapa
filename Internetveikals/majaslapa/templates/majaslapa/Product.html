@@ -64,11 +64,11 @@
 		<div class="sidebar_content" name="sort_order" data-name="check">
 			<div class='checkbox-container'>
 				<input type='checkbox' id='cb1'  name='sort_order' value='Descending' onclick="onlyOne(this)">
-				<label for='cb1'>Lētākas augšpusē</label>
+				<label for='cb1'>{% trans 'Lētākas augšpusē' %}</label>
 			</div>
 			<div class='checkbox-container'>
 				<input type='checkbox' id='cb2' name='sort_order'  value='Ascending' onclick="onlyOne(this)">
-				<label for='cb2'>Dārgākas augšpusē</label>
+				<label for='cb2'>{% trans 'Dārgākas augšpusē' %}</label>
 			</div>
 			<div class='checkbox-container'>
 				<input type='checkbox' id='cb3' name='sort_order' value='AZ' onclick="onlyOne(this)">
@@ -84,7 +84,6 @@
 				<option value="Ascending">Ascending</option>
 				<option value="Descending">Descending</option>
 			</select> {% endcomment %}
-			<button type="submit">Sort</button>
 		</div>
 	</form>
 	</div>
@@ -110,11 +109,11 @@
 						<input type="checkbox" name="filter" id="{{ Specification.Specification_name }}" value="{{ Specification.Specification_name}}" />
 							<label for="{{ Specification.Specification_name }}">{{ Specification.Specification_name }}</label>
 					</li>
-					<input type="submit" value="OK">
 				</ul>
 			</div>
 
 			{% endfor %}
+			<button type="submit">Filtrēt</button>
 
 		</div>
 	</div>

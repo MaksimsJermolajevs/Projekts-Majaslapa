@@ -54,14 +54,6 @@ rangeInput.forEach(input =>{
 });
 
 
-const selectElement = document.querySelector('.sidebar_content');
-const submit = document.querySelector('#submit');
-
-selectElement.addEventListener('change', (event) => {
-    (submit).submit()
-});
-
-
 //checkbox
 var last;
 document.addEventListener('input',(e)=>{

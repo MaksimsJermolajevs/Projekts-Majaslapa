@@ -19,7 +19,7 @@ class Category(MPTTModel):
     unique= True
     )
 
-    slug = models.SlugField(verbose_name=_('Kategorijas drošs URL'), max_length=250, unique = True, )
+    slug = AutoSlugField(populate_from='name',max_length=255, verbose_name = ('tīmekļa adreses identifikācija'), unique=True)
     parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name = 'children',verbose_name = ('Līdzīgie produkti'))
     is_active = models.BooleanField(default=True,verbose_name = ('Ir aktīvs'))
     image =models.ImageField(
@@ -76,7 +76,8 @@ class Product(models.Model):
         },
         max_digits=6,
         decimal_places=2,
-        blank=True
+        null= True,
+        blank= True
     )
 
     quantity = models.IntegerField(default= 0)
