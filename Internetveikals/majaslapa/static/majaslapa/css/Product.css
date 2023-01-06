@@ -328,4 +328,16 @@ ul li{
 }
 
 
+button{
+    font-size:15px;
+    margin-top: 1.8rem;
+    padding: 10px 0;
+    border-radius: 14px;
+    outline: none;
+    border: none;
+    width: 100%;
+    color: #fff;
+    cursor:pointer;
+    background: rgba(99, 180, 61, 0.7);
 
+}
