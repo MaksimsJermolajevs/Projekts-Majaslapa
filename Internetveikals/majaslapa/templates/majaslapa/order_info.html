@@ -15,17 +15,17 @@ Pasūtijumi
     <main class="order__wrapper">
         <section class="order__wrap">
             <div class="order__title">
-                <h1 class="order-title">My orders</h1>
+                <h1 class="order-title">{% trans 'Mani pastijumi' %}</h1>
             </div>
             <div class="order__table">
                 <table class="order__table-main">
                     <tr>
                         <th>Nr.</th>
-                        <th>Product name</th>
-                        <th>Purchase date</th>
+                        <th>{% trans 'Produkta nosaukums'%}/th>
+                        <th>{% trans 'Pirkšanas datums un laiks'%}/th>
                         <th>Status</th>
-                        <th>Total</th>
-                        <th>Product link</th>
+                        <th>{% trans 'Cena' %}</th>
+                        <th>{% trans 'Produkta lapa' %}/th>
                     </tr>
                     {% for order in order %}
                     <tr>

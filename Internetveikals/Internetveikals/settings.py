@@ -34,7 +34,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+<<<<<<< HEAD
 CSRF_TRUSTED_ORIGINS = ["https://c908-212-142-81-248.eu.ngrok.io"]
+=======
+CSRF_TRUSTED_ORIGINS = ["https://5245-212-142-81-248.eu.ngrok.io"]
+>>>>>>> 0637f7de173312cc7d6e6c8915c2e713e119e577
 
 
 

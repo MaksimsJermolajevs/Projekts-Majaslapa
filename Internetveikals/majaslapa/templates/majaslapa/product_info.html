@@ -8,9 +8,9 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static '/majaslapa/css/product_info.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet"> {% endcomment %}
     <script src="https://use.fontawesome.com/42a043e373.js"></script>
 {% endblock %}
 
@@ -59,31 +59,31 @@
         <div class="productbot">
             <div class="tabsname">
                 <ul>
-                    <li data-tab-target="#tehniskaspec1" class="active tab" ><p>{%trans 'Tehniskā specifikācija'%}</p></li>
-                    <li data-tab-target="#prodapraksts1" class="tab"><p>{%trans 'Preces apraksts'%}</p></li>
+                    <li data-tab-target="#tehniskaspec1" class="active tab" ><p>{% trans 'Tehniskā specifikācija' %}</p></li>
+                    <li data-tab-target="#prodapraksts1" class="tab"><p>{% trans 'Preces apraksts' %}</p></li>
                 </ul>
             </div>
             <div class="active tehniskaspec" id="tehniskaspec1" data-tab-content>
                 <div class="displayflex">
                     <div class="specleft">
                         <table class="tablel1">
-                            {% for spec in spec %}
-                            {% if spec.specification_value == 'Yes' %}
-                            <tr>
-                                <td><a>{{ spec.specification }}</td>
-                                <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' src="no" %}" /></td>
-                            </tr>
-                            {% elif spec.Specification_name == 'No'%}
-                            <tr>
-                                <td><a>{{ spec.specification }}</td>
-                                <td align="right"><img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" /></td>
-                            </tr>
-                            {% else %}
-                            <tr>
-                                <td><a>{{ spec.specification }}</td>
-                                <td align="right"><a>{{spec.Specification_name}}</a></td>
-                            </tr>
-                            {% endif %}
+                            {% for specification in spec %}
+                                {% if specification.Specification_name.id == 9 %}
+                                    <tr>
+                                        <td><a>{{ specification.specification }}</td>
+                                        <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' src="no" %}" /></td>
+                                    </tr>
+                                {% elif specification.Specification_name.id == 12 %}
+                                    <tr>
+                                        <td><a>{{ specification.specification }}</td>
+                                        <td align="right"><img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" /></td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td><a>{{ specification.specification }}</td>
+                                        <td align="right"><a>{{specification.Specification_name}}</a></td>
+                                    </tr>
+                                {% endif %}
                             {% endfor %}
 
                         </table>
