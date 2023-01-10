@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-06 22:46+0200\n"
+"POT-Creation-Date: 2023-01-11 01:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,6 +88,7 @@ msgid "Filtri"
 msgstr "Filters"
 
 #: .\templates\majaslapa\Product.html:25 .\templates\majaslapa\cart.html:24
+#: .\templates\majaslapa\order_info.html:27
 msgid "Cena"
 msgstr "Price"
 
@@ -107,15 +108,15 @@ msgstr "Cheaper at the top"
 msgid "Dārgākas augšpusē"
 msgstr "More expensive at the top"
 
-#: .\templates\majaslapa\Product.html:117
+#: .\templates\majaslapa\Product.html:121
 msgid "Filtrēt"
 msgstr "Filter"
 
-#: .\templates\majaslapa\Product.html:146
+#: .\templates\majaslapa\Product.html:153
 msgid "Ir pieejams"
 msgstr "Item is available"
 
-#: .\templates\majaslapa\Product.html:149
+#: .\templates\majaslapa\Product.html:156
 msgid "nav pieejams"
 msgstr "Item is not available"
 
@@ -307,6 +308,26 @@ msgstr "Sign in using Google"
 msgid "Pierakstieties, izmantojot Facebook"
 msgstr "Sign in using Facebook"
 
+#: .\templates\majaslapa\order_info.html:18
+#| msgid "Mani pasūtījumi"
+msgid "Mani pastijumi"
+msgstr "My orders"
+
+#: .\templates\majaslapa\order_info.html:24
+
+#| msgid "Produkts"
+msgid "Produkta nosaukums"
+msgstr "Product name"
+
+#: .\templates\majaslapa\order_info.html:25
+msgid "Pirkšanas datums un laiks"
+msgstr "Purchase date"
+
+#: .\templates\majaslapa\order_info.html:28
+#| msgid "Produkts"
+msgid "Produkta lapa"
+msgstr "Product link"
+
 #: .\templates\majaslapa\password_reset.html:6
 #: .\templates\majaslapa\password_reset.html:17
 #: .\templates\majaslapa\password_reset_complete.html:6
@@ -355,23 +376,23 @@ msgstr ""
 "If you do not receive an email, please make sure you have entered a "
 "registered address and check your spam folder."
 
-#: .\templates\majaslapa\product_info.html:46
+#: .\templates\majaslapa\product_info.html:47
 msgid "Daudzums:"
 msgstr "Quantity:"
 
-#: .\templates\majaslapa\product_info.html:51
+#: .\templates\majaslapa\product_info.html:52
 msgid "Pirkt"
 msgstr "Check Out"
 
-#: .\templates\majaslapa\product_info.html:52
+#: .\templates\majaslapa\product_info.html:53
 msgid "Ielikt Grozā"
 msgstr "Add To Cart"
 
-#: .\templates\majaslapa\product_info.html:62
+#: .\templates\majaslapa\product_info.html:63
 msgid "Tehniskā specifikācija"
 msgstr "Technical specification"
 
-#: .\templates\majaslapa\product_info.html:63
+#: .\templates\majaslapa\product_info.html:64
 msgid "Preces apraksts"
 msgstr "Product description"
 

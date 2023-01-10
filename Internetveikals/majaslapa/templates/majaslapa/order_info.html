@@ -21,11 +21,11 @@ Pasūtijumi
                 <table class="order__table-main">
                     <tr>
                         <th>Nr.</th>
-                        <th>{% trans 'Produkta nosaukums'%}/th>
-                        <th>{% trans 'Pirkšanas datums un laiks'%}/th>
+                        <th>{% trans 'Produkta nosaukums' %} </th>
+                        <th>{% trans 'Pirkšanas datums un laiks'%} </th>
                         <th>Status</th>
                         <th>{% trans 'Cena' %}</th>
-                        <th>{% trans 'Produkta lapa' %}/th>
+                        <th>{% trans 'Produkta lapa' %} </th>
                     </tr>
                     {% for order in order %}
                     <tr>
@@ -34,7 +34,7 @@ Pasūtijumi
                         <td>{{order.created_at}}</td>
                         <td>{{order.status}}</td>
                         <td>{{order.amount}}  €</td>
-                        <td><a class="order__link" href='{% url "product" order.product.slug %}'>Product page</a></td>
+                        <td><a class="order__link" href='{% url "product" order.product.slug %}'>{% trans 'Produkta lapa' %}</a></td>
                     </tr>
                     {% endfor %}
                </table>
