@@ -15,16 +15,6 @@ from modeltranslation.admin import TranslationTabularInline
 # admin.site.register(ProductSpecificationValue)
 admin.site.register(Profile)
 
-@admin.register(Specification)
-class CategoryAdmin(TranslationAdmin):
-    pass
-
-@admin.register(Specification_name)
-class CategoryAdmin(TranslationAdmin):
-    pass
-
-class SpecificationInline(admin.TabularInline):
-    model = All_specification
 
 
 @admin.register(Category)
@@ -38,6 +28,21 @@ class CategoryAdmin(TranslationAdmin):
     search_fields = ('name',)
     list_filter = ['is_active']
 
+
+
+class ProductSpecificationInline(admin.TabularInline):
+    model = ProductSpecification
+
+@admin.register(ProductType)
+class ProductTypeAdmin(admin.ModelAdmin):
+    inlines = [
+        ProductSpecificationInline,
+    ]
+    search_fields = ('name', )
+
+
+class ProductSpecificationValueInline(admin.TabularInline):
+    model = ProductSpecificationValue
 # class ProductSpecificationInline(admin.TabularInline):
     # def formfield_for_foreignkey(self, db_field, request, **kwargs):
     #       kwargs['queryset'] = ProductSpecification.objects.filter(product_id= Product.id)
@@ -60,7 +65,7 @@ class ProductImageInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(TranslationAdmin):
     inlines = [
-        ProductImageInline, SpecificationInline
+        ProductImageInline, ProductSpecificationValueInline
     ]
 
     def image_tag(self, obj):

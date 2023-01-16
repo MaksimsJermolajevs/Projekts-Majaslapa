@@ -163,14 +163,12 @@ class category(ListView):
 
         # sspec = Specification_name.objects.all()
         # specification = Specification_name.object.all()
-        spec = All_specification.objects.all().filter (product__category = kategorija)
-        spec_product = All_specification.objects.all().filter (product__category = kategorija).filter(product__id = 2)
 
         #Choices are: id, product, product_id, specification, specification_id, specification_value, specification_value_en, specification_value_lv
 
 
         if filtrs:
-            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(Q(regular_price__lte=price_to)).filter(Q(Produkta_specifikacijaa__Specification_name = filtrs))
+            Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(Q(regular_price__lte=price_to)).filter(productspecificationvalue__value__contains = filtrs)
         elif sort_order == 'Ascending':
             Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('-regular_price')
         elif sort_order == 'Descending':
@@ -181,6 +179,19 @@ class category(ListView):
             Preces = Product.objects.all().filter (Q(category = kategorija)).filter(regular_price__gte=price_from).filter(regular_price__lte=price_to).order_by('-title')
         else:
             Preces = Product.objects.all().filter (Q(category = kategorija)).order_by('-regular_price')
+
+
+
+        if Product.objects.all().filter (Q(category = kategorija)):
+            obj  = Product.objects.all().filter (Q(category = kategorija)).first()
+            Specifikacija = ProductSpecification.objects.all().filter(Q(Product_type__id__contains= obj.product_type.id))
+            SpecifikacijaVertiba = ProductSpecificationValue.objects.all()
+        else:
+            Specifikacija = ''
+            SpecifikacijaVertiba = ''
+
+        if SpecifikacijaVertiba == SpecifikacijaVertiba:
+            SpecifikacijaVertiba == ''
 
 
         p = Paginator(Preces, 10)
@@ -195,8 +206,9 @@ class category(ListView):
             'kategorija':kategorija,
             'price_from':price_from,
             'price_to':price_to,
-            'Specifikacija':spec,
-            'spec_product' : spec_product
+            'Specifikacija':Specifikacija,
+            'spec_product' : SpecifikacijaVertiba,
+            'spec' : ProductSpecificationValue.objects.all(),
         })
 
 
@@ -206,7 +218,7 @@ def product_info(request, slug_url):
         'Preces' : Product.objects.get(slug=slug_url),
         'product_list': Product.objects.filter(id = Preces.id),
         'image_prod' : ProductImage.objects.filter(product_id = Preces.id),
-        'spec' : All_specification.objects.filter(product_id = Preces.id),
+        'spec' : ProductSpecificationValue.objects.filter(product_id = Preces.id),
     }
     return render(request, 'majaslapa/product_info.html', context)
 

@@ -42,9 +42,31 @@ class Category(MPTTModel):
     def __str__(self):
         return self.name
 
+class ProductType(models.Model):
 
+    name = models.CharField(verbose_name=('Produkta nosaukums'), help_text='Obligāti', max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = ('Produkta veids')
+        verbose_name_plural = ('Produkta veidi')
+
+    def __str__(self):
+        return self.name
+
+class ProductSpecification(models.Model):
+
+    Product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+    name = models.CharField(verbose_name=('Nosaukums'),help_text='Obligāti', max_length=255)
+
+    class Meta:
+        verbose_name = ('Produkta specifikācija')
+        verbose_name_plural = ('Produkta specifikācijas')
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
+    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT, verbose_name = ('Produkta Veids'), null=True)
     category = models.ForeignKey(Category,on_delete=models.RESTRICT, verbose_name = ('Kategorija'))
     title = models.CharField(
         verbose_name = ('Nosaukums'),
@@ -107,23 +129,22 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+class ProductSpecificationValue(models.Model):
 
-class Specification(models.Model):
-    specification_value = models.CharField(max_length=255)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    specification = models.ForeignKey(ProductSpecification, on_delete=models.RESTRICT)
+    value = models.CharField(
+        verbose_name=('Vērtība'),
+        help_text= ('Produkta specifikācijas vērtība (maksimums 255 vārdi)'),
+        max_length=255,
+    )
+
+    class Meta:
+        verbose_name = 'Produkta specifikacijas vērtība'
+        verbose_name_plural = 'Produkta specifikacijas vērtības'
+
     def __str__(self):
-        return self.specification_value
-
-class Specification_name(models.Model):
-    specifications = models.CharField(max_length=255 , null=True)
-    # product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=('Produkta_specifikacijaa'), null=True)
-    # specification = models.ForeignKey(Specification, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.specifications
-
-class All_specification(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name=('Produkta_specifikacijaa'), null=True)
-    specification = models.ForeignKey(Specification, on_delete=models.CASCADE, related_name=('Specification_name'), null=True)
-    Specification_name = models.ForeignKey(Specification_name, on_delete=models.CASCADE, related_name=('Specification_name'), null=True)
+        return self.value
 
 class ProductImage(models.Model):
 

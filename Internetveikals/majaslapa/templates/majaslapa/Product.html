@@ -91,10 +91,8 @@
 
 		<div class="filter_title">
 			{% for Specification in Specifikacija %}
-			{% if  Specification.specification == '' %}
-			{% else %}
 			<div class="acardion">
-				<a>{{ Specification.specification }}</a>
+				<a>{{ Specification.name }}</a>
 				<svg width="15" height="10" viewBox="0 0 42 25">
 					<path
 						d="M3 3L21 21L39 3"
@@ -107,15 +105,16 @@
 			</div>
 			<div class="sidebar_content">
 				<ul class="list-items">
-					<li class="item">
-						<input type="checkbox" name="filter" id="{{ Specification.Specification_name }}" value="{{ Specification.Specification_name}}" />
-							<label for="{{ Specification.specification.Specification_name }}">{{ Specification.Specification_name }}</label>
-					</li>
+						{% for spec_product in spec_product %}
+						{% if Specification == spec_product.specification  %}
+						<li class="item">
+						<input type="checkbox" name="filter" id='{{ spec_product.value }}' value="{{ spec_product.value}}" />
+							<label for="{{ spec_product.value }}">{{ spec_product.value}}</label>
+						</li>
+						{% endif %}
+						{% endfor %}
 				</ul>
 			</div>
-
-			{% endif %}
-
 			{% endfor %}
 			<button type="submit">{% trans 'Filtrēt' %}</button>
 
@@ -136,11 +135,13 @@
 					<h2>{{ Product.discount_price }} </h2>
 				{% endif %}
 				<p>{{ Product.title }}</p>
-		
+				
 				<ul>
-					<li>{{All_specification.Specification_name}}</li>
-					<li></li>
-					<li></li>
+					 {% for spec_product in spec %}
+						{% if spec_product.product.id ==  Product.id %}
+							<li>{{spec_product.value}}</li>
+						{% endif %}
+					{% endfor %}
 				</ul>
 					{% comment %} <li>Intel Core i3-8130U CPU</li>
 					<li>Intel UHD Graphics 620 GPU</li>

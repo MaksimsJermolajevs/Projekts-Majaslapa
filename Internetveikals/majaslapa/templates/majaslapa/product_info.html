@@ -68,12 +68,12 @@
                     <div class="specleft">
                         <table class="tablel1">
                             {% for specification in spec %}
-                                {% if specification.Specification_name.id == 9 %}
+                                {% if specification.value == 'Yes'%}
                                     <tr>
                                         <td><a>{{ specification.specification }}</td>
                                         <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' src="no" %}" /></td>
                                     </tr>
-                                {% elif specification.Specification_name.id == 12 %}
+                                {% elif specification.value == 'No' %}
                                     <tr>
                                         <td><a>{{ specification.specification }}</td>
                                         <td align="right"><img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" /></td>
@@ -81,7 +81,7 @@
                                 {% else %}
                                     <tr>
                                         <td><a>{{ specification.specification }}</td>
-                                        <td align="right"><a>{{specification.Specification_name}}</a></td>
+                                        <td align="right"><a>{{specification.value}}</a></td>
                                     </tr>
                                 {% endif %}
                             {% endfor %}
