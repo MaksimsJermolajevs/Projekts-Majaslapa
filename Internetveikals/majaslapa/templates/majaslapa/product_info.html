@@ -7,135 +7,144 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static '/majaslapa/css/product_info.css' %}">
-    {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet"> {% endcomment %}
-    <script src="https://use.fontawesome.com/42a043e373.js"></script>
+<link rel="stylesheet" href="{% static '/majaslapa/css/product_info.css' %}">
+{% comment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@400;700&family=Roboto&display=swap"
+    rel="stylesheet"> {% endcomment %}
+<script src="https://use.fontawesome.com/42a043e373.js"></script>
 {% endblock %}
 
 {% block body %}
 {% for product in product_list %}
-    <div class="productdetail">
-        <div  class="producttop">
-            <div class="photos">
-                <div class="mainimage">
-                    <img src="{{Preces.image.url}}"  id="imagebox">
-                </div>
-               <div class="small-img">
-                    <img src="{{Preces.image.url}}" onclick="clickimg(this)">
-                    {% for image in image_prod %}
-                        <img src="{{image.image.url}}" onclick="clickimg(this)">
-                    {%endfor%}
-               </div>
+<div class="productdetail">
+    <div class="producttop">
+        <div class="photos">
+            <div class="mainimage">
+                <img src="{{Preces.image.url}}" id="imagebox">
             </div>
-            <div class="priceandbuy">
-                <div class="prodname">
-                    <p>{{ Preces.title }}</p>
-                </div>
-                <div class="buttons price">
-                    {% if Preces.discount_price is null %}
-					<h1>{{ Preces.regular_price }}  € </h1>
-				{% else %}
-					<h3> <del>{{ Preces.regular_price }}   €</del> </h3>
-					<h2>{{ Preces.discount_price }}  € </h2>
-				{% endif %}
-                </div>
-                <div class="buttons buttonsb">
-                    <div class="inputb">
+            <div class="small-img">
+                <img src="{{Preces.image.url}}" onclick="clickimg(this)">
+                {% for image in image_prod %}
+                <img src="{{image.image.url}}" onclick="clickimg(this)">
+                {%endfor%}
+            </div>
+        </div>
+        <div class="priceandbuy">
+            <div class="prodname">
+                <p>{{ Preces.title }}</p>
+            </div>
+            <div class="buttons price">
+                {% if Preces.discount_price is null %}
+                <h1>{{ Preces.regular_price }} € </h1>
+                {% else %}
+                <h3> <del>{{ Preces.regular_price }} €</del> </h3>
+                <h2>{{ Preces.discount_price }} € </h2>
+                {% endif %}
+            </div>
+            <div class="buttons buttonsb">
+                <!-- <div class="inputb">
                         <a>{% trans 'Daudzums:' %} </a>
                         <input type="number" value="1" min='1' max='{{ Preces.quantity }}' name='quantity' id='quantity'>
-                    </div>
-                    {% if Preces.is_active == True %}
-                    <div class="inputc">
-                        <button class="checkout1" class="button is-primary" id="submitBtn">{% trans 'Pirkt' %}</button>
-                        <a href="{% url 'cart_add' Preces.id %}"> <button class="addtocart">{% trans 'Ielikt Grozā' %}</button></a>
-                    </div>
-                    {% else %}
-                    {% endif %}
+                    </div> -->
+                {% if Preces.is_active == True %}
+                <div class="inputc">
+                    <button class="checkout1" class="button is-primary" id="submitBtn">{% trans 'Pirkt' %}</button>
+                    <a href="{% url 'cart_add' Preces.id %}"> <button class="addtocart">
+                            {% trans 'Ielikt Grozā' %}</button></a>
                 </div>
+                {% else %}
+                {% endif %}
             </div>
         </div>
-        <div class="productbot">
-            <div class="tabsname">
-                <ul>
-                    <li data-tab-target="#tehniskaspec1" class="active tab" ><p>{% trans 'Tehniskā specifikācija' %}</p></li>
-                    <li data-tab-target="#prodapraksts1" class="tab"><p>{% trans 'Preces apraksts' %}</p></li>
-                </ul>
-            </div>
-            <div class="active tehniskaspec" id="tehniskaspec1" data-tab-content>
-                <div class="displayflex">
-                    <div class="specleft">
-                        <table class="tablel1">
-                            {% for specification in spec %}
-                                {% if specification.value == 'Yes'%}
-                                    <tr>
-                                        <td><a>{{ specification.specification }}</td>
-                                        <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' src="no" %}" /></td>
-                                    </tr>
-                                {% elif specification.value == 'No' %}
-                                    <tr>
-                                        <td><a>{{ specification.specification }}</td>
-                                        <td align="right"><img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" /></td>
-                                    </tr>
-                                {% else %}
-                                    <tr>
-                                        <td><a>{{ specification.specification }}</td>
-                                        <td align="right"><a>{{specification.value}}</a></td>
-                                    </tr>
-                                {% endif %}
-                            {% endfor %}
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="prodapraksts" id="prodapraksts1" data-tab-content>
-                <p>{{ Preces.desciption }}</p>
-            </div>
-        </div>
-
     </div>
-    {% endfor %}
+    <div class="productbot">
+        <div class="tabsname">
+            <ul>
+                <li data-tab-target="#tehniskaspec1" class="active tab">
+                    <p>{% trans 'Tehniskā specifikācija' %}</p>
+                </li>
+                <li data-tab-target="#prodapraksts1" class="tab">
+                    <p>{% trans 'Preces apraksts' %}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="active tehniskaspec" id="tehniskaspec1" data-tab-content>
+            <div class="displayflex">
+                <div class="specleft">
+                    <table class="tablel1">
+                        {% for specification in spec %}
+                        {% if specification.value == 'Yes'%}
+                        <tr>
+                            <td><a>{{ specification.specification }}</td>
+                            <td align="right"><img class='image' src="{% static '/majaslapa/image/CheckIcon.png' %}"
+                                    %}" /></td>
+                        </tr>
+                        {% elif specification.value == 'No' %}
+                        <tr>
+                            <td><a>{{ specification.specification }}</td>
+                            <td align="right"><img class='image' src="{% static '/majaslapa/image/Checkno.png' %}" />
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td><a>{{ specification.specification }}</td>
+                            <td align="right"><a>{{specification.value}}</a></td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
 
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="prodapraksts" id="prodapraksts1" data-tab-content>
+            <p>{{ Preces.desciption }}</p>
+        </div>
+    </div>
 
-    <script>
-        console.log("Sanity check!");
+</div>
+{% endfor %}
 
-        // Get Stripe publishable key
-        fetch("/config/")
+<script src="https://js.stripe.com/v3/"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+    console.log("Sanity check!");
+
+    // Get Stripe publishable key
+    fetch("/config/")
         .then((result) => { return result.json(); })
         .then((data) => {
-          // Initialize Stripe.js
-          const stripe = Stripe(data.publicKey);
+            // Initialize Stripe.js
+            const stripe = Stripe(data.publicKey);
 
-          // new
-          // Event handler
-          document.querySelector("#submitBtn").addEventListener("click", () => {
-            // Get Checkout Session ID
-            fetch("/{{ Preces.slug }}/create-checkout-session/")
-            .then((result) => { return result.json(); })
-            .then((data) => {
-              console.log(data);
-              // Redirect to Stripe Checkout
-              return stripe.redirectToCheckout({sessionId: data.sessionId})
-            })
-            .then((res) => {
-              console.log(res);
+            // new
+            // Event handler
+            document.querySelector("#submitBtn").addEventListener("click", () => {
+                // Get Checkout Session ID
+                fetch("/{{ Preces.slug }}/create-checkout-session/")
+                    .then((result) => { return result.json(); })
+                    .then((data) => {
+                        console.log(data);
+                        // Redirect to Stripe Checkout
+                        return stripe.redirectToCheckout({ sessionId: data.sessionId })
+                    })
+                    .then((res) => {
+                        console.log(res);
+                    });
             });
-          });
         });
 
-          const selectElement = document.querySelector('#quantity');
-          const submit = document.querySelector('#submitBtn');
+    const selectElement = document.querySelector('#quantity');
+    const submit = document.querySelector('#submitBtn');
 
-          selectElement.addEventListener('change', (event) => {
-              (submit).submit()
-          });
-    </script>
-    {% endblock %}
+    selectElement.addEventListener('change', (event) => {
+        (submit).submit()
+    });
+</script>
+{% endblock %}
 
 {% block js %}
 <script src="{% static '/majaslapa/js/product_info.js' %}"></script>

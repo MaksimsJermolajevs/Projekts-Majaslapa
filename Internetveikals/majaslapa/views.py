@@ -155,7 +155,7 @@ class category(ListView):
             value = 0
 
         price_from = request.GET.get('price_from', 0)
-        price_to = request.GET.get('price_to', value)
+        price_to = request.GET.get('price_to', 1000)
         sort_order = request.GET.get('sort_order', 'Ascending')
         sort_order = request.GET.get('sort_order', 'Descending')
         sort_order = request.GET.get('sort_order', 'AZ')

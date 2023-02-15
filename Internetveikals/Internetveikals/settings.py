@@ -11,11 +11,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+from django.contrib.messages import constants as message_constants
 from django.utils.translation import gettext_lazy as _
 from msilib.schema import Media
 from pathlib import Path
 import os
-from decouple import config
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
@@ -34,11 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ["https://c908-212-142-81-248.eu.ngrok.io"]
-
-CSRF_TRUSTED_ORIGINS = ["https://5245-212-142-81-248.eu.ngrok.io"]
-
-
+CSRF_TRUSTED_ORIGINS = ["https://ab43-77-219-11-16.eu.ngrok.io"]
 
 
 # Application definition
@@ -77,7 +73,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
-LOGIN_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,13 +107,12 @@ TEMPLATES = [
 ]
 
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Internetveikals',
         'HOST': '127.0.0.1',
         'PORT': '3306',
@@ -125,7 +120,7 @@ DATABASES = {
         'PASSWORD': '',
         'OPTIONS': {
             'charset': 'utf8mb4',
-    }
+        }
     }
 }
 
@@ -175,11 +170,11 @@ MEDIA_URL = '/media/'
 
 if DEBUG:
 
-  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 else:
 
-  STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -189,7 +184,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 
-
+# E-pasta pievienošana
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -199,7 +194,11 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'baltictechh@gmail.com'
 EMAIL_HOST_PASSWORD = 'qzuuduwbnktnlhkc'
 
-gettext = lambda s: s
+
+# Lokalizētās valodas
+def gettext(s): return s
+
+
 LANGUAGES = (
     ('lv', gettext('Latvian')),
     ('en', gettext('English'))
@@ -207,8 +206,8 @@ LANGUAGES = (
 
 PARLER_LANGUAGES = {
     None: (
-        {'code': 'lv',}, # Latvian
-        {'code': 'en',}, # English
+        {'code': 'lv', },  # Latvian
+        {'code': 'en', },  # English
     ),
     'default': {
         'fallbacks': ['lv'],
@@ -219,6 +218,8 @@ PARLER_LANGUAGES = {
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'lv'
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
 
+
+# Admin lapas konfigurācija
 JAZZMIN_SETTINGS = {
     "site_title": "Admins",
     "site_header": "Admins lapa",
@@ -229,14 +230,15 @@ JAZZMIN_SETTINGS = {
     "language_chooser": True
 }
 
-
+# groza configs
 CART_SESSION_ID = 'cart'
 
-APPEND_SLASH=False
+
+# stripe konfigurācija
+APPEND_SLASH = False
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51M5VxtAiAB9ovPLga1k2eSAWMRn7F6vw40FGkloEscteVnlNmD1zOILAnCpgdroNDXRWFuhNiDtpOPu7z8ffVZzo00QZVw6MIz'
 STRIPE_SECRET_KEY = 'sk_test_51M5VxtAiAB9ovPLgA2df0XbLinZBiwnZwVCF3rOfGBVMgInrqZZzIiIRXs5SGYBpvFQ6yqInTGWu9KTziIV49Ue100b3VTJZTE'
 STRIPE_ENDPOINT_SECRET = 'whsec_3968e39f8d852940ae08b12da5496411298768c227beb093cd8d68075fd33bc7'
 
 
-from django.contrib.messages import constants as message_constants
 MESSAGE_LEVEL = message_constants.DEBUG

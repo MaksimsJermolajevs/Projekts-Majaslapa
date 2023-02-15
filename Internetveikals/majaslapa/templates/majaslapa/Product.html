@@ -16,168 +16,161 @@
 <div class="site_center">
 	<form method="GET" id='submit'>
 		{% csrf_token %}
-	<div class="sidebar">
-		<div class="filter_title_main">
-			<a>{% trans 'Filtri' %}</a>
-		</div>
-		<div class="filter_title">
-			<div class="acardion">
-				<a>{% trans 'Cena' %}</a>
-				<svg width="15" height="10" viewBox="0 0 42 25">
-					<path
-						d="M3 3L21 21L39 3"
-						stroke="black"
-						stroke-width="7"
-						fill="none"
-						stroke-linejoin="round"
-					/>
-				</svg>
+		<div class="sidebar">
+			<div class="filter_title_main">
+				<a>{% trans 'Filtri' %}</a>
 			</div>
-			<div class="sidebar_content">
-				<form method="POST" action="">
-				<div class="input1">
-					<input type="number" value="0" name="price_from" />
-					<a>{% trans 'līdz' %}</a>
-					<input type="number" value="{{price_to}}" name="price_to" />
-					<div class="slider">
-						<div class="progress"></div>
+			<div class="filter_title">
+				<div class="acardion">
+					<a>{% trans 'Cena' %}</a>
+					<svg width="15" height="10" viewBox="0 0 42 25">
+						<path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" fill="none" stroke-linejoin="round" />
+					</svg>
+				</div>
+				<div class="sidebar_content">
+					<form method="POST" action="">
+						<div class="input1">
+							<input type="number" value="0" name="price_from" />
+							<a>{% trans 'līdz' %}</a>
+							<input type="number" value="{{price_to}}" name="price_to" />
+							<div class="slider">
+								<div class="progress"></div>
+							</div>
+							<div class="range-input">
+								<input type="range" class="range-min" min="0" max="1000" value="0" step="1" />
+								<input type="range" class="range-max" min="0" max="1000" value="{{price_to}}"
+									step="1" />
+							</div>
+						</div>
+				</div>
+				<div class="acardion">
+					<a>{% trans 'Kārtot pēc' %}</a>
+					<svg width="15" height="10" viewBox="0 0 42 25">
+						<path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" fill="none" stroke-linejoin="round" />
+					</svg>
+				</div>
+				<form method="GET">
+					<div class="sidebar_content" name="sort_order" data-name="check">
+						<div class='checkbox-container'>
+							<input type='checkbox' id='cb1' name='sort_order' value='Descending'
+								onclick="onlyOne(this)">
+							<label for='cb1'>{% trans 'Lētākas augšpusē' %}</label>
+						</div>
+						<div class='checkbox-container'>
+							<input type='checkbox' id='cb2' name='sort_order' value='Ascending' onclick="onlyOne(this)">
+							<label for='cb2'>{% trans 'Dārgākas augšpusē' %}</label>
+						</div>
+						<div class='checkbox-container'>
+							<input type='checkbox' id='cb3' name='sort_order' value='AZ' onclick="onlyOne(this)">
+							<label for='cb3'>A-Z</label>
+						</div>
+						<div class='checkbox-container'>
+							<input type='checkbox' id='cb4' name='sort_order' value='ZA' onclick="onlyOne(this)">
+							<label for='cb4'>Z-A</label>
+						</div>
+
+
+						{% comment %} <select name="sort_order" id="sort_order">
+							<option value="Ascending">Ascending</option>
+							<option value="Descending">Descending</option>
+						</select> {% endcomment %}
 					</div>
-					<div class="range-input">
-						<input type="range" class="range-min" min="0" max="1000" value="0" step="1"/>
-						<input type="range" class="range-max" min="0" max="1000" value="{{price_to}}" step="1"/>
-					</div>
-			</div>
-		</div>
-		<div class="acardion">
-			<a>{% trans 'Kārtot pēc' %}</a>
-			<svg width="15" height="10" viewBox="0 0 42 25">
-				<path
-					d="M3 3L21 21L39 3"
-					stroke="black"
-					stroke-width="7"
-					fill="none"
-					stroke-linejoin="round"
-				/>
-			</svg>
-		</div>
-		<form method="GET" >
-		<div class="sidebar_content" name="sort_order" data-name="check">
-			<div class='checkbox-container'>
-				<input type='checkbox' id='cb1'  name='sort_order' value='Descending' onclick="onlyOne(this)">
-				<label for='cb1'>{% trans 'Lētākas augšpusē' %}</label>
-			</div>
-			<div class='checkbox-container'>
-				<input type='checkbox' id='cb2' name='sort_order'  value='Ascending' onclick="onlyOne(this)">
-				<label for='cb2'>{% trans 'Dārgākas augšpusē' %}</label>
-			</div>
-			<div class='checkbox-container'>
-				<input type='checkbox' id='cb3' name='sort_order' value='AZ' onclick="onlyOne(this)">
-				<label for='cb3'>A-Z</label>
-			</div>
-			<div class='checkbox-container'>
-				<input type='checkbox' id='cb4' name='sort_order' value='ZA' onclick="onlyOne(this)">
-				<label for='cb4'>Z-A</label>
+				</form>
 			</div>
 
 
-			{% comment %} <select name="sort_order" id="sort_order">
-				<option value="Ascending">Ascending</option>
-				<option value="Descending">Descending</option>
-			</select> {% endcomment %}
-		</div>
-	</form>
-	</div>
-
-
-		<div class="filter_title">
-			{% for Specification in Specifikacija %}
-			<div class="acardion">
-				<a>{{ Specification.name }}</a>
-				<svg width="15" height="10" viewBox="0 0 42 25">
-					<path
-						d="M3 3L21 21L39 3"
-						stroke="black"
-						stroke-width="7"
-						fill="none"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			</div>
-			<div class="sidebar_content">
-				<ul class="list-items">
+			<div class="filter_title">
+				{% for Specification in Specifikacija %}
+				<div class="acardion">
+					<a>{{ Specification.name }}</a>
+					<svg width="15" height="10" viewBox="0 0 42 25">
+						<path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" fill="none" stroke-linejoin="round" />
+					</svg>
+				</div>
+				<div class="sidebar_content">
+					<ul class="list-items">
 						{% for spec_product in spec_product %}
-						{% if Specification == spec_product.specification  %}
+						{% if Specification == spec_product.specification %}
 						<li class="item">
-						<input type="checkbox" name="filter" id='{{ spec_product.value }}' value="{{ spec_product.value}}" />
+							<input type="checkbox" name="filter" id='{{ spec_product.value }}'
+								value="{{ spec_product.value}}" />
 							<label for="{{ spec_product.value }}">{{ spec_product.value}}</label>
 						</li>
 						{% endif %}
 						{% endfor %}
-				</ul>
-			</div>
-			{% endfor %}
-			<button type="submit">{% trans 'Filtrēt' %}</button>
-
-		</div>
-	</div>
-	<div class="products-container">
-        {% for Product in product_list %}
-		<div class="prod1">
-            <a href='{% url "product" Product.slug %}'>
-			<div class="product-img">
-				<img src="{{Product.image.url}}" alt="pc" />
-			</div>
-			<div class="product-opt">
-				{% if Product.discount_price is null %}
-					<h1>{{ Product.regular_price }} </h1>
-				{% else %}
-					<h5> <del>{{ Product.regular_price }}</del> </h5>
-					<h2>{{ Product.discount_price }} </h2>
-				{% endif %}
-				<p>{{ Product.title }}</p>
-				
-				<ul>
-					 {% for spec_product in spec %}
-						{% if spec_product.product.id ==  Product.id %}
-							<li>{{spec_product.value}}</li>
-						{% endif %}
-					{% endfor %}
-				</ul>
-					{% comment %} <li>Intel Core i3-8130U CPU</li>
-					<li>Intel UHD Graphics 620 GPU</li>
-					<li>8 GB RAM</li> {% endcomment %}
-				<div class="product-status">
-					{% if Product.is_active == True %}
-						<img class='image' src="{% static '/majaslapa/image/CheckIcon.png'%}" alt='done' style='height:20px position:relative;'  />
-						<p>{% trans 'Ir pieejams' %}</p>
-					{% else %}
-						<img  class='image' src="{% static '/majaslapa/image/Checkno.png' %}" style='height:30px; position:relative; bottom:3px;' />
-						<p>{% trans 'nav pieejams' %}</p>
-					{% endif %}
+					</ul>
 				</div>
-			</div>
-        </a>
-		</div>
-        {% endfor %}
-	</div>
-	<nav aria-label="pagination">
+				{% endfor %}
+				<button type="submit">{% trans 'Filtrēt' %}</button>
 
-		<div class="pagination">
-			{% if product_list.has_previous %}
-				<a href="?{{ request.GET.urlencode }}&page={{product_list.previous_page_number}}">&laquo;</a>
-			{% endif %}
-			{% for num_page in product_list.paginator.page_range %}
-				{% if product_list.number == num_page %}
-					<a class="active" href="?{{ request.GET.urlencode }}&page={{ num_page }}">{{num_page}}</a>
-				{% else %}
-					<a  href="?{{ request.GET.urlencode }}&page={{ num_page }}">{{num_page}}</a>
-				{% endif %}
-			{% endfor %}
-			{% if product_list.has_next %}
-				<a href="?{{ request.GET.urlencode }}&page={{product_list.next_page_number}}">&raquo;</a>
-			{% endif %}
+			</div>
 		</div>
-	</nav>
+		<div class="products-container">
+			{% for Product in product_list %}
+			<div class="prod1">
+				<a href='{% url "product" Product.slug %}'>
+					<div class="product-img">
+						<img src="{{Product.image.url}}" alt="pc" />
+					</div>
+					<div class="product-opt">
+						{% if Product.discount_price is null %}
+						<h1>{{ Product.regular_price }} </h1>
+						{% else %}
+						<h5> <del>{{ Product.regular_price }}</del> </h5>
+						<h2>{{ Product.discount_price }} </h2>
+						{% endif %}
+						<p>{{ Product.title }}</p>
+
+
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+						{% comment %} <ul>
+							{% for spec_product in spec %}
+							{% if spec_product.product.id == Product.id %}
+							<li>{{spec_product.value}}</li>
+							{% endif %}
+							{% endfor %}
+						</ul> {% endcomment %}
+						{% comment %} <li>Intel Core i3-8130U CPU</li>
+						<li>Intel UHD Graphics 620 GPU</li>
+						<li>8 GB RAM</li> {% endcomment %}
+						<div class="product-status">
+							{% if Product.is_active == True %}
+							<img class='image' src="{% static '/majaslapa/image/CheckIcon.png'%}" alt='done'
+								style='height:20px position:relative;' />
+							<p>{% trans 'Ir pieejams' %}</p>
+							{% else %}
+							<img class='image' src="{% static '/majaslapa/image/Checkno.png' %}"
+								style='height:30px; position:relative; bottom:3px;' />
+							<p>{% trans 'nav pieejams' %}</p>
+							{% endif %}
+						</div>
+					</div>
+				</a>
+			</div>
+			{% endfor %}
+		</div>
+		<nav aria-label="pagination">
+
+			<div class="pagination">
+				{% if product_list.has_previous %}
+				<a href="?{{ request.GET.urlencode }}&page={{product_list.previous_page_number}}">&laquo;</a>
+				{% endif %}
+				{% for num_page in product_list.paginator.page_range %}
+				{% if product_list.number == num_page %}
+				<a class="active" href="?{{ request.GET.urlencode }}&page={{ num_page }}">{{num_page}}</a>
+				{% else %}
+				<a href="?{{ request.GET.urlencode }}&page={{ num_page }}">{{num_page}}</a>
+				{% endif %}
+				{% endfor %}
+				{% if product_list.has_next %}
+				<a href="?{{ request.GET.urlencode }}&page={{product_list.next_page_number}}">&raquo;</a>
+				{% endif %}
+			</div>
+		</nav>
 
 </div>
 {% endblock %}
