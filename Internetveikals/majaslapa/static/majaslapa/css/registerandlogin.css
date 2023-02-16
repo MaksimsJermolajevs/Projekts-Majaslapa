@@ -6,7 +6,7 @@
     height: auto;
     padding: 2rem 1rem;
     margin: 50px auto;
-    background-color: #fff;
+    background-color: var(--clr-white);
     border-radius: 5px;
     text-align: center;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
@@ -14,7 +14,7 @@
 
 h1{
     font-size: 28px;
-    color: #07001f;
+    color: var(--clr-text);
     margin-bottom: 30px;
     font-family: 'Montserrat', sans-serif;
 
@@ -22,12 +22,13 @@ h1{
 .LoginMain form input{
     width: 90%;
     outline: none;
-    border: 1px solid rgb(221, 221, 221);
+    border: 1px solid var(--clr-gray);
     padding: 12px 20px;
     margin-bottom: 10px;
     border-radius: 5px;
     /*background: #e4e4e4;*/
     font-size: 16px;
+    background: var(--clr-gray);
 }
 .reg_log{
     margin-top: 18px;
@@ -63,6 +64,7 @@ p {
 
 .p {
     height: 2px;
+    color: var(--clr-gray);
 }
 
 .Horizontal_line1 {
@@ -95,7 +97,7 @@ p {
     width: 90%;
     height: 40px;
     position: relative;
-    border: 1px solid rgb(226, 226, 226);
+    border: 1px solid var(--clr-gray);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -118,7 +120,7 @@ p {
 }
 
 .Google:hover{
-    border: 1px solid #06ca10;
+    border: 1px solid #6FB64D;
 }
 
 .Facebook {
@@ -129,7 +131,7 @@ p {
     width: 90%;
     height: 40px;
     position: relative;
-    border: 1px solid rgb(226, 226, 226);
+    border: 1px solid var(--clr-gray);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -152,7 +154,7 @@ p {
 }
 
 .Facebook:hover{
-    border: 1px solid #06ca10;
+    border: 1px solid #6FB64D;
 }
 
 .Forgot_your_password {
@@ -168,7 +170,7 @@ p {
 
 
 .register_button input {
-    color: #bd2130;
+    color: #6FB64D;
 }
 
 button:hover{
@@ -269,7 +271,7 @@ button:hover{
     padding: 12px 20px;
     /* margin-bottom: 10px; */
     border-radius: 20px;
-    background: #e4e4e4;
+    background: var(--clr-gray);
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
 }
@@ -284,7 +286,7 @@ button:hover{
     padding: 12px 20px;
     /* margin-bottom: 10px; */
     border-radius: 5px;
-    background: #fff;
+    background: var(--clr-gray);
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
 
@@ -355,25 +357,25 @@ button:hover{
     padding: 10px;
     pointer-events: none;
     font-size: 1em;
-    color: rgba(3, 1, 1, 0.76);
+    color: rgb(133, 133, 133);
     /* text-transform: uppercase; */
     transition: 0.5s;
 }
 
 .inputbox input:valid ~ span,
 .inputbox input:focus ~ span{
-    color:#06ca10;
+    color:#6FB64D;
     transform: translateX(10px) translateY(-10px);
     font-size: 0.8em;
     padding: 0 10px;
     background-color: #fff;
-    border-left: 1px solid #06ca10;
-    border-right: 1px solid #06ca10;
+    border-left: 1px solid #6FB64D;
+    border-right: 1px solid #6FB64D;
 }
 
 .inputbox input:valid,
 .inputbox input:focus{
-    border: 1px solid #06ca10;
+    border: 1px solid #6FB64D;
 }
 
 .p {
@@ -385,12 +387,12 @@ button:hover{
     margin: 15px 40px 8px;
     margin-bottom: 15px;
     width: 10;
-    background-color: rgb(0, 0, 0,0.2);
+    background-color: var(--clr-gray);
  }
 
  .p .span {
     font-size: 5px;
-     background:#fff;
+     background:var(--clr-white);
      padding:0 10px;
      font-size: 22px;
      font-family: 'Montserrat', sans-serif;
