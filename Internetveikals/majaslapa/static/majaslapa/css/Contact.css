@@ -7,10 +7,10 @@
     height: 1350px;
     width: min(100% - 15px, 90%);
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: var(--clr-white);
     box-shadow: 0 20px 35px rgb(0 0 0 / 10%);
     font-family: 'Montserrat', sans-serif;
-    border: rgb(133, 133, 133, 0.2);
+    border: var(--clr-gray);
     border-width: 2px;
     border-style: solid;
     margin-bottom: 40px;
@@ -32,7 +32,7 @@ h1 {
     display: flex;
     height: 1px;
     width: 50%;
-    background-color: rgb(226, 226, 226);
+    background-color: var(--clr-gray);
 }
 
 .Vertical_Line {
@@ -42,7 +42,7 @@ h1 {
     margin-top: -210px;
     height: 54%;
     width: 1px;
-    background-color: rgb(226, 226, 226);
+    background-color: var(--clr-gray);
 }
 
 .Horizontal_Line2 {
@@ -52,7 +52,7 @@ h1 {
     margin-bottom: 13px;
     height: 1px;
     width: 94%;
-    background-color: rgb(226, 226, 226);
+    background-color: var(--clr-gray);
 }
 
 .submit_button {
@@ -71,7 +71,7 @@ h1 {
     margin-left: 50px;
     margin-top: 45px;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: var(--clr-gray);
     width: 94%;
     height: 300px;
     
@@ -85,9 +85,11 @@ h1 {
     padding-bottom: 20px;
     display: flex;
     font-size: 32px;
+    color: var(--clr-text);
 }
 
 .FAQ_Question {
+    color: var(--clr-text);
     margin-bottom: 10px;
     margin-left: 20px;
     margin-top: 20px;
@@ -103,6 +105,7 @@ h1 {
     font-weight: light;
     display: flex;
     font-size: 17px;
+    color: var(--clr-text);
 }
 
 .Horizontal_Line3 {
@@ -110,7 +113,7 @@ h1 {
     position: absolute;
     height: 1px;
     width: 100%;
-    background-color: rgb(226, 226, 226);
+    background-color: var(--clr-white);
 }
 
 .Horizontal_Line4 {
@@ -118,7 +121,7 @@ h1 {
     position: absolute;
     height: 1px;
     width: 100%;
-    background-color: rgb(226, 226, 226);
+    background-color: var(--clr-white);
 }
 
 ul {
@@ -126,15 +129,15 @@ ul {
 }
 
 .FAQ_Rectangle p {
-    color: black;
+    color: var(--clr-text);
 }
 
 .FAQ_Rectangle ul {
-    color: black;
+    color: var(--clr-text);
 }
 
 .FAQ_Rectangle li {
-    color: black;
+    color: var(--clr-text);
 }
 
 .Mobile_Image{
@@ -207,7 +210,7 @@ input {
     appearance: auto;
     -webkit-rtl-ordering: logical;
     cursor: text;
-    background-color: field;
+    background-color: var(--clr-gray);
     margin: 0em;
     padding: 1px 2px;
     border-width: 2px;
@@ -229,8 +232,9 @@ input {
     padding: 12px 20px;
     /* margin-bottom: 10px; */
     border-radius: 5px;
-    background: #f7f7f7;
+    background: var(--clr-gray);
     font-size: 16px;
+    color: var(--clr-text);
 }
 
 .input_details {
@@ -258,7 +262,7 @@ input {
     border: 1px solid rgb(133, 133, 133, 0.2);
     padding: 12px 20px;
     border-radius: 5px;
-    background: #f7f7f7;
+    background: var(--clr-gray);
     font-size: 16px;
     resize: none;
 }
