@@ -1,5 +1,6 @@
 body{
-    background-color: #efefef;
+    background-color: var(--background);
+    color: var(--foreground);
 }
 *{
     box-sizing: border-box;
@@ -19,7 +20,7 @@ li,a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #6FB64D;
+    background-color: var(--clr-primary);
     padding: 20px 15px;
     height: 0px;
  }
@@ -46,12 +47,10 @@ li,a{
 }
 
 .left_top li a{
-    transition: all 0.3s ease 0s;
     display: flex;
 }
 
 .right_top li a{
-    transition: all 0.3s ease 0s;
     display: flex;
 }
 
@@ -106,7 +105,7 @@ li,a{
 /*site top*/
 
 .site_undertop{
-    background-color: rgba(99, 180, 61, 0.7);
+    background-color: #90c474;
     height: 70px;
     display: flex;
     align-items: center;
@@ -155,12 +154,8 @@ li,a{
     position: static;
 }
 
-.right_menu a{
-transition: all 0.3s ease 0s;
-}
-
 .right_menu a:hover{
-    color: #7fff00;
+    color: 6FB64D;
 }
 
 
@@ -172,9 +167,11 @@ transition: all 0.3s ease 0s;
     border-radius: 5px;
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
-    color: #424242;
+    color: var(--clr-text);
     /* margin-left: 350px;
     align-items: center; */
+    background: var(--clr-gray);
+    border-color: var(--clr-gray);
 }
 
 .phone{
@@ -240,4 +237,74 @@ transition: all 0.3s ease 0s;
     margin-left: 5px;
     right:5px;
     margin-top: -3px;
+}
+
+.label {
+    background-color: #efefef;
+    display: flex;
+    border-radius: 20px;
+    height: 26px;
+    width: 50px;
+    position: relative;
+}
+
+.ball {
+    width: 22px;
+    height: 22px;
+    background-color: #90c474;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox:checked + .label .ball {
+    transform: translateX(24px);
+    background-color: #121212;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+:root {
+    --clr-primary: #6FB64D;
+    --clr-secondary: #90c474;
+    --clr-gray: #efefef;
+    --clr-white: #fff;
+    --clr-dark: #000;
+    --clr-text: #000;
+
+    --foreground: var(--clr-text);
+    --background: var(--clr-gray);
+}
+
+.darkmode {
+    --clr-primary: #6FB64D;
+    --clr-secondary: #90c474;
+    --clr-gray: #1c1c1c;
+    --clr-white: #171717;
+    --clr-dark: #fff;
+    --clr-text: #fff;
+
+    --foreground: var(--clr-text);
+    --background: var(--clr-gray);
+}
+
+.checkbox {
+    float: right;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.darkmodeicon {
+    float: right;
 }
