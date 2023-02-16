@@ -25,7 +25,7 @@
 				<li class="left">
 					<a class="about" href="{% url 'about' %}">{% trans 'Par mums' %}</a>
 				</li>
-				<b class="stick1">|</b>
+				<a class="stick1">|</a>
 				<li class="left">
 					<a class="contact" href="{% url 'contact' %}">{% trans 'kontakti' %}</a>
 				</li>
@@ -34,6 +34,16 @@
 					<a class="contact" href="{% url 'admin:index' %}">Admin</a>
 				{% endif %}
 			</ul>
+
+			<!--
+				dark mode button
+			-->
+			<div class="darkmodebtn">
+				<input type="checkbox" class="checkbox" id="checkbox">
+					<svg class="darkmodeicon" height="25px" width="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/></svg>
+				</label>
+			</div>
+
 
 			{% get_current_language as CURRENT_LANGUAGE %}
             {% get_available_languages as AVAILABLE_LANGUAGES %}
@@ -107,5 +117,6 @@
 
 		{% block body %}{% endblock %}
 	</body>
+	<script src="{% static '/majaslapa/js/base.js' %}"></script>
 	{% block js %}{% endblock %}
 </html>
